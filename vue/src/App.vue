@@ -7,3 +7,9 @@
     <router-view />
   </div>
 </template>
+
+<style scoped>
+#nav {
+  background-color: gold;
+}
+</style>
