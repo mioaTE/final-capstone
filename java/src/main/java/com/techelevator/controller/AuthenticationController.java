@@ -37,7 +37,7 @@ public class AuthenticationController {
     public ResponseEntity<LoginResponseDto> login(@Valid @RequestBody LoginDto loginDto) {
 
         UsernamePasswordAuthenticationToken authenticationToken =
-                new UsernamePasswordAuthenticationToken(loginDto.getUsername(), loginDto.getPassword());
+                new UsernamePasswordAuthenticationToken(loginDto.getEmail(), loginDto.getPassword());
 
         Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
         SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -45,9 +45,9 @@ public class AuthenticationController {
 
         User user;
         try {
-            user = userDao.getUserByUsername(loginDto.getUsername());
+            user = userDao.getUserByEmail(loginDto.getEmail());
         } catch (DaoException e) {
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Username or password is incorrect.");
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Email or password is incorrect.");
         }
 
         HttpHeaders httpHeaders = new HttpHeaders();
@@ -55,6 +55,8 @@ public class AuthenticationController {
         return new ResponseEntity<>(new LoginResponseDto(jwt, user), httpHeaders, HttpStatus.OK);
     }
 
+
+    @CrossOrigin
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "/register", method = RequestMethod.POST)
     public void register(@Valid @RequestBody RegisterUserDto newUser) {

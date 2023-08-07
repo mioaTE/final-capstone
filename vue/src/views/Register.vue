@@ -17,6 +17,10 @@
         <label for="confirmPassword">Confirm Password</label>
         <input type="password" id="confirmPassword" v-model="user.confirmPassword" required />
       </div>
+      <div class="form-input-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" v-model="user.email" required autofocus />
+        </div>
       <button type="submit">Create Account</button>
       <p><router-link :to="{ name: 'login' }">Already have an account? Log in.</router-link></p>
     </form>
@@ -34,6 +38,7 @@ export default {
         username: '',
         password: '',
         confirmPassword: '',
+        email: '',
         role: 'user',
       },
       registrationErrors: false,
