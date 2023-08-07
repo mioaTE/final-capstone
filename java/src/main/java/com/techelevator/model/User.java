@@ -9,6 +9,7 @@ import java.util.Set;
 public class User {
 
    private int id;
+   @JsonIgnore
    private String email;
    private String username;
    @JsonIgnore
