@@ -12,10 +12,6 @@
         <input type="email" id="email" placeholder="Email" v-model="user.email" required autofocus />
         </div>
       <div class="form-input-group">
-        <label id="icon" for="name"><i class="icon-user"></i></label>
-        <input type="text" id="username" placeholder="Name" v-model="user.username" required autofocus />
-      </div>
-      <div class="form-input-group">
         <label id="icon" for="name"><i class="icon-shield"></i></label>
         <input type="password" id="password" placeholder="Password"  v-model="user.password" required />
       </div>
@@ -29,7 +25,7 @@
       <br>
       <p>By clicking Register, you agree on our <a href="#">terms and condition</a>.</p>
       
-      <a href="#" class="button">Register</a>
+      <input type="submit"/>
     </form>
   </div>
 </template>
@@ -58,6 +54,7 @@ export default {
         this.registrationErrors = true;
         this.registrationErrorMsg = 'Password & Confirm Password do not match.';
       } else {
+        this.user.username = this.user.email;
         authService
           .register(this.user)
           .then((response) => {

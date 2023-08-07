@@ -37,7 +37,7 @@ public class AuthenticationController {
     public ResponseEntity<LoginResponseDto> login(@Valid @RequestBody LoginDto loginDto) {
 
         UsernamePasswordAuthenticationToken authenticationToken =
-                new UsernamePasswordAuthenticationToken(loginDto.getEmail(), loginDto.getPassword());
+                new UsernamePasswordAuthenticationToken(loginDto.getUsername(), loginDto.getPassword());
 
         Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
         SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -45,7 +45,7 @@ public class AuthenticationController {
 
         User user;
         try {
-            user = userDao.getUserByEmail(loginDto.getEmail());
+            user = userDao.getUserByEmail(loginDto.getUsername());
         } catch (DaoException e) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Email or password is incorrect.");
         }
