@@ -29,7 +29,7 @@ public class LoginDto {
    @Override
    public String toString() {
       return "LoginDTO{" +
-              "username='" + email + '\'' +
+              "email='" + email + '\'' +
               ", password='" + password + '\'' +
               '}';
    }

@@ -29,7 +29,7 @@
       <br>
       <p>By clicking Register, you agree on our <a href="#">terms and condition</a>.</p>
       
-      <a href="#" class="button">Register</a>
+      <input class="a" type="submit" value="Register"/>
     </form>
   </div>
 </template>
