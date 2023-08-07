@@ -65,7 +65,8 @@ export default {
 form {
   background-color: #e83e8c;
   font-family: "Snell Roundhand", cursive;
-  max-height: 350px;
+  font-size: 30px;
+  max-height: 400px;
   border-style: solid;
   border-color: yellow;
 }
