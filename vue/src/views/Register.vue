@@ -74,10 +74,32 @@ export default {
 </script>
 
 <style scoped>
+
+
+form {
+ 
+  background-color: #e83e8c;
+  font-family: "Snell Roundhand", cursive;
+  max-height: 300px;
+  border-style: solid;
+  border-color: gold;
+}
+
 .form-input-group {
   margin-bottom: 1rem;
 }
 label {
   margin-right: 0.5rem;
 }
+
+#register {
+  display: flex;
+  justify-content: center;
+  background-color: pink;
+  color: gold;
+  height: 100vh;
+  width: 100%;
+}
+
+
 </style>
