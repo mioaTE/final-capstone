@@ -9,11 +9,11 @@
         Thank you for registering, please sign in.
       </div>
       <div class="form-input-group">
-        <label for="username">Username</label>
+        <label for="username">Username:</label>
         <input type="text" id="username" v-model="user.username" required autofocus />
       </div>
       <div class="form-input-group">
-        <label for="password">Password</label>
+        <label for="password">Password:</label>
         <input type="password" id="password" v-model="user.password" required />
       </div>
       <button type="submit">Sign in</button>
@@ -65,9 +65,10 @@ export default {
 form {
   background-color: #e83e8c;
   font-family: "Snell Roundhand", cursive;
-  max-height: 350px;
+  font-size: 30px;
+  max-height: 400px;
   border-style: solid;
-  border-color: yellow;
+  border-color: gold;
 }
 .form-input-group {
   margin-bottom: 1rem;
@@ -78,9 +79,10 @@ label {
 #login {
   display: flex;
   background-color: #FF8EDB;
-  color: yellow;
+  color: gold;
   justify-content: center;
   height: 100vh;
   width: 100%;
+  align-items: center;
 }
 </style>
