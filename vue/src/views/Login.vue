@@ -15,10 +15,6 @@
         <input type="email" id="email" placeholder="Email" v-model="user.email" required autofocus />
         </div>
       <div class="form-input-group">
-        <label id="icon" for="name"><i class="icon-user"></i></label>
-        <input type="text" id="username" placeholder="Username" v-model="user.username" required autofocus />
-      </div>
-      <div class="form-input-group">
         <label id="icon" for="name"><i class="icon-shield"></i></label>
         <input type="password" id="password" placeholder="Password" v-model="user.password" required />
       </div>
@@ -95,7 +91,7 @@ label {
   align-items: center;
 }
 h1 {
-  font-size: 75px;
+  font-size: 32px;
   font-weight: 300;
   text-align: center;
   padding-top: 10px;
@@ -129,7 +125,7 @@ p {
   top: 0px;
   position: relative;
   border: none;
-  left: 50%;
+  left: 24%;
 }
 .button:hover {
   top: 3px;
