@@ -23,6 +23,7 @@ export default {
   background-color: pink;
 }
 .btn{
+  font-family:'Open Sans', sans-serif;
   background-color: rgb(252, 142, 160);
   border: none; /* Remove borders */
   color: white; /* White text */
@@ -33,7 +34,7 @@ export default {
   border-radius: 25px;
 }
 .btn:hover {
-   top: 3px;
+  top: 3px;
   background-color:#e83e8c;
   -webkit-box-shadow: none; 
   -moz-box-shadow: none; 
