@@ -11,6 +11,10 @@
         <label id="icon" for="name"><i class="icon-envelope "></i></label>
         <input type="email" id="email" placeholder="Email" v-model="user.email" required autofocus />
         </div>
+        <div class="form-input-group">
+          <label id="username">Name</label>
+          <input type="text" id="username" v-model="user.profileName" required autofocus />
+          </div>
       <div class="form-input-group">
         <label id="icon" for="name"><i class="icon-shield"></i></label>
         <input type="password" id="password" placeholder="Password"  v-model="user.password" required />
@@ -38,6 +42,7 @@ export default {
   data() {
     return {
       user: {
+        profileName: '',
         username: '',
         password: '',
         confirmPassword: '',

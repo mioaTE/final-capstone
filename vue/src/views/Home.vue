@@ -1,29 +1,43 @@
 <template>
   <div class="home">
-    <h1>TEGram</h1>
+    <h1 id="TEGram">TEGram</h1>
+    <p id="banner">Welcome to TEGram!</p>
     <user-post />
-    <p>Welcome to TEGram!</p>
+    <side-bar class="sidebar"/>
   </div>
 </template>
 
 <script>
-import UserPost from '../components/UserPost'; 
+import UserPost from '../components/UserPost';
+import SideBar from '../components/SideBar'; 
 export default {
   name: "home",
   components: {
-    UserPost
+    UserPost,
+    SideBar
   }
 };
 </script>
 
 <style>
-#home {
-  display: flex;
+.home {
   background-color: pink;
   height: 100vh;
-  width: 100%;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-areas:
+    "sidebar header header header"
+    "sidebar content content content"
+    "sidebar content content content"
 }
-h1 {
+user-post {
+  grid-area: content;
+}
+#TEGram {
+  display: flex;
+  justify-content: center;
+  grid-area: header;
   font-size: 50px;
   font-weight: 300;
   font-family: 'Open Sans', sans-serif;
@@ -31,9 +45,15 @@ h1 {
   padding-top: 10px;
   margin-bottom: 10px;
 }
-p {
+#banner {
+  grid-area: header;
   font-family: 'Open Sans', sans-serif;
   color: gold;
   text-align: center;
+}
+.sidebar {
+  grid-area: sidebar;
+  display: flex;
+  justify-content: space-between;
 }
 </style>

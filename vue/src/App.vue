@@ -4,6 +4,7 @@
     <div id="nav">
       <router-link class="btn" v-bind:to="{ name: 'home' }" ><i class="fa fa-home"></i> Home</router-link>&nbsp;|&nbsp;
       <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
+      <router-link v-bind:to="{name: 'login' }" v-if="$store.state.token = ''">Login</router-link>
     </div>
     <router-view />
   </div>
@@ -23,12 +24,14 @@
   text-decoration: none;
   border-radius: 25px;
 }
-
 .btn:hover {
    top: 3px;
   background-color:#e83e8c;
   -webkit-box-shadow: none; 
   -moz-box-shadow: none; 
   box-shadow: none;
+}
+#app{
+  width: 100%;
 }
 </style>
