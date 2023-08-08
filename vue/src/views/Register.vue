@@ -25,7 +25,7 @@
       <br>
       <p>By clicking Register, you agree on our <a href="#">terms and condition</a>.</p>
       
-      <input class="a" type="submit" value="Register"/>
+      <input class="button" type="submit" value="Register"/>
     </form>
   </div>
 </template>
@@ -132,16 +132,16 @@ p {
   text-align: center;
 }
 
-a.button {
-  font-size: 14px;
+.button {
+  font-size: 12px;
   font-weight: 600;
   color: white;
-  padding: 6px 25px 0px 20px;
-  margin: 10px 8px 20px 0px;
+  padding: 6px 25px 6px 20px;
+  margin: 10px 8px 20px 8px;
   display: inline-block;
   /* float: right; */
   text-decoration: none;
-  width: 50px; height: 27px; 
+  /* width: 50px; height: 27px;  */
   -webkit-border-radius: 5px; 
   -moz-border-radius: 5px; 
   border-radius: 5px; 
@@ -152,15 +152,16 @@ a.button {
   transition: all 0.1s linear 0s; 
   top: 0px;
   position: relative;
+  border: none;
 }
 
-a.button:hover {
+.button:hover {
   top: 3px;
   background-color:pink;
   -webkit-box-shadow: none; 
   -moz-box-shadow: none; 
   box-shadow: none;
-  
+ 
 }
 
 
