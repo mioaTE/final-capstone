@@ -41,14 +41,14 @@ user-post {
   font-size: 50px;
   font-weight: 300;
   font-family: 'Open Sans', sans-serif;
-  color: gold;
+  color: goldenrod;
   padding-top: 10px;
   margin-bottom: 10px;
 }
 #banner {
   grid-area: header;
   font-family: 'Open Sans', sans-serif;
-  color: gold;
+  color: goldenrod;
   text-align: center;
 }
 .sidebar {
