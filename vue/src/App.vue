@@ -4,6 +4,7 @@
     <div id="nav">
       <router-link class="btn" v-bind:to="{ name: 'home' }" ><i class="fa fa-home"></i> Home</router-link>&nbsp;|&nbsp;
       <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
+      <router-link v-bind:to="{name: 'login' }" v-if="$store.state.token = ''">Login</router-link>
     </div>
     <router-view />
   </div>
