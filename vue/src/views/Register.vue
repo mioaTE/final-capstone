@@ -86,16 +86,13 @@ export default {
 
 
 form {
- 
   background-color: #e83e8c;
   font-family:'Open Sans', sans-serif;
   max-height: 400px;
   border-style: solid;
   border-color: gold;
-
   border-radius: 25px;
 }
-
 .form-input-group {
   display: flex;
   margin-bottom: 1rem;
@@ -104,7 +101,6 @@ form {
 label {
   margin-right: 0.5rem;
 }
-
 #register {
   display: flex;
   justify-content: center;
@@ -113,8 +109,6 @@ label {
   color: gold;
   height: 100vh;
   width: 100%;
-  
-  
 }
 h1 {
   font-size: 32px;
@@ -123,7 +117,6 @@ h1 {
   padding-top: 10px;
   margin-bottom: 10px;
 }
-
 p {
   font-size: 12px;
   width: 150px;
@@ -131,7 +124,6 @@ p {
   margin-left: 18px;
   text-align: center;
 }
-
 .button {
   font-size: 12px;
   font-weight: 600;
@@ -154,16 +146,11 @@ p {
   position: relative;
   border: none;
 }
-
 .button:hover {
   top: 3px;
   background-color:pink;
   -webkit-box-shadow: none; 
   -moz-box-shadow: none; 
   box-shadow: none;
- 
 }
-
-
-
 </style>
