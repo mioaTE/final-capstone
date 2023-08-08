@@ -12,8 +12,8 @@
         <input type="email" id="email" placeholder="Email" v-model="user.email" required autofocus />
         </div>
         <div class="form-input-group">
-          <label id="username">Name</label>
-          <input type="text" id="username" v-model="user.profileName" required autofocus />
+          <label id="username"><i class="icon-user"></i></label>
+          <input type="text" id="username" placeholder="User name" v-model="user.profileName" required autofocus />
           </div>
       <div class="form-input-group">
         <label id="icon" for="name"><i class="icon-shield"></i></label>
@@ -91,9 +91,14 @@ export default {
 
 
 form {
-  background-color: #e83e8c;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+    width: 40%;
+  height: 75%;
+  background-color: rgb(231, 104, 125);
   font-family:'Open Sans', sans-serif;
-  max-height: 400px;
   border-style: solid;
   border-color: gold;
   border-radius: 25px;
@@ -124,14 +129,14 @@ h1 {
 }
 p {
   font-size: 12px;
-  width: 150px;
+  width: auto;
   display: inline-block;
-  margin-left: 18px;
   text-align: center;
 }
 .button {
   font-size: 12px;
   font-weight: 600;
+  width: 30%;
   color: white;
   padding: 6px 25px 6px 20px;
   margin: 10px 8px 20px 8px;

@@ -19,15 +19,26 @@ export default {
   </script>
 
 <style scoped>
+body{
+  margin: 0px;
+}
 #nav {
-  background-color: pink;
+  display: block;
+    width: 100vw;
+    height: auto;
+  background-image: linear-gradient(to top, pink,rgb(250, 212, 218)) ;
 }
 .btn{
+  display: inline-block;
+  width: 5%;
+  justify-content: center;
+  align-items: center;
   font-family:'Open Sans', sans-serif;
   background-color: rgb(252, 142, 160);
   border: none; /* Remove borders */
   color: white; /* White text */
-  padding: 12px 16px; /* Some padding */
+  padding: 10px; /* Some padding */
+  margin: 5px;
   font-size: 16px; /* Set a font size */
   cursor: pointer; /* Mouse pointer on hover */
   text-decoration: none;
@@ -41,6 +52,7 @@ export default {
   box-shadow: none;
 }
 #app{
-  width: 100%;
+height: 100%;
+width: 100%;
 }
 </style>
