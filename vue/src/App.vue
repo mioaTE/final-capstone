@@ -23,12 +23,14 @@
   text-decoration: none;
   border-radius: 25px;
 }
-
 .btn:hover {
    top: 3px;
   background-color:#e83e8c;
   -webkit-box-shadow: none; 
   -moz-box-shadow: none; 
   box-shadow: none;
+}
+#app{
+  width: 100%;
 }
 </style>
