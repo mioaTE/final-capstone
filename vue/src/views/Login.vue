@@ -12,7 +12,7 @@
       </div>
       <div class="form-input-group">
         <label id="icon" for="name"><i class="icon-envelope "></i></label>
-        <input type="email" id="email" placeholder="Email" v-model="user.email" required autofocus />
+        <input type="email" id="email" placeholder="Email" v-model="user.username" required autofocus />
         </div>
       <div class="form-input-group">
         <label id="icon" for="name"><i class="icon-shield"></i></label>

@@ -12,6 +12,8 @@ public class RegisterUserDto {
     @NotEmpty
     private String username;
     @NotEmpty
+    private String profileName;
+    @NotEmpty
     private String password;
     @NotEmpty
     private String confirmPassword;
@@ -26,6 +28,14 @@ public class RegisterUserDto {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getProfileName() {
+        return profileName;
+    }
+
+    public void setProfileName(String profileName) {
+        this.profileName = profileName;
     }
 
     public String getPassword() {
