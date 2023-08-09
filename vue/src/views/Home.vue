@@ -1,9 +1,11 @@
 <template>
+
   <div class="home">
     <!-- <img src="../assets/TEgram-logo.png" id="TEGram" /> -->
     <carousel id="3dCarousel" />
     <side-bar class="sidebar"/>
   </div>
+
 </template>
 
 <script>
@@ -29,10 +31,13 @@ export default {
   grid-template-areas:
     "sidebar header"
     "sidebar content"
-    "sidebar content "
 }
 #3dCarousel {
   grid-area: content;
+  display: flex;
+  justify-content: flex-start;
+  height: auto;
+  justify-self: center;
 }
 #TEGram {
   display: flex;
@@ -47,6 +52,7 @@ export default {
 }
 #banner {
   grid-area: header;
+  height: auto;
   font-family: 'Open Sans', sans-serif;
   color: goldenrod;
   text-align: center;
@@ -58,8 +64,15 @@ export default {
 }
 #app > div.home > div.carousel-3d-container{
   display: flex;
-  overflow: visible;
   justify-content: center;
   align-items: center;
+  background-color: rgb(255, 158, 158);
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
 }
+#\33 dCarousel > div{
+  padding: 10px;
+}
+
 </style>
