@@ -7,7 +7,6 @@
       <router-link class="btn" v-bind:to="{ name: 'home' }" ><i class="fa fa-home"></i>  Home</router-link>
       <img src="./assets/TEgram-logo.png" id="TEgram-logo" />
       <router-link class="btn" v-show="isNotInLogin()" v-bind:to="{ name: 'logout' }"><i class="icon-user"></i>{{$store.state.token != '' ? '  Logout' : '  Login'}}</router-link>
-      
     </div>
     <router-view />
   </div>
