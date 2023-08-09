@@ -5,19 +5,15 @@
     <form @submit.prevent="login">
       <h1>Please Sign In</h1>
       <div role="alert" v-if="invalidCredentials">
-        Invalid username and password!
+        Invalid email and password!
       </div>
       <div role="alert" v-if="this.$route.query.registration">
         Thank you for registering, please sign in.
       </div>
       <div class="form-input-group">
         <label id="icon" for="name"><i class="icon-envelope "></i></label>
-        <input type="email" id="email" placeholder="Email" v-model="user.email" required autofocus />
+        <input type="email" id="email" placeholder="Email" v-model="user.username" required autofocus />
         </div>
-      <div class="form-input-group">
-        <label id="icon" for="name"><i class="icon-user"></i></label>
-        <input type="text" id="username" placeholder="Username" v-model="user.username" required autofocus />
-      </div>
       <div class="form-input-group">
         <label id="icon" for="name"><i class="icon-shield"></i></label>
         <input type="password" id="password" placeholder="Password" v-model="user.password" required />
@@ -70,7 +66,9 @@ export default {
 
 <style scoped>
 form {
-  background-color: #e83e8c;
+  width: 40%;
+  height: 40%;
+  background-image: radial-gradient(#e83e8c, #ff65ad) ;
   font-family: 'Open Sans', sans-serif;
   max-height: 400px;
   border-style: solid;
@@ -85,23 +83,25 @@ form {
 label {
   margin-right: 0.5rem;
 }
+
 #login {
   display: flex;
-  background-color: pink;
+  background-image: radial-gradient(rgb(255, 225, 230), rgb(255, 171, 185)) ;
   color: gold;
   justify-content: center;
   height: 100vh;
-  width: 100%;
+  width: 100vw;
   align-items: center;
+  
 }
 h1 {
-  font-size: 75px;
+  font-size: 32px;
   font-weight: 300;
   text-align: center;
   padding-top: 10px;
   margin-bottom: 10px;
 }
-p {
+#login > form > p {
   font-size: 12px;
   width: 150px;
   display: inline-block;
@@ -113,8 +113,9 @@ p {
   font-weight: 600;
   color: white;
   padding: 6px 25px 0px 20px;
-  margin: 10px 8px 20px 0px;
-  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
   /* float: right; */
   text-decoration: none;
   /* width: 50px; height: 27px; */
@@ -127,9 +128,8 @@ p {
   box-shadow: 0 3px pink;
   transition: all 0.1s linear 0s; 
   top: 0px;
-  position: relative;
   border: none;
-  left: 50%;
+  left: 24%;
 }
 .button:hover {
   top: 3px;

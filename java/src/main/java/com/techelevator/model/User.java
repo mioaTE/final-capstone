@@ -12,6 +12,7 @@ public class User {
    @JsonIgnore
    private String email;
    private String username;
+   private String profileName;
    @JsonIgnore
    private String password;
    @JsonIgnore
@@ -20,13 +21,22 @@ public class User {
 
    public User() { }
 
-   public User(int id, String username, String password, String authorities, String email) {
+   public User(int id, String username, String password, String authorities, String email, String profileName) {
       this.id = id;
       this.email = email;
       this.username = username;
+      this.profileName = profileName;
       this.password = password;
       if (authorities != null) this.setAuthorities(authorities);
       this.activated = true;
+   }
+
+   public String getProfileName() {
+      return profileName;
+   }
+
+   public void setProfileName(String profileName) {
+      this.profileName = profileName;
    }
 
    public int getId() {
@@ -95,12 +105,13 @@ public class User {
               Objects.equals(username, user.username) &&
               Objects.equals(password, user.password) &&
               Objects.equals(email, user.email) &&
+              Objects.equals(profileName, user.profileName) &&
               Objects.equals(authorities, user.authorities);
    }
 
    @Override
    public int hashCode() {
-      return Objects.hash(id, username, password, email, activated, authorities);
+      return Objects.hash(id, username, password, email, profileName, activated, authorities);
    }
 
    @Override
@@ -110,6 +121,7 @@ public class User {
               ", username='" + username + '\'' +
               ", activated=" + activated +
               ", email='" + email + '\'' +
+              ", profileName='" + profileName +'\'' +
               ", authorities=" + authorities +
               '}';
    }
