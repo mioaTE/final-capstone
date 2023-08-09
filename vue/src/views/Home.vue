@@ -10,6 +10,7 @@
 <script>
 import Carousel from '../components/Carousel.vue';
 import SideBar from '../components/SideBar'; 
+
 export default {
   name: "home",
   components: {
