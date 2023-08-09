@@ -2,19 +2,22 @@
   <div class="home">
     <h1 id="TEGram">TEGram</h1>
     <p id="banner">Welcome to TEGram!</p>
-    <user-post />
+    <carousel />
     <side-bar class="sidebar"/>
   </div>
 </template>
 
 <script>
-import UserPost from '../components/UserPost';
+import Carousel from '../components/Carousel';
+
 import SideBar from '../components/SideBar'; 
+
 export default {
   name: "home",
   components: {
-    UserPost,
-    SideBar
+    
+    SideBar,
+    Carousel
   }
 };
 </script>
