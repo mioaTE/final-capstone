@@ -14,13 +14,14 @@
 </template>
 <script>
 export default {
+  
   methods: {
     isNotInLogin() {
       return this.$router.history.current["path"] !== "/login";
     }
   }
 }
-  </script>
+</script>
 
 <style scoped>
 body{
@@ -57,14 +58,12 @@ body{
   -moz-box-shadow: none; 
   box-shadow: none;
 }
-#app{
-height: 100%;
-width: 100%;
+#app {
+  height: 100%;
+  width: 100%;
 }
 #TEgram-logo{
   width: 150px;
   height: 90px;
-  
-  
 }
 </style>

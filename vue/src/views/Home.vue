@@ -1,43 +1,52 @@
 <template>
-
-  <div class="home">
-    <!-- <img src="../assets/TEgram-logo.png" id="TEGram" /> -->
-    <carousel id="3dCarousel" />
+<span :class="isDark ? 'darkmode' : 'home'">
+  <div>
+    <h1 id="TEGram">TEGram</h1>
+    <p id="banner">Welcome to TEGram!</p>
+    <button @click="toggleDark()">Toggle Dark Mode</button>
+    <user-post />
     <side-bar class="sidebar"/>
   </div>
-
+  </span>
 </template>
 
 <script>
-import Carousel from '../components/Carousel.vue';
-import SideBar from '../components/SideBar'; 
-
+import UserPost from '../components/UserPost';
+import SideBar from '../components/SideBar';
 export default {
+  data() {
+    return {
+      isDark: true,
+    }
+  },
+   
   name: "home",
   components: {
-    Carousel,
+    UserPost,
     SideBar
+  },
+  methods: {
+    toggleDark() {
+      return this.isDark = ! this.isDark;
+    }
   }
 };
 </script>
 
 <style>
 .home {
-  background-color: pink;
+  background-image: radial-gradient(rgb(255, 225, 230), rgb(255, 171, 185)) ;
   height: 100vh;
   width: 100vw;
   display: grid;
-  grid-template-columns: 1fr 5fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-areas:
-    "sidebar header"
-    "sidebar content"
+    "sidebar header header header"
+    "sidebar content content content"
+    "sidebar content content content"
 }
-#3dCarousel {
+user-post {
   grid-area: content;
-  display: flex;
-  justify-content: flex-start;
-  height: auto;
-  justify-self: center;
 }
 #TEGram {
   display: flex;
@@ -52,7 +61,6 @@ export default {
 }
 #banner {
   grid-area: header;
-  height: auto;
   font-family: 'Open Sans', sans-serif;
   color: goldenrod;
   text-align: center;
@@ -62,17 +70,16 @@ export default {
   display: flex;
   justify-content: space-between;
 }
-#app > div.home > div.carousel-3d-container{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgb(255, 158, 158);
-  width: 100%;
-  margin-right: auto;
-  margin-left: auto;
+.darkmode {
+  background-image: radial-gradient( rgb(17, 16, 17),rgb(54, 37, 39));
+  color: orange;
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-areas:
+    "sidebar header header header"
+    "sidebar content content content"
+    "sidebar content content content"
 }
-#\33 dCarousel > div{
-  padding: 10px;
-}
-
 </style>

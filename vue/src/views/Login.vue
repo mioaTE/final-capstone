@@ -83,7 +83,6 @@ form {
 label {
   margin-right: 0.5rem;
 }
-
 #login {
   display: flex;
   background-image: radial-gradient(rgb(255, 225, 230), rgb(255, 171, 185)) ;
