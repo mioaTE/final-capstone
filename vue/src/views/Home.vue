@@ -1,23 +1,34 @@
 <template>
-  <div class="home">
+<span :class="isDark ? 'darkmode' : 'home'">
+  <div>
     <h1 id="TEGram">TEGram</h1>
     <p id="banner">Welcome to TEGram!</p>
+    <button @click="toggleDark()">Toggle Dark Mode</button>
     <user-post />
     <side-bar class="sidebar"/>
-    <color-change class="theme"/>
   </div>
+  </span>
 </template>
 
 <script>
 import UserPost from '../components/UserPost';
 import SideBar from '../components/SideBar';
-import ColorChange from '../components/ColorChange'; 
 export default {
+  data() {
+    return {
+      isDark: true,
+    }
+  },
+   
   name: "home",
   components: {
     UserPost,
-    SideBar,
-    ColorChange
+    SideBar
+  },
+  methods: {
+    toggleDark() {
+      return this.isDark = ! this.isDark;
+    }
   }
 };
 </script>
@@ -59,16 +70,17 @@ user-post {
   display: flex;
   justify-content: space-between;
 }
-.changeColors {
-  --size: 2rem;
-  
-  background: none;
-  border: none;
-  padding: 0;
 
-  inline-size: var(--size);
-  block-size: var(--size);
-  aspect-ratio: 1;
-  border-radius: 50%;
+.darkmode {
+  background-image: radial-gradient( rgb(17, 16, 17),rgb(54, 37, 39));
+  color: orange;
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-areas:
+    "sidebar header header header"
+    "sidebar content content content"
+    "sidebar content content content"
 }
 </style>
