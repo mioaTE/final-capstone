@@ -118,7 +118,7 @@ label {
   background-color: pink;
   color: gold;
   height: 100vh;
-  width: 100%;
+  width: 100vw;
 }
 h1 {
   font-size: 32px;
