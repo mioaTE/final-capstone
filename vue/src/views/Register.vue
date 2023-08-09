@@ -95,9 +95,9 @@ form {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-    width: 40%;
+  width: 40%;
   height: 75%;
-  background-color: rgb(231, 104, 125);
+  background-image: radial-gradient(#e83e8c, #ff65ad);
   font-family:'Open Sans', sans-serif;
   border-style: solid;
   border-color: gold;
@@ -115,7 +115,7 @@ label {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: pink;
+  background-image: radial-gradient(rgb(255, 225, 230), rgb(255, 171, 185)) ;
   color: gold;
   height: 100vh;
   width: 100%;
