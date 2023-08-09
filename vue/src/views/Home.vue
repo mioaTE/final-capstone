@@ -21,7 +21,7 @@ export default {
 
 <style>
 .home {
-  background-color: pink;
+  background-image: radial-gradient(rgb(255, 225, 230), rgb(255, 171, 185)) ;
   height: 100vh;
   width: 100vw;
   display: grid;
