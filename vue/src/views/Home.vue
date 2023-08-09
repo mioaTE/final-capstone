@@ -2,39 +2,37 @@
   <div class="home">
     <h1 id="TEGram">TEGram</h1>
     <p id="banner">Welcome to TEGram!</p>
-    <carousel />
+    <carousel id="3dCarousel" />
     <side-bar class="sidebar"/>
   </div>
 </template>
 
 <script>
-import Carousel from '../components/Carousel';
-
+import Carousel from '../components/Carousel.vue';
 import SideBar from '../components/SideBar'; 
 
 export default {
   name: "home",
   components: {
-    
-    SideBar,
-    Carousel
+    Carousel,
+    SideBar
   }
 };
 </script>
 
 <style>
 .home {
-  background-color: pink;
+  background-image: radial-gradient(rgb(255, 225, 230), rgb(255, 171, 185)) ;
   height: 100vh;
   width: 100vw;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 5fr;
   grid-template-areas:
-    "sidebar header header header"
-    "sidebar content content content"
-    "sidebar content content content"
+    "sidebar header"
+    "sidebar content"
+    "sidebar content "
 }
-user-post {
+#3dCarousel {
   grid-area: content;
 }
 #TEGram {
@@ -58,5 +56,11 @@ user-post {
   grid-area: sidebar;
   display: flex;
   justify-content: space-between;
+}
+#app > div.home > div.carousel-3d-container{
+  display: flex;
+  overflow: visible;
+  justify-content: center;
+  align-items: center;
 }
 </style>
