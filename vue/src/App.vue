@@ -2,7 +2,7 @@
   <div id="app">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <div id="nav">
-      <router-link class="btn" v-bind:to="{ name: 'home' }" ><i class="fa fa-home"></i> Home</router-link>&nbsp;|&nbsp;
+      <router-link class="btn" v-bind:to="{ name: 'home' }"><i class="fa fa-home"></i>Home</router-link>&nbsp;|&nbsp;
       <router-link class="btn" v-show="isNotInLogin()" v-bind:to="{ name: 'logout' }">{{$store.state.token != '' ? 'Logout' : 'Login'}}</router-link>
     </div>
     <router-view />
@@ -24,8 +24,8 @@ body{
 }
 #nav {
   display: block;
-    width: 100vw;
-    height: auto;
+  width: 100vw;
+  height: auto;
   background-image: linear-gradient(to top, pink,rgb(250, 212, 218)) ;
 }
 .btn{
@@ -51,7 +51,7 @@ body{
   -moz-box-shadow: none; 
   box-shadow: none;
 }
-#app{
+#app {
 height: 100%;
 width: 100%;
 }
