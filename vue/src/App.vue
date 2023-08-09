@@ -4,6 +4,12 @@
     <div id="nav">
       <router-link class="btn" v-bind:to="{ name: 'home' }"><i class="fa fa-home"></i>Home</router-link>&nbsp;|&nbsp;
       <router-link class="btn" v-show="isNotInLogin()" v-bind:to="{ name: 'logout' }">{{$store.state.token != '' ? 'Logout' : 'Login'}}</router-link>
+      <button class="theme-btn light" title="Light mode">
+      <!--light icon-->
+      </button>
+      <button class="theme-btn dark" title="Dark mode">
+      <!--dark icon-->
+    </button>
     </div>
     <router-view />
   </div>
@@ -51,6 +57,25 @@ body{
   -moz-box-shadow: none; 
   box-shadow: none;
 }
+.theme-btn {
+  font-family:'Open Sans', sans-serif;
+  width: 3em;
+  height: 3em;
+  padding: 0.5em;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+}
+:root,
+  :root.light {
+  --background-image: linear-gradient(to top, pink,rgb(250, 212, 218));
+  --text-color: goldenrod;
+  }
+  :root.dark {
+  --background-image: radial-gradient(rgb(58, 53, 54), rgb(31, 26, 27));
+  --text-color: orange;
+  }
 #app {
 height: 100%;
 width: 100%;

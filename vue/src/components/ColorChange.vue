@@ -15,7 +15,7 @@ body {
   background-image: radial-gradient(rgb(255, 225, 230), rgb(255, 171, 185));
   display: flex;
   height: 100vh;
-  width: 98%;
+  width: 100%;
   align-items: center;
   justify-content: center;
   color: goldenrod;

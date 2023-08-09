@@ -15,4 +15,9 @@ export default {
   width: 100vw;
   display: flex;
 }
+div {
+    padding: 8px;
+    font-size: 24px;
+    display: block;
+}
 </style>
