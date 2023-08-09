@@ -20,17 +20,16 @@ export default {
     width: 150px;
     top: 0;
     left: 0;
-    padding-top: 40px;
     background-color: #e83e8c;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-radius: 25px;
+    border-radius: 0px 25px 25px 0px;
     font-family: 'Open Sans', sans-serif;
     color: white;
 }
 div {
-    padding: 8px;
+    padding: 0px;
     font-size: 24px;
     display: block;
 }

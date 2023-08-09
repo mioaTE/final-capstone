@@ -70,7 +70,6 @@ user-post {
   display: flex;
   justify-content: space-between;
 }
-
 .darkmode {
   background-image: radial-gradient( rgb(17, 16, 17),rgb(54, 37, 39));
   color: orange;
