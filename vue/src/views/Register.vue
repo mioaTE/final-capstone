@@ -54,7 +54,19 @@ export default {
     };
   },
   methods: {
+    hasUpperCase(str) {
+      return str !== str.toLowerCase();
+    },
+   hasNumbers(str) {
+    var regex = /\d/g;
+    return regex.test(str);
+    },
+
     register() {
+      // if(this.user.password.length < 8 || !this.hasUpperCase(this.user.password) || !this.hasNumbers(this.user.password)) {
+      //   this.registrationErrors = true;
+      //   this.registrationErrorMsg = 'Password must contain at least 8 characters, one uppercase, and one number.';
+      // } change if to else if on line 70 when turning strong passwords on
       if (this.user.password != this.user.confirmPassword) {
         this.registrationErrors = true;
         this.registrationErrorMsg = 'Password & Confirm Password do not match.';
@@ -95,9 +107,9 @@ form {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  width: 40%;
+    width: 40%;
   height: 75%;
-  background-image: radial-gradient(#e83e8c, #ff65ad);
+  background-color: rgb(231, 104, 125);
   font-family:'Open Sans', sans-serif;
   border-style: solid;
   border-color: gold;
@@ -115,7 +127,7 @@ label {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: radial-gradient(rgb(255, 225, 230), rgb(255, 171, 185)) ;
+  background-color: pink;
   color: gold;
   height: 100vh;
   width: 100vw;

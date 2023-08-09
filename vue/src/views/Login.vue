@@ -68,7 +68,7 @@ export default {
 form {
   width: 40%;
   height: 40%;
-  background-image: radial-gradient(#e83e8c, #ff65ad);
+  background-image: radial-gradient(#e83e8c, #ff65ad) ;
   font-family: 'Open Sans', sans-serif;
   max-height: 400px;
   border-style: solid;

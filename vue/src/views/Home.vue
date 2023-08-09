@@ -1,11 +1,7 @@
 <template>
 
   <div class="home">
-    
-    <section id="banner">
-    <h1 id="TEGram">TEGram</h1>
-    <p>Welcome to TEGram!</p>
-    </section>
+    <!-- <img src="../assets/TEgram-logo.png" id="TEGram" /> -->
     <carousel id="3dCarousel" />
     <side-bar class="sidebar"/>
   </div>
@@ -15,6 +11,7 @@
 <script>
 import Carousel from '../components/Carousel.vue';
 import SideBar from '../components/SideBar'; 
+
 export default {
   name: "home",
   components: {
@@ -26,7 +23,7 @@ export default {
 
 <style>
 .home {
-  background-image: radial-gradient(rgb(255, 225, 230), rgb(255, 171, 185)) ;
+  background-color: pink;
   height: 100vh;
   width: 100vw;
   display: grid;
