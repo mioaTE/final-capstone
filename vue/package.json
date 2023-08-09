@@ -12,12 +12,7 @@
     "core-js": "^3.9.1",
     "swiper": "^10.1.0",
     "vue": "^2.6.12",
-<<<<<<< HEAD
-    "vue-carousel": "^0.18.0",
-    "vue-glide-js": "^1.3.14",
-=======
     "vue-carousel-3d": "^1.0.1",
->>>>>>> 5db1bc5cfd5c94d005304903a8e2171f50a57ff0
     "vue-router": "^3.5.1",
     "vuex": "^3.6.2"
   },
