@@ -1,7 +1,6 @@
 <template>
   <div class="home">
-    <h1 id="TEGram">TEGram</h1>
-    <p id="banner">Welcome to TEGram!</p>
+    <!-- <img src="../assets/TEgram-logo.png" id="TEGram" /> -->
     <carousel id="3dCarousel" />
     <side-bar class="sidebar"/>
   </div>
