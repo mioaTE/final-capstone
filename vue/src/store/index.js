@@ -18,11 +18,30 @@ if(currentToken != null) {
 
 export default new Vuex.Store({
   state: {
+    activeUser: 0,
     token: currentToken || '',
     user: currentUser || {},
     isDark: true,
+    users: [
+      {
+          id: 1,
+          username: "user1"
+      },
+      {
+          id: 2,
+          username: "user2"
+      },
+      {
+          id: 3,
+          username: "user3"
+      }
+      
+    ]
   },
   mutations: {
+    SET_ACTIVE_USER(state, userId){
+      state.activeUser = userId;
+    },
     SET_AUTH_TOKEN(state, token) {
       state.token = token;
       localStorage.setItem('token', token);
@@ -41,6 +60,11 @@ export default new Vuex.Store({
     },
     TOGGLE_DARK_MODE(state) {
       state.isDark = ! state.isDark;
+    }
+  },
+  getters: {
+    product(state) {
+      return state.users.find(p => p.id == state.activeProduct);
     }
   }
 })
