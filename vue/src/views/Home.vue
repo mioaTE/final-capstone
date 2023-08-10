@@ -1,30 +1,28 @@
 <template>
   <div :class="isDark ? 'darkmode' : 'home'">
+    <nav-bar id="navbar"/>
     <carousel id="3dCarousel" />
     <side-bar class="sidebar"/>
-    <button id="toggle-dark" @click="toggleDark()">Toggle Dark Mode</button>
   </div>
   
 </template>
 <script>
 import Carousel from '../components/Carousel.vue';
+import NavBar from '../components/NavBar.vue';
 import SideBar from '../components/SideBar';
 
 export default {
   name: "home",
-  data() {
-    return {
-      isDark: true,
-    }
-  },
+  // data() {
+  //   return {
+  //     isDark: true,
+  //   }
+  // },
+  props: ['isDark'],
   components: {
     Carousel,
-    SideBar
-  },
-  methods: {
-    toggleDark() {
-      return this.isDark = ! this.isDark;
-    }
+    SideBar,
+    NavBar
   }
 };
 </script>
@@ -36,8 +34,14 @@ export default {
   display: grid;
   grid-template-columns: 1fr 8fr;
   grid-template-areas:
+    "navbar navbar"
     "sidebar content"
   
+}
+
+#navbar{
+  grid-area: navbar;
+  height: 10%;
 }
 
 #\33 dCarousel > div{
