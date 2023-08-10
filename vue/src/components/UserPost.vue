@@ -1,17 +1,22 @@
 <template>
   <div id="Post" :class="$store.state.isDark ? 'darkmode' : 'lightmode'">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600' rel='stylesheet' type='text/css'>
-<link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
-  <section id="PostHeader">
-  <img id="ProfilePicture" v-bind:src="catPicURL" />
-  <h3 id="Username">UserName</h3>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
+    <div v-for="user in $store.state.users" v-bind:key="user.id">
+      <section id="PostHeader" >
+      <img id="ProfilePicture" v-bind:src="catPicURL" />
+      <router-link id="Username" v-bind:to="{name: 'user-detail', params: {id: user.id} }">
+        {{ user.username }}
+        </router-link>
+      </section>
+      <section id="UserPicture">
+      <img id="Picture"  v-bind:src="catPicURL"/>
+      </section>
+      <section id="InteractionPanel">
+        <h4>Likes</h4>
   </section>
-  <section id="UserPicture">
-  <img id="Picture"  v-bind:src="catPicURL"/>
-  </section>
-  <section id="InteractionPanel">
-    <h4>Likes</h4>
-  </section>
+    </div>
+  
   </div>
 </template>
 
@@ -19,6 +24,11 @@
 import catPicService from '../services/CatPictureServices.js';
 export default {
     name: "user-post",
+    methods: {
+      viewPostDetails(){
+        this.$router.push(`/user`);
+      }
+    },
     data() {
         return {
         catPicURL: ''
