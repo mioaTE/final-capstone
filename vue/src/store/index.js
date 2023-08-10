@@ -40,7 +40,7 @@ export default new Vuex.Store({
       axios.defaults.headers.common = {};
     },
     TOGGLE_DARK_MODE(state) {
-      state.isDarkMode = ! state.isDarkMode;
+      state.isDark = ! state.isDark;
     }
   }
 })
