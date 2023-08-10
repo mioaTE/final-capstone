@@ -12,30 +12,42 @@
 
       <section id="navbarsection">
         <router-link class="btn" id="navbutton" v-bind:to="{ name: 'home' }" ><i  class="fa fa-home"></i>  Home</router-link>
-      <img src="../assets/TEgram-logo.png" id="TEgram-logo" />
+      <img v-bind:src="checkLogo" id="TEgram-logo" />
       <router-link class="btn" id="navbutton" v-show="isNotInLogin()" v-bind:to="{ name: 'logout' }"><i class="icon-user" ></i>{{$store.state.token != '' ? '  Logout' : '  Login'}}</router-link>
-      </section>
-          
+      </section>   
       
     </div>
 </template>
 <script>
 export default {
+  computed: {
+    checkLogo() {
+      if(this.$store.state.isDark){
+             return require ("../assets/TEgram.png");
+     } else {
+       return require ("../assets/TEgram-logo.png");
+
+    }
+    }
+  },
   methods: {
     isNotInLogin() {
       return this.$router.history.current["path"] !== "/login";
     },
     toggleDark() {
         this.$store.commit('TOGGLE_DARK_MODE');
-    }
+    },
+
   }
 }
+
 </script>
 
 <style scoped>
 
-#navbar {
+.lightmode #navbar {
   display: flex;
+    border-bottom: 2px solid rgb(0, 0, 0);
   justify-content: space-between;
     /* width: 100vw; */
     /* height: auto; */
@@ -47,6 +59,7 @@ export default {
   margin: 0px;
 }
 .lightmode #navbutton{
+  border: 2px solid black;
   width: auto;
 }
 
@@ -64,7 +77,7 @@ export default {
   margin: 5px;
   font-size: 16px; /* Set a font size */
   cursor: pointer; /* Mouse pointer on hover */
-  text-decoration: none;
+  border: 2px solid black;
   border-radius: 25px;
   width: auto;
   height: auto;
@@ -114,15 +127,18 @@ export default {
 }
 .lightmode #darkmodebutton{
 display: flex;
+
 align-items: center;
 justify-content: center;
 margin-left: 2%;
+width: 10%;
 }
 .lightmode #navbarsection{
   display: flex;
   align-items: center;
 justify-content: center;
   width: 100%;
+  margin-right: 10%;
 }
 
 
@@ -135,15 +151,20 @@ justify-content: center;
   justify-content: space-between;
     /* width: 100vw; */
     /* height: auto; */
-  background-color:rgb(85, 85, 85);
+  background-image: linear-gradient(to right, rgb(53, 53, 53) ,rgb(83, 83, 83),rgb(53, 53, 53) );
   height: 100%;
+  border-bottom: 2px solid rgb(0, 0, 0);
+}
+.darkmode #navbutton{
+    border: 2px solid black;
+  width: auto;
 }
 .darkmode button{
    display: inline-block;
   justify-content: center;
   align-items: center;
   font-family:'Open Sans', sans-serif;
-  background-color: rgb(252, 142, 160);
+  background-color: rgb(255, 164, 79);
   border: none; /* Remove borders */
   color: white; /* White text */
   padding: 10px; /* Some padding */
@@ -152,14 +173,13 @@ justify-content: center;
   cursor: pointer; /* Mouse pointer on hover */
   text-decoration: none;
   border-radius: 25px;
+  border: 2px solid black;
   width: auto;
   height: auto;
 }
 .darkmode button:hover {
   top: 3px;
-  background-color:#e83e8c;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
+  background-color:#ff9419;
   box-shadow: none;
 }
 
@@ -168,7 +188,7 @@ justify-content: center;
   justify-content: center;
   align-items: center;
   font-family:'Open Sans', sans-serif;
-  background-color: rgb(252, 142, 160);
+  background-color: rgb(255, 164, 79);
   border: none; /* Remove borders */
   color: white; /* White text */
   padding: 10px; /* Some padding */
@@ -180,9 +200,7 @@ justify-content: center;
 }
 .darkmode .btn:hover {
   top: 3px;
-  background-color:#e83e8c;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
+  background-color:#ff9419;
   box-shadow: none;
 }
 .darkmode #app {
@@ -201,12 +219,14 @@ display: flex;
 align-items: center;
 justify-content: center;
 margin-left: 2%;
+width: 10%;
 }
 .darkmode #navbarsection{
   display: flex;
   align-items: center;
 justify-content: center;
   width: 100%;
+  margin-right: 10%;
 }
 </style>
 
