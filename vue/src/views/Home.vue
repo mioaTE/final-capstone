@@ -1,5 +1,5 @@
 <template>
-  <div :class="$store.state.isDark ? 'darkmode' : 'lightmode'">
+  <div id="home" :class="$store.state.isDark ? 'darkmode' : 'lightmode'">
     <nav-bar id="navbar"/>
     <carousel id="3dCarousel" />
   </div>
@@ -8,6 +8,7 @@
 <script>
 import Carousel from '../components/Carousel.vue';
 import NavBar from '../components/NavBar.vue';
+
 
 
 export default {
@@ -20,13 +21,17 @@ export default {
   props: ['isDark'],
   components: {
     Carousel,
-    NavBar
+    NavBar,
+
   }
 };
 </script>
 <style>
 .lightmode {
   background-image: radial-gradient(rgb(255, 225, 230), rgb(255, 171, 185)) ;
+
+}
+#home{
   height: 100vh;
   width: 100vw;
   display: grid;
@@ -70,21 +75,6 @@ export default {
 }
 
   .darkmode {
-  background-image: radial-gradient(rgb(68, 68, 68), rgb(255, 157, 46)) ;
-  height: 100vh;
-  width: 100vw;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-areas:
-    "navbar"
-    "content"
-    "content"
-    "content"
-    "content"
-    "content"
-    "content"
-    "content"
-    
-  
+ background-image: linear-gradient(to top, rgb(255, 191, 71) ,rgb(99, 99, 99),rgb(82, 82, 82));
   }
 </style>
