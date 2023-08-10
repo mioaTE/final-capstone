@@ -1,5 +1,5 @@
 <template>
-  <div :class="isDark ? 'darkmode' : 'home'">
+  <div :class="$store.state.isDark ? 'darkmode' : 'lightmode'">
     <nav-bar id="navbar"/>
     <carousel id="3dCarousel" />
     <side-bar class="sidebar"/>
@@ -27,7 +27,7 @@ export default {
 };
 </script>
 <style>
-.home {
+.lightmode {
   background-image: radial-gradient(rgb(255, 225, 230), rgb(255, 171, 185)) ;
   height: 100vh;
   width: 100vw;
@@ -36,12 +36,22 @@ export default {
   grid-template-areas:
     "navbar navbar"
     "sidebar content"
+    "sidebar content"
+    "sidebar content"
+    "sidebar content"
+    "sidebar content"
+    "sidebar content"
+    "sidebar content"
+    "sidebar content"
+    "sidebar content"
+    "sidebar content"
   
 }
 
 #navbar{
   grid-area: navbar;
   height: 10%;
+  background: rgb(255, 154, 171);
 }
 
 #\33 dCarousel > div{
@@ -65,19 +75,23 @@ export default {
 }
 
   .darkmode {
-  background-image: radial-gradient( rgb(17, 16, 17),rgb(54, 37, 39));
-  color: orange;
+  background-image: radial-gradient(rgb(68, 68, 68), rgb(255, 157, 46)) ;
   height: 100vh;
   width: 100vw;
   display: grid;
-  grid-template-columns: 1fr 5fr;
+  grid-template-columns: 1fr 8fr;
   grid-template-areas:
+    "navbar navbar"
     "sidebar content"
     "sidebar content"
-  }
-
-  #toggle-dark {
-    width: 100px;
-    height: 50px;
+    "sidebar content"
+    "sidebar content"
+    "sidebar content"
+    "sidebar content"
+    "sidebar content"
+    "sidebar content"
+    "sidebar content"
+    "sidebar content"
+  
   }
 </style>
