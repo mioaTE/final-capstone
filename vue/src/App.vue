@@ -13,13 +13,15 @@
 </template>
 <script>
 export default {
+  
   methods: {
     isNotInLogin() {
       return this.$router.history.current["path"] !== "/login";
     }
   }
 }
-  </script>
+</script>
+
 <style scoped>
 body{
   margin: 0px;
@@ -56,9 +58,9 @@ body{
   -moz-box-shadow: none;
   box-shadow: none;
 }
-#app{
-height: 100%;
-width: 100vw;
+#app {
+  height: 100%;
+  width: 100%;
 }
 #TEgram-logo{
   height: 150px;
