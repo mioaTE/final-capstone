@@ -60,7 +60,7 @@ body{
 }
 #app {
   height: 100%;
-  width: 100%;
+  width: 100vw;
 }
 #TEgram-logo{
   height: 150px;
