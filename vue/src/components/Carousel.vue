@@ -53,4 +53,13 @@ export default {
 #\33 dCarousel > div{
     padding: 0px;
 }
+.carousel-3d-container[data-v-07917306]{
+  height: 300px;
+}
+#3dCarousel {
+  grid-area: content;
+  display: flex;
+  justify-content: flex-start;
+  justify-self: center;
+}
 </style>

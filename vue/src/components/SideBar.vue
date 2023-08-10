@@ -17,7 +17,7 @@ export default {
 <style>
 .sidebar {
     height: 100%;
-    width: 150px;
+    width: 100%;
     top: 0;
     left: 0;
     background-color: #e83e8c;

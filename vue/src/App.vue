@@ -32,6 +32,7 @@ body{
     /* width: 100vw; */
     /* height: auto; */
   background-color:pink;
+  height: 10%;
 }
 .btn{
   display: inline-block;
@@ -53,8 +54,8 @@ body{
 .btn:hover {
   top: 3px;
   background-color:#e83e8c;
-  -webkit-box-shadow: none; 
-  -moz-box-shadow: none; 
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
   box-shadow: none;
 }
 #app {
@@ -62,7 +63,10 @@ body{
   width: 100%;
 }
 #TEgram-logo{
-  width: 150px;
-  height: 90px;
+  height: 150px;
+}
+.carousel-3d-container[data-v-07917306]{
+  border-radius: 10px 10px 10px 10px;
+  height: 300px;
 }
 </style>

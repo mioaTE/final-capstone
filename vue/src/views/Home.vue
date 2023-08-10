@@ -9,6 +9,7 @@
 <script>
 import Carousel from '../components/Carousel.vue';
 import SideBar from '../components/SideBar';
+
 export default {
   name: "home",
   data() {
@@ -33,23 +34,18 @@ export default {
   height: 100vh;
   width: 100vw;
   display: grid;
-  grid-template-columns: 1fr 5fr;
+  grid-template-columns: 1fr 8fr;
   grid-template-areas:
     "sidebar content"
-    "sidebar content"
+  
 }
-#3dCarousel {
-  grid-area: content;
-  display: flex;
-  justify-content: flex-start;
-  height: auto;
-  justify-self: center;
+
+#\33 dCarousel > div{
+  height: 50%;
 }
-#banner {
-  grid-area: header;
-  height: auto;
-  font-family: 'Open Sans', sans-serif;
-  color: goldenrod;
+
+#3dCarousel{
+  height: 50%;
   text-align: center;
 }
 .sidebar {
@@ -62,9 +58,6 @@ export default {
   justify-content: center;
   align-items: center;
   background-color: rgb(255, 158, 158);
-  width: 100%;
-  margin-right: auto;
-  margin-left: auto;
 }
 
   .darkmode {
@@ -84,10 +77,3 @@ export default {
     height: 50px;
   }
 </style>
-
-   
-
-
-   
-
-  
