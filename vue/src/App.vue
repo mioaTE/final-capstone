@@ -7,7 +7,6 @@
       <router-link class="btn" v-bind:to="{ name: 'home' }" ><i class="fa fa-home"></i>  Home</router-link>
       <img src="./assets/TEgram-logo.png" id="TEgram-logo" />
       <router-link class="btn" v-show="isNotInLogin()" v-bind:to="{ name: 'logout' }"><i class="icon-user"></i>{{$store.state.token != '' ? '  Logout' : '  Login'}}</router-link>
-      
     </div>
     <router-view />
   </div>
@@ -21,7 +20,6 @@ export default {
   }
 }
   </script>
-
 <style scoped>
 body{
   margin: 0px;
@@ -32,6 +30,7 @@ body{
     /* width: 100vw; */
     /* height: auto; */
   background-color:pink;
+  height: 10%;
 }
 .btn{
   display: inline-block;
@@ -53,18 +52,19 @@ body{
 .btn:hover {
   top: 3px;
   background-color:#e83e8c;
-  -webkit-box-shadow: none; 
-  -moz-box-shadow: none; 
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
   box-shadow: none;
 }
 #app{
 height: 100%;
-width: 100%;
+width: 100vw;
 }
 #TEgram-logo{
-  width: 150px;
-  height: 90px;
-  
-  
+  height: 150px;
+}
+.carousel-3d-container[data-v-07917306]{
+  border-radius: 10px 10px 10px 10px;
+  height: 300px;
 }
 </style>

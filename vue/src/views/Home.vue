@@ -1,7 +1,6 @@
 <template>
 
   <div class="home">
-    <!-- <img src="../assets/TEgram-logo.png" id="TEGram" /> -->
     <carousel id="3dCarousel" />
     <side-bar class="sidebar"/>
   </div>
@@ -11,7 +10,6 @@
 <script>
 import Carousel from '../components/Carousel.vue';
 import SideBar from '../components/SideBar'; 
-
 export default {
   name: "home",
   components: {
@@ -23,39 +21,21 @@ export default {
 
 <style>
 .home {
-  background-color: pink;
+  background-image: radial-gradient(rgb(255, 225, 230), rgb(255, 171, 185)) ;
   height: 100vh;
   width: 100vw;
   display: grid;
-  grid-template-columns: 1fr 5fr;
+  grid-template-columns: 1fr 8fr;
   grid-template-areas:
-    "sidebar header"
     "sidebar content"
+  
 }
-#3dCarousel {
-  grid-area: content;
-  display: flex;
-  justify-content: flex-start;
-  height: auto;
-  justify-self: center;
+
+#\33 dCarousel > div{
+  height: 50%;
 }
-#TEGram {
-  display: flex;
-  justify-content: center;
-  grid-area: header;
-  font-size: 50px;
-  font-weight: 300;
-  font-family: 'Open Sans', sans-serif;
-  color: goldenrod;
-  padding-top: 10px;
-  margin-bottom: 10px;
-}
-#banner {
-  grid-area: header;
-  height: auto;
-  font-family: 'Open Sans', sans-serif;
-  color: goldenrod;
-  text-align: center;
+#3dCarousel{
+  height: 50%;
 }
 .sidebar {
   grid-area: sidebar;
@@ -68,11 +48,7 @@ export default {
   align-items: center;
   background-color: rgb(255, 158, 158);
   width: 100%;
-  margin-right: auto;
-  margin-left: auto;
 }
-#\33 dCarousel > div{
-  padding: 10px;
-}
+
 
 </style>
