@@ -10,7 +10,7 @@ export default {
   }
 }
 </script>
-<style scoped id="lightmode">
+<style>
 body{
   margin: 0px;
 }

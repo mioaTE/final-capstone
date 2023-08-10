@@ -2,14 +2,13 @@
   <div :class="$store.state.isDark ? 'darkmode' : 'lightmode'">
     <nav-bar id="navbar"/>
     <carousel id="3dCarousel" />
-    <side-bar class="sidebar"/>
   </div>
   
 </template>
 <script>
 import Carousel from '../components/Carousel.vue';
 import NavBar from '../components/NavBar.vue';
-import SideBar from '../components/SideBar';
+
 
 export default {
   name: "home",
@@ -21,7 +20,6 @@ export default {
   props: ['isDark'],
   components: {
     Carousel,
-    SideBar,
     NavBar
   }
 };
@@ -32,20 +30,17 @@ export default {
   height: 100vh;
   width: 100vw;
   display: grid;
-  grid-template-columns: 1fr 8fr;
+  grid-template-columns: 1fr;
   grid-template-areas:
-    "navbar navbar"
-    "sidebar content"
-    "sidebar content"
-    "sidebar content"
-    "sidebar content"
-    "sidebar content"
-    "sidebar content"
-    "sidebar content"
-    "sidebar content"
-    "sidebar content"
-    "sidebar content"
-  
+    "navbar"
+    "content"
+    "content"
+    "content"
+    "content"
+    "content"
+    "content"
+    "content"
+    
 }
 
 #navbar{
@@ -79,19 +74,17 @@ export default {
   height: 100vh;
   width: 100vw;
   display: grid;
-  grid-template-columns: 1fr 8fr;
+  grid-template-columns: 1fr;
   grid-template-areas:
-    "navbar navbar"
-    "sidebar content"
-    "sidebar content"
-    "sidebar content"
-    "sidebar content"
-    "sidebar content"
-    "sidebar content"
-    "sidebar content"
-    "sidebar content"
-    "sidebar content"
-    "sidebar content"
+    "navbar"
+    "content"
+    "content"
+    "content"
+    "content"
+    "content"
+    "content"
+    "content"
+    
   
   }
 </style>
