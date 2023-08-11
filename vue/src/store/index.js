@@ -38,9 +38,19 @@ export default new Vuex.Store({
           posts: [
             {
               postId: 1001,
-              post: '../assets/dog1.jpg',
+              postImage: require('../assets/dog1.jpg'),
               description: "this is user1's post postId:1001"
-            }
+            },
+            {
+              postId: 1002,
+              postImage: require('../assets/dog1.jpg'),
+              description: "this is user1's post postId:1002"
+            },
+            {
+              postId: 1003,
+              postImage: require('../assets/dog1.jpg'),
+              description: "this is user1's post postId:1003"
+            },
           ]
       },
       {
@@ -73,7 +83,7 @@ export default new Vuex.Store({
       },
       {
         id: 9,
-        username: "Forest Gump"
+        username: "Forrest Gump"
       }
       
     ]
