@@ -24,6 +24,10 @@ export default new Vuex.Store({
     isDark: true,
     users: [
       {
+          id: 0,
+          username: "user0"
+      },
+      {
           id: 1,
           username: "user1"
       },
@@ -32,8 +36,8 @@ export default new Vuex.Store({
           username: "user2"
       },
       {
-          id: 3,
-          username: "user3"
+        id: 3,
+        username: "user3"
       }
       
     ]

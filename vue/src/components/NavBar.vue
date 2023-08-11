@@ -151,7 +151,7 @@ justify-content: center;
   justify-content: space-between;
     /* width: 100vw; */
     /* height: auto; */
-  background-image: linear-gradient(to right, rgb(53, 53, 53) ,rgb(83, 83, 83),rgb(53, 53, 53) );
+  background-image: linear-gradient(to right, rgb(53, 53, 53) ,rgb(85, 85, 85),rgb(53, 53, 53) );
   height: 100%;
   border-bottom: 2px solid rgb(0, 0, 0);
 }
