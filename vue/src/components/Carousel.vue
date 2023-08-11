@@ -50,4 +50,5 @@ export default {
   justify-content: flex-start;
   justify-self: center;
 }
+
 </style>

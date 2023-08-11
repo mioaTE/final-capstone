@@ -5,6 +5,7 @@
 <link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
      
      
+     
       <section id="darkmodebutton">
         <button id="toggle-dark" @click="toggleDark()">Toggle Dark Mode</button>
       </section>
@@ -13,6 +14,7 @@
       <section id="navbarsection">
         <router-link class="btn" id="navbutton" v-bind:to="{ name: 'home' }" ><i  class="fa fa-home"></i>  Home</router-link>
       <img v-bind:src="checkLogo" id="TEgram-logo" />
+
       <router-link class="btn" id="navbutton" v-show="isNotInLogin()" v-bind:to="{ name: 'logout' }"><i class="icon-user" ></i>{{$store.state.token != '' ? '  Logout' : '  Login'}}</router-link>
       </section>   
       
@@ -52,7 +54,6 @@ export default {
     /* width: 100vw; */
     /* height: auto; */
   background-color:pink;
-  height: 100%;
 }
 
 .lightmode body{
@@ -152,7 +153,6 @@ justify-content: center;
     /* width: 100vw; */
     /* height: auto; */
   background-image: linear-gradient(to right, rgb(53, 53, 53) ,rgb(85, 85, 85),rgb(53, 53, 53) );
-  height: 100%;
   border-bottom: 2px solid rgb(0, 0, 0);
 }
 .darkmode #navbutton{
