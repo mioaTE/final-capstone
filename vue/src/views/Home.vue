@@ -1,17 +1,24 @@
 <template>
   <div id="home" :class="$store.state.isDark ? 'darkmode' : 'lightmode'">
     <nav-bar id="navbar"/>
-    <carousel id="3dCarousel" />
+    <display-posts />
+    <!-- <carousel id="3dCarousel" /> -->
+    <upload-pic />
   </div>
   
 </template>
 <script>
-import Carousel from '../components/Carousel.vue';
+import DisplayPosts from '../components/DisplayPosts.vue';
+// import Carousel from '../components/Carousel.vue';
 import NavBar from '../components/NavBar.vue';
+import UploadPic from '../components/UploadPic.vue';
 
 
 
 export default {
+  sameSite:'none', 
+    secure:true,
+    httpOnly:true,
   name: "home",
   // data() {
   //   return {
@@ -20,13 +27,17 @@ export default {
   // },
   props: ['isDark'],
   components: {
-    Carousel,
+    // Carousel,
     NavBar,
+    UploadPic,
+    DisplayPosts,
 
   }
 };
 </script>
 <style>
+
+
 .lightmode {
   background-image: radial-gradient(rgb(255, 225, 230), rgb(255, 171, 185)) ;
 
@@ -36,37 +47,34 @@ export default {
   width: 100vw;
   display: grid;
   grid-template-columns: 1fr;
+  grid-template-rows: 1fr 3fr;
   grid-template-areas:
     "navbar"
-    "content"
-    "content"
-    "content"
-    "content"
-    "content"
-    "content"
-    "content"
-    
+    "post"
 }
 
 #navbar{
   grid-area: navbar;
-  height: 10%;
+  height: auto;
   background: rgb(255, 154, 171);
 }
 
 #\33 dCarousel > div{
   height: 50%;
 }
+#carousel{
+  grid-area: post;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+}
 
 #3dCarousel{
-  height: 50%;
+  height: 100%;
   text-align: center;
 }
-.sidebar {
-  grid-area: sidebar;
-  display: flex;
-  justify-content: space-between;
-}
+
 #app > div.home > div.carousel-3d-container{
   display: flex;
   justify-content: center;
