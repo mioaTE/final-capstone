@@ -12,13 +12,21 @@
       <img id="Picture"  v-bind:src="catPicURL"/>
       </section>
       <section id="InteractionPanel">
-        <h4>Likes</h4>
-  </section>
+        <div id="button-box">
+          <button id="like" class="bluehover" v-on:click="{ unlikePost }" v-if="liked">
+            <i class="fas fa-heart"></i>
+          </button>
+          <button id="like" class="bluehover" v-on:click="{ likePost }" v-else>
+            <i class="fas fa-bookmark"></i>
+          </button>
+        </div>
+      </section>
     </div>
 </template>
 
 <script>
 import catPicService from '../services/CatPictureServices.js';
+import postService from "../services/PostService.js";
 export default {
     name: "user-post",
     props: ['user'],
@@ -36,8 +44,49 @@ export default {
         catPicService.getCatPic().then((response) => {
         let data = response.data[0];
         this.catPicURL = data.url;
-    })
-  }
+        })
+    },
+    likePost() {
+      console.log(this.post.images);
+      postService
+        .addLiked(this.post.postId)
+        .then((response) => {
+          if (response.status == 201) {
+            this.$store.commit("TOGGLE_LIKE", this.post);
+          }
+        })
+        .catch((error) => {
+          console.log(error.response);
+        });
+    },
+    unlikePost() {
+      postService
+        .removeLiked(this.post.postId)
+        .then()
+        .catch((error) => {
+          console.log(error.response);
+        });
+      this.$store.commit("TOGGLE_LIKE", this.post);
+    },
+    favoritePost() {
+      postService
+        .addFavorite(this.post.postId)
+        .then()
+        .catch((error) => {
+          console.log(error.response);
+        });
+
+      this.$store.commit("TOGGLE_FAVORITE", this.post);
+    },
+    unfavoritePost() {
+      postService
+        .removeFavorite(this.post.postId)
+        .then()
+        .catch((error) => {
+          console.log(error.response);
+        });
+      this.$store.commit("TOGGLE_FAVORITE", this.post);
+    },
 };
 </script>
 
@@ -46,13 +95,10 @@ export default {
     height: 100%;
   width: 100%;
 }
-
 #Post{
-  
   height: 100%;
   width: 100%;
 }
-
 h3{
   font-family:'Open Sans', sans-serif;
 }
@@ -77,7 +123,6 @@ width: 100%;
   height: 15%;
   background-image: linear-gradient(to right, rgb(255, 110, 134), rgb(255, 135, 155));
 }
-
 .lightmode #ProfilePicture{
   display: inline-block;
   height: 15px;
@@ -112,7 +157,6 @@ width: 100%;
   height: 15%;
 background-image: linear-gradient(to right, rgb(255, 191, 71),rgb(82, 82, 82) );
 }
-
 .darkmode #ProfilePicture{
   display: inline-block;
   height: 15px;
@@ -130,7 +174,4 @@ background-image: linear-gradient(to right, rgb(255, 191, 71),rgb(82, 82, 82) );
   height: 10%;
 background-image: linear-gradient(to right, rgb(255, 191, 71),rgb(82, 82, 82) );
 }
-
-
-
 </style>
