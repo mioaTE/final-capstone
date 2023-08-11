@@ -42,7 +42,7 @@ export default {
 </script>
 
 <style>
-.lightmode div{
+.lightmode #carousel div{
     height: 100%;
   width: 100%;
 }
@@ -71,6 +71,9 @@ height: 75%;
 width: 100%;
 }
 .lightmode #PostHeader{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
   height: 15%;
   background-image: linear-gradient(to right, rgb(255, 110, 134), rgb(255, 135, 155));
 }
@@ -94,17 +97,20 @@ width: 100%;
 }
 
 
-.darkmode div{
+.darkmode #carousel div{
     height: 100%;
-  width: 100%;
+    width: 100%;
 }
 .darkmode #UserPicture{
 height: 75%;
 width: 100%;
 }
 .darkmode #PostHeader{
+    display: flex;
+  justify-content: flex-start;
+  align-items: center;
   height: 15%;
-background-image: linear-gradient(to top,rgb(82, 82, 82), rgb(255, 191, 71) );
+background-image: linear-gradient(to right, rgb(255, 191, 71),rgb(82, 82, 82) );
 }
 
 .darkmode #ProfilePicture{
@@ -122,7 +128,7 @@ background-image: linear-gradient(to top,rgb(82, 82, 82), rgb(255, 191, 71) );
 }
 .darkmode #InteractionPanel{
   height: 10%;
-background-image: linear-gradient(to top,rgb(99, 99, 99), rgb(255, 191, 71) );
+background-image: linear-gradient(to right, rgb(255, 191, 71),rgb(82, 82, 82) );
 }
 
 

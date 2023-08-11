@@ -1,8 +1,10 @@
 <template>
-  <div id="login" class="text-center">
+  <div :class="$store.state.isDark ? 'darkmode' : 'lightmode'" id="login" class="text-center" >
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600' rel='stylesheet' type='text/css'>
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
-    <form @submit.prevent="login">
+    <nav-bar :class="$store.state.isDark ? 'darkmode' : 'lightmode'" id="navbar"/>
+    <section :class="$store.state.isDark ? 'darkmode' : 'lightmode'" id="loginform">
+    <form :class="$store.state.isDark ? 'darkmode' : 'lightmode'" @submit.prevent="login">
       <h1>Please Sign In</h1>
       <div role="alert" v-if="invalidCredentials">
         Invalid email and password!
@@ -23,15 +25,19 @@
       <p>
       <router-link :to="{ name: 'register' }">Need an account? Sign up.</router-link></p>
     </form>
+    </section>
   </div>
 </template>
 
 <script>
+import NavBar from '../components/NavBar.vue';
 import authService from "../services/AuthService";
 
 export default {
   name: "login",
-  components: {},
+  components: {
+    NavBar
+  },
   data() {
     return {
       user: {
@@ -65,10 +71,23 @@ export default {
 </script>
 
 <style scoped>
+.lightmode {
+  background-image: radial-gradient(rgb(255, 225, 230), rgb(255, 171, 185)) ;
+
+}
+  .darkmode {
+ background-image: linear-gradient(to top, rgb(255, 191, 71) ,rgb(99, 99, 99),rgb(82, 82, 82),rgb(68, 68, 68));
+  }
+  .lightmode form{
+ background-image: radial-gradient(rgb(255, 143, 162), rgb(255, 136, 156)) ;
+  }
+  .darkmode form{
+background-image: linear-gradient(to bottom ,rgb(85, 85, 85),rgb(255, 211, 130),rgb(85, 85, 85));
+  }
 form {
   width: 40%;
   height: 40%;
-  background-image: radial-gradient(#e83e8c, #ff65ad) ;
+  background-image: radial-gradient( #ffa2cd,#ff62ab) ;
   font-family: 'Open Sans', sans-serif;
   max-height: 400px;
   border-style: solid;
@@ -84,14 +103,29 @@ label {
   margin-right: 0.5rem;
 }
 #login {
-  display: flex;
   background-image: radial-gradient(rgb(255, 225, 230), rgb(255, 171, 185)) ;
   color: gold;
-  justify-content: center;
   height: 100vh;
   width: 100vw;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 3fr;
+  grid-template-areas:
+    "navbar"
+    "login"
+}
+#navbar{
+  grid-area: navbar;
+  display: flex;
+  justify-content: center;
   align-items: center;
-  
+  background: pink;
+}
+#loginform{
+  grid-area: login;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 h1 {
   font-size: 32px;
