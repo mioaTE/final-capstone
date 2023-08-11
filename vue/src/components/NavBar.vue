@@ -7,7 +7,7 @@
      
      
       <section id="darkmodebutton">
-        <button id="toggle-dark" @click="toggleDark()">Toggle Dark Mode</button>
+        <button id="toggle-dark" @click="toggleDark()">{{$store.state.isDark != '' ? '  Toggle Light Mode' : '  Toggle Dark Mode'}}</button>
       </section>
 
 
