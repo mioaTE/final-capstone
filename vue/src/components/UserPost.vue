@@ -2,6 +2,7 @@
   <div id="Post" :class="$store.state.isDark ? 'darkmode' : 'lightmode'">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600' rel='stylesheet' type='text/css'>
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
+      
       <section id="PostHeader" >
       <img id="ProfilePicture" v-bind:src="catPicURL" />
       <router-link id="Username" v-bind:to="{name: 'user-detail', params: {id: user.id} }">

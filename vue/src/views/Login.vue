@@ -79,7 +79,7 @@ export default {
  background-image: linear-gradient(to top, rgb(255, 191, 71) ,rgb(99, 99, 99),rgb(82, 82, 82),rgb(68, 68, 68));
   }
   .lightmode form{
- background-image: radial-gradient(rgb(255, 143, 162), rgb(255, 136, 156)) ;
+  background-image: radial-gradient( #ffa2cd,#ff62ab) ;
   }
   .darkmode form{
 background-image: linear-gradient(to bottom ,rgb(85, 85, 85),rgb(255, 211, 130),rgb(85, 85, 85));
@@ -87,7 +87,6 @@ background-image: linear-gradient(to bottom ,rgb(85, 85, 85),rgb(255, 211, 130),
 form {
   width: 40%;
   height: 40%;
-  background-image: radial-gradient( #ffa2cd,#ff62ab) ;
   font-family: 'Open Sans', sans-serif;
   max-height: 400px;
   border-style: solid;
@@ -103,8 +102,6 @@ label {
   margin-right: 0.5rem;
 }
 #login {
-  background-image: radial-gradient(rgb(255, 225, 230), rgb(255, 171, 185)) ;
-  color: gold;
   height: 100vh;
   width: 100vw;
   display: grid;

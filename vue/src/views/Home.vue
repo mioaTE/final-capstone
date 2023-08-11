@@ -1,17 +1,17 @@
 <template>
   <div id="home" :class="$store.state.isDark ? 'darkmode' : 'lightmode'">
     <nav-bar id="navbar"/>
-    <display-posts />
-    <!-- <carousel id="3dCarousel" /> -->
-    <upload-pic />
+    <section id="carousel">
+    <carousel id="3dCarousel" />
+    </section>
   </div>
   
 </template>
 <script>
-import DisplayPosts from '../components/DisplayPosts.vue';
-// import Carousel from '../components/Carousel.vue';
+// import DisplayPosts from '../components/DisplayPosts.vue';
+import Carousel from '../components/Carousel.vue';
 import NavBar from '../components/NavBar.vue';
-import UploadPic from '../components/UploadPic.vue';
+// import UploadPic from '../components/UploadPic.vue';
 
 
 
@@ -27,10 +27,10 @@ export default {
   // },
   props: ['isDark'],
   components: {
-    // Carousel,
+    Carousel,
     NavBar,
-    UploadPic,
-    DisplayPosts,
+    // UploadPic,
+    // DisplayPosts,
 
   }
 };
