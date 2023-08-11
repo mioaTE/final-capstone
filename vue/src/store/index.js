@@ -22,6 +22,11 @@ export default new Vuex.Store({
     token: currentToken || '',
     user: currentUser || {},
     isDark: true,
+    posts: [
+      {
+
+      }
+    ],
     users: [
       {
           id: 1,
@@ -60,6 +65,9 @@ export default new Vuex.Store({
     },
     TOGGLE_DARK_MODE(state) {
       state.isDark = ! state.isDark;
+    },
+    ADD_POST(state, post) {
+      state.posts.unshift(post);
     }
   },
   getters: {
