@@ -22,11 +22,6 @@ export default new Vuex.Store({
     token: currentToken || '',
     user: currentUser || {},
     isDark: true,
-    posts: [
-      {
-
-      }
-    ],
     users: [
       {
           id: 0,
@@ -38,19 +33,9 @@ export default new Vuex.Store({
           posts: [
             {
               postId: 1001,
-              postImage: require('../assets/dog1.jpg'),
+              post: '../assets/dog1.jpg',
               description: "this is user1's post postId:1001"
-            },
-            {
-              postId: 1002,
-              postImage: require('../assets/dog1.jpg'),
-              description: "this is user1's post postId:1002"
-            },
-            {
-              postId: 1003,
-              postImage: require('../assets/dog1.jpg'),
-              description: "this is user1's post postId:1003"
-            },
+            }
           ]
       },
       {
@@ -110,9 +95,6 @@ export default new Vuex.Store({
     },
     TOGGLE_DARK_MODE(state) {
       state.isDark = ! state.isDark;
-    },
-    ADD_POST(state, post) {
-      state.posts.unshift(post);
     }
   },
   getters: {
