@@ -1,8 +1,10 @@
 <template>
-  <div id="register" class="text-center">
+  <div :class="$store.state.isDark ? 'darkmode' : 'lightmode'" id="register" class="text-center">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600' rel='stylesheet' type='text/css'>
 <link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
-    <form @submit.prevent="register">
+    <nav-bar :class="$store.state.isDark ? 'darkmode' : 'lightmode'" id="navbar"/>
+    <section :class="$store.state.isDark ? 'darkmode' : 'lightmode'" id="registerform">
+    <form :class="$store.state.isDark ? 'darkmode' : 'lightmode'" @submit.prevent="register">
       <h1>Create Account</h1>
       <div role="alert" v-if="registrationErrors">
         {{ registrationErrorMsg }}
@@ -31,14 +33,18 @@
       
       <input class="button" type="submit" value="Register"/>
     </form>
-  </div>
+    </section>
+    </div>
 </template>
 
 <script>
 import authService from '../services/AuthService';
-
+import NavBar from '../components/NavBar.vue';
 export default {
   name: 'register',
+  components: {
+    NavBar
+  },
   data() {
     return {
       user: {
@@ -100,7 +106,25 @@ export default {
 </script>
 
 <style scoped>
-
+#register {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 3fr;
+  grid-template-areas:
+    "navbar"
+    "register"
+}
+#registerform{
+  grid-area: register;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+#navbar{
+  grid-area: navbar;
+}
 
 form {
   display: flex;
@@ -109,11 +133,17 @@ form {
   align-items: center;
     width: 40%;
   height: 75%;
-  background-color: rgb(231, 104, 125);
   font-family:'Open Sans', sans-serif;
   border-style: solid;
-  border-color: gold;
   border-radius: 25px;
+}
+.lightmode form{
+  background-image: radial-gradient( #ffa2cd,#ff62ab) ;
+    border-color: gold;
+}
+.darkmode form{
+    background-image: radial-gradient( #4b4b4b,#303030) ;
+    border-color: rgb(255, 179, 39);
 }
 .form-input-group {
   display: flex;
@@ -122,15 +152,6 @@ form {
 }
 label {
   margin-right: 0.5rem;
-}
-#register {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: pink;
-  color: gold;
-  height: 100vh;
-  width: 100vw;
 }
 h1 {
   font-size: 32px;

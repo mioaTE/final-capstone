@@ -1,54 +1,57 @@
 <template>
-  <body>
-    <h1>Your Favorites</h1>
-    <ul class="favorites-list">
-        <li class="favorite-item">
-            <p class="item-name">Favorite Item 1</p>
-            <button class="remove-button">Remove</button>
-        </li>
-        <li class="favorite-item">
-            <p class="item-name">Favorite Item 2</p>
-            <button class="remove-button">Remove</button>
-        </li>
-        <li class="favorite-item">
-            <p class="item-name">Favorite Item 3</p>
-            <button class="remove-button">Remove</button>
-        </li>
-    </ul>
-</body>
+  <div id="favorites">
+    <follow-list />
+    <div id="fav-main">
+      <post
+        v-bind:key="post.postId"
+        v-bind:post="post"
+        v-for="post in $store.state.posts"
+      />
+    </div>
+  </div>
 </template>
 
 <script>
-export default {
+import postService from "../services/PostService.js";
 
-}
+export default {
+  name: "home",
+  created() {
+    postService
+      .listFavorites()
+      .then((response) => {
+        this.$store.commit("SET_POSTS", response.data);
+      })
+      .catch((error) => {
+        if (error.response.status == 404) {
+          this.$router.push("/not-found");
+        }
+        console.log(error);
+      });
+  },
+};
 </script>
 
 <style>
-body {
-    font-family: 'Open Sans', sans-serif;
-    margin: 0;
-    padding: 20px;
+#favorites {
+  display: grid;
+  grid-column: 1fr 1fr 1fr;
+  grid-template-areas: "follow-list main .";
 }
-.favorites-list {
-    list-style: none;
-    padding: 0;
+
+h1 {
+  grid-area: title;
 }
-.favorite-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    padding: 10px;
+
+#home follow-list {
+  grid-area: follow-list;
+  position: fixed;
 }
-.item-name {
-    flex: 1;
-    margin: 0;
-}
-.remove-button {
-    background-color: #f2f2f2;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
+
+#fav-main {
+  grid-area: main;
+  display: flex;
+  flex-direction: column;
+  grid-gap: 10px;
 }
 </style>
