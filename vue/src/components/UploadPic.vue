@@ -12,7 +12,7 @@ export default {
     return {
       myWidget : {},
       newPost: {
-          user: this.user,
+          user: this.$store.state.user,
           picUrl: ''
       }
     }
@@ -21,13 +21,13 @@ export default {
       upload() {
         this.myWidget.open();
       },
-    // //   ResetPost() {
-    // //       this.newPost = {
-    // //         user: this.user,
-    // //         picUrl: ''
+      ResetPost() {
+          this.newPost = {
+            user: this.user,
+            picUrl: ''
 
-    // //       };  
-    //   }
+          };  
+      }
   },
   mounted() {
        this.myWidget = window.cloudinary.createUploadWidget(
@@ -42,12 +42,15 @@ export default {
           console.log('Done! Here is the image info: ', result.info); 
           console.log("Image URL: " + result.info.url);
           this.newPost.picUrl = result.info.url;
-          this.newPost.user = this.user;
-          console.log("pic url: " + this.picUrl);
+          this.newPost.user = this.$store.state.user;
+          console.log("pic url: " + this.newPost.picUrl);
           this.$store.commit("ADD_POST", this.newPost);
-          console.log(this.newPost)
+          console.log(this.newPost);
+          this.newPost = {
+            user: this.$store.state.user,
+            picUrl: '' }
         }
-        // ResetPost();
+       
       }
     );
 

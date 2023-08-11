@@ -5,8 +5,8 @@ const axiosInstance = axios.create();
 
 export default { 
 
-    getCatPic() { 
+    getUserPost() { 
         //getting a random picture
-        return axiosInstance.get('https://api.thecatapi.com/v1/images/search');
+        return axiosInstance.get('$store.state.post.picUrl');
     }
 }
