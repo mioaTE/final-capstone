@@ -13,9 +13,6 @@ export default {
 }
 </script>
 <style>
-.carousel-3d-container[data-v-07917306]{
-  height: 80%;
-}
 body{
   margin: 0px;
 }
