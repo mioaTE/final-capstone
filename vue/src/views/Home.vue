@@ -36,6 +36,10 @@ export default {
 };
 </script>
 <style>
+img {
+  height: 50px;
+  width: 50px;
+}
 .lightmode {
   background-image: radial-gradient(rgb(255, 225, 230), rgb(255, 171, 185)) ;
 
