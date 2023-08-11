@@ -25,7 +25,14 @@ export default new Vuex.Store({
     users: [
       {
           id: 1,
-          username: "user1"
+          username: "user1",
+          posts: [
+            {
+              postId: 1001,
+              post: '../assets/dog1.jpg',
+              description: "this is user1's post postId:1001"
+            }
+          ]
       },
       {
           id: 2,
