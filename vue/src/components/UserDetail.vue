@@ -3,13 +3,21 @@
      <h1>This is UserDetail</h1>
      <h2>User ID: {{ user.id }}</h2>
      <h2>User name: {{ user.username}}</h2>
+     <post-display
+        v-for="post in user.posts"
+        v-bind:key="post.postId"
+        v-bind:hedgehog="post"
+         />
  </div>
 </template>
 
 <script>
+import PostDisplay from './PostDisplay.vue';
 export default {
     name: 'user-detail',
-    props: ['users'],
+    components: {
+        PostDisplay
+    },    
     computed: {
         user(){
             return this.$store.state.users.find((user) => {
