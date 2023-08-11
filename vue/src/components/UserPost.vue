@@ -2,7 +2,6 @@
   <div id="Post" :class="$store.state.isDark ? 'darkmode' : 'lightmode'">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600' rel='stylesheet' type='text/css'>
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
-    <div v-for="user in $store.state.users" v-bind:key="user.id">
       <section id="PostHeader" >
       <img id="ProfilePicture" v-bind:src="catPicURL" />
       <router-link id="Username" v-bind:to="{name: 'user-detail', params: {id: user.id} }">
@@ -16,14 +15,13 @@
         <h4>Likes</h4>
   </section>
     </div>
-  
-  </div>
 </template>
 
 <script>
 import catPicService from '../services/CatPictureServices.js';
 export default {
     name: "user-post",
+    props: ['user'],
     methods: {
       viewPostDetails(){
         this.$router.push(`/user`);
@@ -44,6 +42,11 @@ export default {
 </script>
 
 <style>
+.lightmode div{
+    height: 100%;
+  width: 100%;
+}
+
 #Post{
   
   height: 100%;
@@ -91,7 +94,10 @@ width: 100%;
 }
 
 
-
+.darkmode div{
+    height: 100%;
+  width: 100%;
+}
 .darkmode #UserPicture{
 height: 75%;
 width: 100%;
