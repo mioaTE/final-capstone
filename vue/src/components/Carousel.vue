@@ -1,33 +1,12 @@
 <template>
     <carousel-3d>
-    <slide :index="0">
-      <user-post />
+       <div v-for="user in $store.state.users" v-bind:key="user.id">
+    <slide :index="user.id">
+      <div v-bind:id="user.id">
+      <user-post v-bind:user="user"/>
+      </div>
     </slide>
-    <slide :index="1">
-      <user-post />
-    </slide>
-    <slide :index="2">
-      <user-post />
-    </slide>
-    <slide :index="3">
-      <user-post />
-    </slide>
-    <slide :index="4">
-      <user-post />
-    </slide>
-    <slide :index="5">
-      <user-post />
-    </slide>
-    <slide :index="6">
-      <user-post />
-    </slide>
-    <slide :index="7">
-      <user-post />
-    </slide>
-    <slide :index="8">
-      <user-post />
-    </slide>
-
+    </div>
   </carousel-3d>
 </template>
 
@@ -40,6 +19,15 @@ export default {
     Carousel3d,
     Slide,
     UserPost
+  },
+  methods: {
+    getUserById(id) {
+      this.$store.state.users.forEach(user => {
+        if(user.id === id){
+          return user;
+        }
+      });
+    }
   }
 };
 </script>
