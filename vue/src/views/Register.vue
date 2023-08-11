@@ -109,7 +109,7 @@ form {
   align-items: center;
     width: 40%;
   height: 75%;
-  background-color: rgb(231, 104, 125);
+  background-color: pink;
   font-family:'Open Sans', sans-serif;
   border-style: solid;
   border-color: gold;

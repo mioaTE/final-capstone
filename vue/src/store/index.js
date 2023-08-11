@@ -68,7 +68,7 @@ export default new Vuex.Store({
       },
       {
         id: 9,
-        username: "Forest Gump"
+        username: "Forrest Gump"
       }
       
     ]
