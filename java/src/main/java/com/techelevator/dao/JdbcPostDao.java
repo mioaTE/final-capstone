@@ -37,7 +37,7 @@ public class JdbcPostDao implements PostDao{
     public List<Post> getPost(){
         List<Post> allPost = new ArrayList<>();
         Post post = null;
-        String sql = "SELECT * FROM post;";
+        String sql = "SELECT post_id, user_id, post_description, post_img, post_likes, created_on FROM post";
         try{
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
             if(results.next()){
@@ -52,9 +52,11 @@ public class JdbcPostDao implements PostDao{
     private Post mapRowToPost(SqlRowSet rs) {
         Post post = new Post();
         post.setPostId(rs.getInt("post_id"));
-        post.setLikesCount(rs.getInt("post_likes"));
+        post.setUserId(rs.getInt("user_id"));
         post.setPostDescription(rs.getString("post_description"));
         post.setUrlImage(rs.getString("post_img"));
+        post.setLikesCount(rs.getInt("post_likes"));
+        post.setPostCreateTime(rs.getTime("created_on"));
 
         return post;
     }

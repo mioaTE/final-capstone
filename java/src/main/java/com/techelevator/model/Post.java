@@ -1,14 +1,30 @@
 package com.techelevator.model;
 
+import java.time.LocalDateTime;
+import java.util.Date;
+
 public class Post {
 
     private int postId;
+
+    private int userId;
 
     private int likesCount;
 
     private String postDescription;
 
     private String urlImage;
+
+    private Date createdOn;
+
+
+    public Date getPostCreateTime() {
+        return createdOn;
+    }
+
+    public void setPostCreateTime (Date createdTime){
+        this.createdOn = createdTime;
+    }
 
     public int getPostId() {
         return postId;
@@ -17,6 +33,14 @@ public class Post {
     public void setPostId(int postId) {
         this.postId = postId;
     }
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
 
     public int getLikesCount(){
         return likesCount;
