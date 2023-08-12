@@ -13,14 +13,7 @@
       <img id="Picture"  v-bind:src="post.urlImage"/>
       </section>
       <section id="InteractionPanel">
-        <div id="button-box">
-          <button id="like" class="bluehover" v-on:click="{ unlikePost }" v-if="liked">
-            <i class="fas fa-heart"></i>
-          </button>
-          <button id="like" class="bluehover" v-on:click="{ likePost }" v-else>
-            <i class="fas fa-bookmark"></i>
-          </button>
-        </div>
+
       </section>
       </div>
     </div>
