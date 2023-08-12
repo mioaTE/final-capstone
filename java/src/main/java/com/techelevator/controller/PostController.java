@@ -32,18 +32,8 @@ public class PostController {
     }
 
     @RequestMapping(path = "/post", method = RequestMethod.GET)
-    public ResponseEntity<LoginResponseDto> getPost() {
-
-        List<Post> post;
-        try {
-            post = postDao.getPost();
-        } catch (DaoException e) {
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Email or password is incorrect.");
-        }
-
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.add(JWTFilter.AUTHORIZATION_HEADER, "Bearer " + jwt);
-        return new ResponseEntity<>(new LoginResponseDto(jwt, user), httpHeaders, HttpStatus.OK);
+    public List<Post> getAllPost() {
+        return postDao.getPost();
     }
 
 
