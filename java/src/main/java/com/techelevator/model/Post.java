@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.Date;
 
 public class Post {
-//TODO add userId, created On
+
     private int postId;
 
     private int userId;
