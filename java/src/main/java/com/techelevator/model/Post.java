@@ -1,7 +1,7 @@
 package com.techelevator.model;
 
 public class Post {
-
+//TODO add userId, created On
     private int postId;
 
     private int likesCount;
