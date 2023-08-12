@@ -2,6 +2,7 @@ package com.techelevator.model;
 
 import java.time.LocalDateTime;
 import java.util.Date;
+import javax.validation.constraints.NotEmpty;
 
 public class Post {
 
@@ -10,9 +11,9 @@ public class Post {
     private int userId;
 
     private int likesCount;
-
+    @NotEmpty
     private String postDescription;
-
+    @NotEmpty
     private String urlImage;
 
     private Date createdOn;

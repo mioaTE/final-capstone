@@ -5,9 +5,11 @@ import com.techelevator.dao.JdbcPostDao;
 import com.techelevator.dao.PostDao;
 
 
+import com.techelevator.exception.DaoException;
 import com.techelevator.model.Post;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -27,11 +29,18 @@ public class PostController {
     public List<Post> getAllPost() {
         return postDao.getPost();
     }
-
+    @CrossOrigin
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "/posts", method = RequestMethod.POST)
-    public Post addPost(@Valid @RequestBody Post post) {
-        return postDao.createPost(post);
+    public void addPost(@Valid @RequestBody Post newPost) {
+        try {
+            Post transfer = postDao.createPost(newPost);
+            if (transfer == null) {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Post creation failed.");
+            }
+        } catch (DaoException e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Post creation failed.");
+        }
     }
 
 }
