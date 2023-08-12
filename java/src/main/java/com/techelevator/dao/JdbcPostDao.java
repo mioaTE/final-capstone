@@ -2,6 +2,7 @@ package com.techelevator.dao;
 
 import com.techelevator.exception.DaoException;
 import com.techelevator.model.Post;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -21,7 +22,7 @@ public class JdbcPostDao implements PostDao{
     @Override
     public Post getPostByPostId(int postId){
         Post post = null;
-        String sql = "SELECT "; //TODO add sql
+        String sql = "SELECT post_id, user_id, post_description, post_img, post_likes, created_on FROM post WHERE post_id = ?";
         try{
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, postId);
             if(results.next()){
@@ -31,6 +32,21 @@ public class JdbcPostDao implements PostDao{
             throw new DaoException("Unable to connect to server or database", e);
         }
         return post;
+    }
+
+    @Override
+    public Post createPost(Post post){
+        Post newPost = null;
+        String sql = "INSERT INTO post ( post_id, user_id, post_description, post_img, post_likes, created_on) VALUES ( ?, ?, ?, ?, ?, ?) RETURNING post_id";
+        try{
+            int newPostId = jdbcTemplate.queryForObject(sql, int.class, post.getPostId(), post.getUserId(), post.getPostDescription(), post.getUrlImage(), post.getLikesCount(), post.getPostCreateTime());
+            newPost = getPostByPostId(newPostId);
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        } catch (DataIntegrityViolationException e) {
+            throw new DaoException("Data integrity violation", e);
+        }
+        return newPost;
     }
 
     @Override
