@@ -29,7 +29,18 @@ public class PostController {
     public List<Post> getAllPost() {
         return postDao.getPost();
     }
-    @CrossOrigin
+
+
+    @RequestMapping(path = "/posts/user/{Id}", method = RequestMethod.GET)
+    public List<Post> getUsersPost(@PathVariable int Id) {
+        return postDao.getPostByUserId(Id);
+    }
+
+    @RequestMapping(path = "/posts/{Id}", method = RequestMethod.GET)
+    public Post getPostById(@PathVariable int Id) {
+        return postDao.getPostByPostId(Id);
+    }
+
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "/posts", method = RequestMethod.POST)
     public void addPost(@Valid @RequestBody Post newPost) {

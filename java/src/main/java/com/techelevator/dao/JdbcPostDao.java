@@ -35,6 +35,23 @@ public class JdbcPostDao implements PostDao{
     }
 
     @Override
+    public List<Post> getPostByUserId(int userId){
+        List<Post> usersPost = new ArrayList<>();
+        Post post = null;
+        String sql = "SELECT post_id, user_id, post_description, post_img, post_likes, created_on FROM post WHERE user_id = ?";
+        try{
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
+            if(results.next()){
+                post = mapRowToPost(results);
+                usersPost.add(post);
+            }
+        } catch(CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        }
+        return usersPost;
+    }
+
+    @Override
     public Post createPost(Post post){
         Post newPost = null;
         String sql = "INSERT INTO post ( post_id, user_id, post_description, post_img, post_likes, created_on) VALUES ( ?, ?, ?, ?, ?, ?) RETURNING post_id";
