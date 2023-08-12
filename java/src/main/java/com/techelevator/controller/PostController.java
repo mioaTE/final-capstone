@@ -41,12 +41,13 @@ public class PostController {
         return postDao.getPostByPostId(Id);
     }
 
+    @CrossOrigin
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "/posts", method = RequestMethod.POST)
     public void addPost(@Valid @RequestBody Post newPost) {
         try {
-            Post transfer = postDao.createPost(newPost);
-            if (transfer == null) {
+            Post post = postDao.createPost(newPost);
+            if (post == null) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Post creation failed.");
             }
         } catch (DaoException e) {

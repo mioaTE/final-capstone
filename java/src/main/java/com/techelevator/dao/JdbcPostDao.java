@@ -54,9 +54,9 @@ public class JdbcPostDao implements PostDao{
     @Override
     public Post createPost(Post post){
         Post newPost = null;
-        String sql = "INSERT INTO post ( post_id, user_id, post_description, post_img, post_likes, created_on) VALUES ( ?, ?, ?, ?, ?, ?) RETURNING post_id";
+        String sql = "INSERT INTO post ( user_id, post_description, post_img, post_likes, created_on) VALUES ( ?, ?, ?, ?, ?) RETURNING post_id";
         try{
-            int newPostId = jdbcTemplate.queryForObject(sql, int.class, post.getPostId(), post.getUserId(), post.getPostDescription(), post.getUrlImage(), post.getLikesCount(), post.getPostCreateTime());
+            int newPostId = jdbcTemplate.queryForObject(sql, int.class, post.getUserId(), post.getPostDescription(), post.getUrlImage(), post.getLikesCount(), post.getPostCreateTime());
             newPost = getPostByPostId(newPostId);
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);
