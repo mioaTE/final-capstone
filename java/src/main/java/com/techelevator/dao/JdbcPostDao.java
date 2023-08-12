@@ -5,11 +5,12 @@ import com.techelevator.model.Post;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-
-public class JdbcPostDao implements  PostDao{
+@Component
+public class JdbcPostDao implements PostDao{
 
     private final JdbcTemplate jdbcTemplate;
 
