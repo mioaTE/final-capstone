@@ -2,15 +2,15 @@
   <div id="Post" :class="$store.state.isDark ? 'darkmode' : 'lightmode'">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600' rel='stylesheet' type='text/css'>
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
-      
+      <div v-for="post in postList" v-bind:key="post.postId">
       <section id="PostHeader" >
-      <img id="ProfilePicture" v-bind:src="catPicURL" />
+      <img id="ProfilePicture" v-bind:src="post.urlImage" />
       <router-link id="Username" v-bind:to="{name: 'user-detail', params: {id: user.id} }">
         {{ user.username }}
         </router-link>
       </section>
       <section id="UserPicture">
-      <img id="Picture"  v-bind:src="catPicURL"/>
+      <img id="Picture"  v-bind:src="post.urlImage"/>
       </section>
       <section id="InteractionPanel">
         <div id="button-box">
@@ -22,11 +22,12 @@
           </button>
         </div>
       </section>
+      </div>
     </div>
 </template>
 
 <script>
-import catPicService from '../services/CatPictureServices.js';
+// import catPicService from '../services/CatPictureServices.js';
 import postService from "../services/PostService.js";
 export default {
     name: "user-post",
@@ -38,13 +39,13 @@ export default {
     },
     data() {
         return {
-        catPicURL: ''
+        postList: [],
         }
     },
     created() {
-        catPicService.getCatPic().then((response) => {
-        let data = response.data[0];
-        this.catPicURL = data.url;
+        postService.listPosts().then((response) => {
+          this.postList = response.data;
+          console.log(this.postList);
         })
     },
     likePost() {

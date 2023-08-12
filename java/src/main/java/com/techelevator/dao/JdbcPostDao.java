@@ -70,10 +70,10 @@ public class JdbcPostDao implements PostDao{
     public List<Post> getPost(){
         List<Post> allPost = new ArrayList<>();
         Post post = null;
-        String sql = "SELECT post_id, user_id, post_description, post_img, post_likes, created_on FROM post";
+        String sql = "SELECT * FROM post";
         try{
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
-            if(results.next()){
+            while(results.next()){
                 post = mapRowToPost(results);
                 allPost.add(post);
             }
