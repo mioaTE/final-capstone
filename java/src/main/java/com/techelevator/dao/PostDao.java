@@ -8,5 +8,7 @@ public interface PostDao {
 
     Post getPostByPostId(int postId);
 
+    Post createPost(Post post);
+
     List<Post> getPost();
 }
