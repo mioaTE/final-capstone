@@ -29,13 +29,25 @@ public class PostController {
     public List<Post> getAllPost() {
         return postDao.getPost();
     }
+
+
+    @RequestMapping(path = "/posts/user/{Id}", method = RequestMethod.GET)
+    public List<Post> getUsersPost(@PathVariable int Id) {
+        return postDao.getPostByUserId(Id);
+    }
+
+    @RequestMapping(path = "/posts/{Id}", method = RequestMethod.GET)
+    public Post getPostById(@PathVariable int Id) {
+        return postDao.getPostByPostId(Id);
+    }
+
     @CrossOrigin
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "/posts", method = RequestMethod.POST)
     public void addPost(@Valid @RequestBody Post newPost) {
         try {
-            Post transfer = postDao.createPost(newPost);
-            if (transfer == null) {
+            Post post = postDao.createPost(newPost);
+            if (post == null) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Post creation failed.");
             }
         } catch (DaoException e) {
