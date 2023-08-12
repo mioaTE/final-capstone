@@ -1,23 +1,13 @@
 package com.techelevator.controller;
 
 
+import com.techelevator.dao.JdbcPostDao;
 import com.techelevator.dao.PostDao;
-import com.techelevator.exception.DaoException;
-import com.techelevator.model.LoginDto;
-import com.techelevator.model.LoginResponseDto;
-import com.techelevator.model.Post;
-import com.techelevator.model.User;
-import com.techelevator.security.jwt.JWTFilter;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
-import javax.validation.Valid;
+
+import com.techelevator.model.Post;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -31,7 +21,7 @@ public class PostController {
         this.postDao = postDao;
     }
 
-    @RequestMapping(path = "/post", method = RequestMethod.GET)
+    @RequestMapping(path = "/posts", method = RequestMethod.GET)
     public List<Post> getAllPost() {
         return postDao.getPost();
     }
