@@ -6,13 +6,14 @@ import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class JdbcPostDao implements  PostDao{
 
     private final JdbcTemplate jdbcTemplate;
 
-    public JdbcUserDao(JdbcTemplate jdbcTemplate){
+    public JdbcPostDao(JdbcTemplate jdbcTemplate){
         this.jdbcTemplate = jdbcTemplate;
     }
 
@@ -33,20 +34,20 @@ public class JdbcPostDao implements  PostDao{
 
     @Override
     public List<Post> getPost(){
-        List<Post> post = null;
+        List<Post> allPost = new ArrayList<>();
+        Post post = null;
         String sql = "SELECT * FROM post;";
         try{
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
             if(results.next()){
                 post = mapRowToPost(results);
+                allPost.add(post);
             }
         } catch(CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);
         }
-        return post;
+        return allPost;
     }
-
-
     private Post mapRowToPost(SqlRowSet rs) {
         Post post = new Post();
         post.setPostId(rs.getInt("post_id"));
@@ -55,4 +56,5 @@ public class JdbcPostDao implements  PostDao{
         post.setUrlImage(rs.getString("post_img"));
 
         return post;
+    }
 }
