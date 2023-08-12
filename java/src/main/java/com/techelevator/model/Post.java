@@ -5,7 +5,7 @@ import java.util.Date;
 import javax.validation.constraints.NotEmpty;
 
 public class Post {
-//TODO add userId, created On
+
     private int postId;
 
     private int userId;
