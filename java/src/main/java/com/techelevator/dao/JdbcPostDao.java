@@ -47,6 +47,12 @@ public class JdbcPostDao implements  PostDao{
     }
 
 
-    private Post mapRowToPost(SqlRowSet results) {
-    }
+    private Post mapRowToPost(SqlRowSet rs) {
+        Post post = new Post();
+        post.setPostId(rs.getInt("post_id"));
+        post.setLikesCount(rs.getInt("post_likes"));
+        post.setPostDescription(rs.getString("post_description"));
+        post.setUrlImage(rs.getString("post_img"));
+
+        return post;
 }
