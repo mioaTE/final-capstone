@@ -28,6 +28,17 @@ public class PostController {
         return postDao.getPost();
     }
 
+
+    @RequestMapping(path = "/posts/user/{Id}", method = RequestMethod.GET)
+    public List<Post> getUsersPost(@PathVariable int Id) {
+        return postDao.getPostByUserId(Id);
+    }
+
+    @RequestMapping(path = "/posts/{Id}", method = RequestMethod.GET)
+    public Post getPostById(@PathVariable int Id) {
+        return postDao.getPostByPostId(Id);
+    }
+
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "/posts", method = RequestMethod.POST)
     public Post addPost(@Valid @RequestBody Post post) {
