@@ -20,10 +20,14 @@
         <label id="icon" for="name"><i class="icon-shield"></i></label>
         <input type="password" id="password" placeholder="Password" v-model="user.password" required />
       </div>
+      <section id="signinButton">
       <button class="button" type="submit">Sign in</button>
-      <br>
+      </section>
+      <section id="signupLink">
       <p>
-      <router-link :to="{ name: 'register' }">Need an account? Sign up.</router-link></p>
+      <router-link :to="{ name: 'register' }">Need an account? Sign up.</router-link>
+      </p>
+      </section>
     </form>
     </section>
   </div>
@@ -76,21 +80,35 @@ export default {
 
 }
   .darkmode {
- background-image: linear-gradient(to top, rgb(255, 191, 71) ,rgb(99, 99, 99),rgb(82, 82, 82),rgb(68, 68, 68));
+ background-image: linear-gradient(to bottom, rgb(65, 65, 65),rgb(83, 83, 83),rgb(99, 99, 99) );
   }
-  .lightmode form{
+.lightmode form{
   background-image: radial-gradient( #ffa2cd,#ff62ab) ;
-  }
-  .darkmode form{
-background-image: linear-gradient(to bottom ,rgb(85, 85, 85),rgb(255, 211, 130),rgb(85, 85, 85));
-  }
+    border-color: gold;
+}
+.darkmode form{
+    background: orange;
+    border-color: rgb(44, 44, 44);
+}
+
+#signinButton{
+display: flex;
+justify-content: center;
+align-items: center;
+}
+#signupLink{
+display: flex;
+justify-content: flex-start;
+align-items: center;
+margin-left: 5%;
+margin-bottom: 5px;
+}
 form {
   width: 40%;
   height: 40%;
   font-family: 'Open Sans', sans-serif;
   max-height: 400px;
   border-style: solid;
-  border-color: gold;
   border-radius: 25px;
 }
 .form-input-group {
@@ -138,32 +156,51 @@ h1 {
   margin-left: 18px;
   text-align: center;
 }
-.button {
-  font-size: 14px;
-  font-weight: 600;
-  color: white;
-  padding: 6px 25px 0px 20px;
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-  /* float: right; */
-  text-decoration: none;
-  /* width: 50px; height: 27px; */
-  -webkit-border-radius: 5px; 
-  -moz-border-radius: 5px; 
-  border-radius: 5px; 
-  background-color: pink; 
+
+.darkmode .button:hover{
+    background-color:rgb(255, 207, 135);
+}
+.darkmode .button{
+  background-color: rgb(255, 152, 18); 
+  -webkit-box-shadow: 0 3px rgb(95, 95, 95); 
+  -moz-box-shadow: 0 3px rgb(87, 87, 87); 
+  box-shadow: 0 3px rgb(90, 90, 90);
+}
+
+.lightmode .button:hover{
+  background-color: rgb(255, 211, 219); 
+}
+
+.lightmode .button{
+  background-color: rgb(255, 125, 147); 
   -webkit-box-shadow: 0 3px pink; 
   -moz-box-shadow: 0 3px pink; 
   box-shadow: 0 3px pink;
+}
+
+.button {
+  font-size: 12px;
+  font-weight: 600;
+  width: 30%;
+  color: white;
+  padding: 6px 25px 6px 20px;
+  margin: 10px 8px 20px 8px;
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  /* float: right; */
+  text-decoration: none;
+  /* width: 50px; height: 27px;  */
+  -webkit-border-radius: 5px; 
+  -moz-border-radius: 5px; 
+  border-radius: 5px; 
   transition: all 0.1s linear 0s; 
   top: 0px;
+  position: relative;
   border: none;
-  left: 24%;
 }
 .button:hover {
   top: 3px;
-  background-color:pink;
   -webkit-box-shadow: none; 
   -moz-box-shadow: none; 
   box-shadow: none;

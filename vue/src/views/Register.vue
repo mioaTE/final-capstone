@@ -142,8 +142,8 @@ form {
     border-color: gold;
 }
 .darkmode form{
-    background-image: radial-gradient( #4b4b4b,#303030) ;
-    border-color: rgb(255, 179, 39);
+    background: orange;
+    border-color: rgb(44, 44, 44);
 }
 .form-input-group {
   display: flex;
@@ -166,6 +166,26 @@ p {
   display: inline-block;
   text-align: center;
 }
+.darkmode .button:hover{
+    background-color:rgb(255, 207, 135);
+}
+.darkmode .button{
+  background-color: rgb(255, 152, 18); 
+  -webkit-box-shadow: 0 3px rgb(95, 95, 95); 
+  -moz-box-shadow: 0 3px rgb(87, 87, 87); 
+  box-shadow: 0 3px rgb(90, 90, 90);
+}
+
+.lightmode .button:hover{
+  background-color: rgb(255, 211, 219); 
+}
+
+.lightmode .button{
+  background-color: rgb(255, 125, 147); 
+  -webkit-box-shadow: 0 3px pink; 
+  -moz-box-shadow: 0 3px pink; 
+  box-shadow: 0 3px pink;
+}
 .button {
   font-size: 12px;
   font-weight: 600;
@@ -180,10 +200,6 @@ p {
   -webkit-border-radius: 5px; 
   -moz-border-radius: 5px; 
   border-radius: 5px; 
-  background-color: pink; 
-  -webkit-box-shadow: 0 3px pink; 
-  -moz-box-shadow: 0 3px pink; 
-  box-shadow: 0 3px pink;
   transition: all 0.1s linear 0s; 
   top: 0px;
   position: relative;
@@ -191,7 +207,6 @@ p {
 }
 .button:hover {
   top: 3px;
-  background-color:pink;
   -webkit-box-shadow: none; 
   -moz-box-shadow: none; 
   box-shadow: none;
