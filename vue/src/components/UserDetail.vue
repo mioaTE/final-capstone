@@ -13,22 +13,35 @@
 
 <script>
 import PostDisplay from './PostDisplay.vue';
+import postService from '../services/PostService';
 export default {
     name: 'user-detail',
     components: {
-        PostDisplay
+        PostDisplay,
+    
+    },
+    data() {
+        return {
+            user: { }
+        }
     },    
     computed: {
-        user(){
-            return this.$store.state.users.find((user) => {
-                    return user.id == this.$store.state.activeUser;
-                })
+        users() {
+            return this.$store.state.users;
+        },
+        currentUser(){
+            return postService.getUser(this.$route.params.id)
         }
     },
     created() {
       const activeUserId = this.$route.params.id;
       this.$store.commit('SET_ACTIVE_USER', activeUserId);
-    }
+        postService.getUser(this.$route.params.id).then((response) => {
+          this.user = response.data;
+          console.log(this.user);
+        })
+    },
+    
 }
 </script>
 
