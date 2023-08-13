@@ -22,19 +22,16 @@ public class JdbcLikeDao implements LikeDao{
     }
 
     @Override
-    public Like createLike(Like like){
-        Like newLike = null;
-        //RETURNING???
-        String sql = "INSERT INTO like (post_id, user_id) VALUES ( ?, ?)";
-//        try{
-//            int newPostId = jdbcTemplate.queryForObject(sql, int.class, post.getUserId(), post.getPostDescription(), post.getUrlImage(), post.getLikesCount(), post.getPostCreateTime());
-//            newPost = getPostByPostId(newPostId);
-//        } catch (CannotGetJdbcConnectionException e) {
-//            throw new DaoException("Unable to connect to server or database", e);
-//        } catch (DataIntegrityViolationException e) {
-//            throw new DaoException("Data integrity violation", e);
-//        }
-        return newLike;
+    public void createLike(Like like){
+        String sql = "INSERT INTO likes (post_id, user_id) VALUES ( ?, ?)";
+        try{
+            jdbcTemplate.update(sql, like.getPostId(), like.getUserId());
+        }  catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        } catch (DataIntegrityViolationException e) {
+            throw new DaoException("Data integrity violation", e);
+        }
+
     }
 
     @Override

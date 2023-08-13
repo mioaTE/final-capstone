@@ -44,7 +44,7 @@ export default {
           }
           postService.addPost(this.newPost).then(response => {
               if (response.status === 201) {
-              this.$router.push('/posts');
+              this.$router.push('/');
             }
           })
           .catch(error => {
