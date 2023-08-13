@@ -83,6 +83,6 @@ export default {
 }
 
   .darkmode {
- background-image: linear-gradient(to bottom, rgb(65, 65, 65),rgb(83, 83, 83),rgb(255, 163, 78) );
+ background-image: linear-gradient(to bottom, rgb(65, 65, 65),rgb(83, 83, 83),rgb(99, 99, 99) );
   }
 </style>

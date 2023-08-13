@@ -150,7 +150,7 @@ width: 100%;
   justify-content: flex-start;
   align-items: center;
   height: 15%;
-background-image: linear-gradient(to right, rgb(255, 191, 71),rgb(82, 82, 82) );
+background: orange;
 }
 .darkmode #ProfilePicture{
   display: inline-block;
@@ -167,6 +167,7 @@ background-image: linear-gradient(to right, rgb(255, 191, 71),rgb(82, 82, 82) );
 }
 .darkmode #InteractionPanel{
   height: 10%;
-background-image: linear-gradient(to right, rgb(255, 191, 71),rgb(82, 82, 82) );
+background: orange;
+
 }
 </style>
