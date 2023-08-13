@@ -13,4 +13,14 @@ public interface PostDao {
     Post createPost(Post post);
 
     List<Post> getPost();
+
+    List<Post> listPosts();
+
+    int getNextPostId();
+
+    void addPost(Post thePost);
+
+    void deletePost(int id);
+
+    Post getPost(int id);
 }

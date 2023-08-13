@@ -9,7 +9,7 @@ public interface CommentDao {
 
     List<Comment> listComments(int postId);
 
-    void submitComment(Comment comment);
+    void submitComment(int userId, Comment comment);
 
-    void deleteComment(int commentId);
+    void deleteComment(int userId, int commentId);
 }
