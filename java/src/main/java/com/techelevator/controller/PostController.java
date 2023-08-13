@@ -5,8 +5,10 @@ import com.techelevator.dao.JdbcPostDao;
 import com.techelevator.dao.PostDao;
 
 
+import com.techelevator.dao.UserDao;
 import com.techelevator.exception.DaoException;
 import com.techelevator.model.Post;
+import com.techelevator.model.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -20,14 +22,22 @@ public class PostController {
 
     private PostDao postDao;
 
+    private UserDao userDao;
 
-    public PostController (PostDao postDao) {
+
+    public PostController (PostDao postDao, UserDao userDao) {
         this.postDao = postDao;
+        this.userDao = userDao;
     }
 
     @RequestMapping(path = "/posts", method = RequestMethod.GET)
     public List<Post> getAllPost() {
         return postDao.getPost();
+    }
+
+    @RequestMapping(path = "/users", method = RequestMethod.GET)
+    public List<User> getAllUsers() {
+        return userDao.getUsers();
     }
 
 
