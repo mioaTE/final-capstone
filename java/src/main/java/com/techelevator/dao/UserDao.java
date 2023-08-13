@@ -16,4 +16,6 @@ public interface UserDao {
     User getUserByUsername (String name);
 
     User createUser(RegisterUserDto user);
+
+//    int findIdByUsername(String name);
 }
