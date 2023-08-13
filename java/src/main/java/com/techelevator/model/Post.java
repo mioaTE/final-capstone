@@ -77,24 +77,24 @@ public class Post {
         this.urlImage = urlImage;
     }
 
-    public void setImages(Object listImageUrls) {
-    }
-
-    public void setComments(List<Comment> listComments) {
-    }
-
-    public void setFavorited(boolean favorited) {
-    }
-
-    public void setLiked(boolean liked) {
-    }
-
-    public void setLikeNumber(int likeNumber) {
-    }
-
-    public void setDatePosted(LocalDateTime now) {
-    }
-
-    public Object getImages() {
-    }
+//    public void setImages(Object listImageUrls) {
+//    }
+//
+//    public void setComments(List<Comment> listComments) {
+//    }
+//
+//    public void setFavorited(boolean favorited) {
+//    }
+//
+//    public void setLiked(boolean liked) {
+//    }
+//
+//    public void setLikeNumber(int likeNumber) {
+//    }
+//
+//    public void setDatePosted(LocalDateTime now) {
+//    }
+//
+//    public Object getImages() {
+//    }
 }
