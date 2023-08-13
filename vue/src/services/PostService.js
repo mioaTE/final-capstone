@@ -5,6 +5,10 @@ export default {
     getUser(userId){
         return axios.get(`/user/${userId}`);
     },
+
+    getPostsByUser(userId){
+        return axios.get(`/posts/user/${userId}`)
+    },
     
     submitComment(comment) {
         return axios.post(`/comments`, comment);
