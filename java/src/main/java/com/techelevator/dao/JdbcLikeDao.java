@@ -35,6 +35,23 @@ public class JdbcLikeDao implements LikeDao{
     }
 
     @Override
+    public int deleteLike(Like like) {
+        int numberOfRows = 0;
+        String sql = "DELETE FROM likes WHERE post_id = ? AND user_id = ?;";
+
+        try {
+            numberOfRows = jdbcTemplate.update(sql, like.getPostId(), like.getUserId());
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        } catch (DataIntegrityViolationException e) {
+            throw new DaoException("Data integrity violation", e);
+        }
+
+        return numberOfRows;
+    }
+
+
+    @Override
     public List<Like> getLikeByPostId(int postId){
         List<Like> likes = new ArrayList<>();
         Like like = null;
