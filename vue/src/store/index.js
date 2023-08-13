@@ -22,58 +22,13 @@ export default new Vuex.Store({
     token: currentToken || '',
     user: currentUser || {},
     isDark: true,
-    users: [
-      {
-          id: 0,
-          username: "Jimbo"
-      },
-      {
-          id: 1,
-          username: "Bob",
-          posts: [
-            {
-              postId: 1001,
-              post: '../assets/dog1.jpg',
-              description: "this is user1's post postId:1001"
-            }
-          ]
-      },
-      {
-          id: 2,
-          username: "Bill"
-      },
-      {
-        id: 3,
-        username: "Jackie Chan"
-      },
-      {
-        id: 4,
-        username: "LargeArms42"
-      },
-      {
-        id: 5,
-        username: "BigOlBucketLover"
-      },
-      {
-        id: 6,
-        username: "Cheese?"
-      },
-      {
-        id: 7,
-        username: "Ryan Reynolds"
-      },
-      {
-        id: 8,
-        username: "Bill Gates"
-      },
-      {
-        id: 9,
-        username: "Forrest Gump"
-      }
-      
-    ]
+    users: [],
+    posts: []
   },
   mutations: {
+    GET_USERS(state, users) {
+      state.users = users;
+    },
     SET_ACTIVE_USER(state, userId){
       state.activeUser = userId;
     },
@@ -100,6 +55,16 @@ export default new Vuex.Store({
   getters: {
     product(state) {
       return state.users.find(p => p.id == state.activeProduct);
+    },
+
+    getUsers: (state) => state.users
+  },
+
+  actions: {
+    async fetchUsers({ commit }) {
+      const response = await axios.get('/users');
+      commit('GET_USERS', response.data);
     }
+
   }
 })
