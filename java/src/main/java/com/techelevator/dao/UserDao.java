@@ -17,5 +17,5 @@ public interface UserDao {
 
     User createUser(RegisterUserDto user);
 
-    int findIdByUsername(String name);
+//    int findIdByUsername(String name);
 }
