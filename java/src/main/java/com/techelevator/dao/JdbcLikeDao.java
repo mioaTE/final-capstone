@@ -25,7 +25,7 @@ public class JdbcLikeDao implements LikeDao{
     public Like createLike(Like like){
         Like newLike = null;
         //RETURNING???
-        String sql = "INSERT INTO like (post_id, user_id) VALUES ( ?, ?)";
+        String sql = "INSERT INTO likes (post_id, user_id) VALUES ( ?, ?)";
 //        try{
 //            int newPostId = jdbcTemplate.queryForObject(sql, int.class, post.getUserId(), post.getPostDescription(), post.getUrlImage(), post.getLikesCount(), post.getPostCreateTime());
 //            newPost = getPostByPostId(newPostId);

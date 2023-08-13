@@ -13,7 +13,7 @@
       <img id="Picture"  v-bind:src="post.urlImage"/>
       </section>
       <section id="InteractionPanel">
-
+        <button id="likebutton" v-on:click="like" >Like</button>
       </section>
       </div>
     </div>
