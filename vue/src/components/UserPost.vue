@@ -13,7 +13,8 @@
       <img id="Picture"  v-bind:src="post.urlImage"/>
       </section>
       <section id="InteractionPanel">
-        <button id="likebutton" v-on:click="like" >Like</button>
+        <button id="likebutton" v-on:click="likePost(post.postId)" >Like</button>
+
       </section>
       </div>
     </div>
@@ -25,14 +26,13 @@ import postService from "../services/PostService.js";
 export default {
     name: "user-post",
     props: ['user'],
-    methods: {
-      viewPostDetails(){
-        this.$router.push(`/user`);
-      }
-    },
+    
     data() {
         return {
-        postList: [],
+          postList: [],
+          newLike: {userId: this.$store.state.user.id,
+                    postId: '',
+          }
         }
     },
     created() {
@@ -41,18 +41,18 @@ export default {
           console.log(this.postList);
         })
     },
-    likePost() {
-      console.log(this.post.images);
+    methods: {
+      viewPostDetails(){
+        this.$router.push(`/user`);
+      },
+    likePost(postId) {
+      this.newLike = {
+        userId: this.$store.state.user.id,
+        postId: postId
+      }
+      console.log(this.newLike);
       postService
-        .addLiked(this.post.postId)
-        .then((response) => {
-          if (response.status == 201) {
-            this.$store.commit("TOGGLE_LIKE", this.post);
-          }
-        })
-        .catch((error) => {
-          console.log(error.response);
-        });
+        .addLiked(this.newLike)
     },
     unlikePost() {
       postService
@@ -82,6 +82,7 @@ export default {
         });
       this.$store.commit("TOGGLE_FAVORITE", this.post);
     },
+    }
 };
 </script>
 

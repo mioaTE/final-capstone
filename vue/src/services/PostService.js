@@ -27,7 +27,7 @@ export default {
         return axios.delete(`/favorites/${postId}`)
     },
     addLiked(postId) {
-        return axios.post(`/liked/${postId}`)
+        return axios.post('/likes', postId)
     },
     removeLiked(postId) {
         return axios.delete(`/liked/${postId}`)

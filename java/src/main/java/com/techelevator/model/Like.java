@@ -3,9 +3,8 @@ package com.techelevator.model;
 import javax.validation.constraints.NotEmpty;
 
 public class Like {
-    @NotEmpty
+
     private int postId;
-    @NotEmpty
     private int userId;
 
     public int getPostId(){
