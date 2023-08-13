@@ -79,4 +79,14 @@ public class PostController {
         }
     }
 
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @RequestMapping(path = "/liked", method = RequestMethod.DELETE)
+    public void delete(@RequestBody Like newLike) {
+        try {
+            likeDao.deleteLike(newLike);
+        }  catch (DaoException e) {
+        throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Like deletion failed.");
+        }
+    }
+
 }

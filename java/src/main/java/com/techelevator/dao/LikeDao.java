@@ -6,4 +6,5 @@ import java.util.List;
 public interface LikeDao {
     void createLike(Like like);
     List<Like> getLikeByPostId(int postId);
+    int deleteLike(Like like);
 }
