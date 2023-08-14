@@ -13,6 +13,7 @@
 import { Carousel3d, Slide } from 'vue-carousel-3d';
 import UserPost from '../components/UserPost.vue';
 import PostService from '../services/PostService';
+
 export default {
   components: {
     Carousel3d,
@@ -26,11 +27,13 @@ export default {
     },
    created() {
         PostService.listPosts().then((response) => {
+
           response.data.unshift({
             postId: 0,
             userId: 0,
             postDescription: "",
             urlImage: "http://res.cloudinary.com/dmxisezmv/image/upload/v1691883695/ku7zzwqczzgzm5it3wyv.png",
+
           });
           console.log(response.data);
            this.$store.commit("UPDATE_POST_LIST", response.data);

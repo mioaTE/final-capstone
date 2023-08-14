@@ -19,6 +19,7 @@ export default new Vuex.Store({
     user: currentUser || {},
     isDark: true,
     postList: []
+
   },
   mutations: {
     SET_ACTIVE_USER(state, userId){

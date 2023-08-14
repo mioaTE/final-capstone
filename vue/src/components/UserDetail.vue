@@ -46,5 +46,37 @@ export default {
 </script>
 
 <style>
-
+#navbar{
+    grid-area: navbar;
+    height: auto;
+    background: rgb(255, 154, 171);
+}
+.profile-header {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    /* background-color: white; */
+    /* background-color: #616161; */
+    background: rgb(255, 154, 171);
+    align-items: center;
+    font-family: 'Open Sans', sans-serif;
+    box-shadow: 0px 2px 10px rgb(184, 184, 184);
+    justify-content: space-between;
+    height: 100px;
+}
+.settings-icon {
+    margin-top: 15px;
+    margin-right: 10px;
+    max-height: 30px;
+    max-width: 30px;
+    border-radius: 100%;
+    background: rgb(255, 154, 171);
+    background-clip: border-box;
+}
+.lightmode {
+    background-image: radial-gradient(rgb(255, 225, 230), rgb(255, 171, 185)) ;
+}
+.darkmode {
+    background-image: linear-gradient(to bottom, rgb(65, 65, 65),rgb(83, 83, 83),rgb(99, 99, 99) );
+}
 </style>
