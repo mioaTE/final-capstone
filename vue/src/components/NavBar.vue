@@ -16,6 +16,10 @@
       <img v-bind:src="checkLogo" id="TEgram-logo" />
 
       <router-link class="btn" id="navbutton" v-show="isNotInLogin()" v-bind:to="{ name: 'logout' }"><i class="icon-user" ></i>{{$store.state.token != '' ? '  Logout' : '  Login'}}</router-link>
+      </section>
+
+      <section id="makePost">   
+          <router-link class="btn" id="navbutton" v-show="isNotInLogin()" v-bind:to="{ name: 'Create Post' }"><i class="icon-user" ></i>{{$store.state.token != '' ? '  Create Post' : ' '}}</router-link>    
       </section>   
       
     </div>
@@ -126,9 +130,15 @@ export default {
   border-radius: 10px 10px 10px 10px;
   height: 300px;
 }
+#makePost{
+display: flex;
+align-items: center;
+justify-content: center;
+margin-right: 2%;
+width: 16%;
+}
 .lightmode #darkmodebutton{
 display: flex;
-
 align-items: center;
 justify-content: center;
 margin-left: 2%;
@@ -139,7 +149,6 @@ width: 10%;
   align-items: center;
 justify-content: center;
   width: 100%;
-  margin-right: 10%;
 }
 
 
@@ -226,7 +235,6 @@ width: 10%;
   align-items: center;
 justify-content: center;
   width: 100%;
-  margin-right: 10%;
 }
 </style>
 
