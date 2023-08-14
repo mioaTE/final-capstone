@@ -35,12 +35,30 @@ public class JdbcLikeDao implements LikeDao{
     }
 
     @Override
-    public int deleteLike(Like like) {
+    public List<Like> getAllLikes(){
+        List allLikes = new ArrayList<>();
+        Like like = null;
+        String sql = "SELECT post_id, user_id FROM likes;";
+        try{
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+            while(results.next()){
+                like = mapRowToLike(results);
+                allLikes.add(like);
+            }
+        } catch(CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        }
+        return allLikes;
+    }
+
+
+    @Override
+    public int deleteLike(int userId, int postId) {
         int numberOfRows = 0;
         String sql = "DELETE FROM likes WHERE post_id = ? AND user_id = ?;";
 
         try {
-            numberOfRows = jdbcTemplate.update(sql, like.getPostId(), like.getUserId());
+            numberOfRows = jdbcTemplate.update(sql, postId, userId);
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);
         } catch (DataIntegrityViolationException e) {
@@ -55,7 +73,7 @@ public class JdbcLikeDao implements LikeDao{
     public List<Like> getLikeByPostId(int postId){
         List<Like> likes = new ArrayList<>();
         Like like = null;
-        String sql = "SELECT post_id, user_id FROM likes WHERE post_id = ?";
+        String sql = "SELECT post_id, user_id FROM likes WHERE post_id = ?;";
         try{
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, postId);
             if(results.next()){
@@ -67,6 +85,22 @@ public class JdbcLikeDao implements LikeDao{
         }
         return likes;
     }
+
+    @Override
+    public Like getLikeByUserAndPost(int userId, int postId) {
+        Like like = null;
+        String sql = "SELECT post_id, user_id FROM likes WHERE user_id = ? AND post_id = ?;";
+        try {
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId, postId);
+            if (results.next()) {
+                like = mapRowToLike(results);
+            }
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        }
+        return like;
+    }
+
     private Like mapRowToLike(SqlRowSet rs) {
         Like like = new Like();
         like.setPostId(rs.getInt("post_id"));

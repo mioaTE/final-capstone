@@ -13,6 +13,8 @@
       <img id="Picture"  v-bind:src="post.urlImage"/>
       </section>
       <section id="InteractionPanel">
+        <button id="likebutton" v-on:click="likePost(post.postId)" v-if="!postLiked" >Like</button>
+        <button id="likebutton" v-on:click="unlikePost(post.postId)" v-if="postLiked" >Unlike</button>
       </section>
       </div>
     </div>
@@ -23,61 +25,91 @@ import postService from "../services/PostService.js";
 export default {
     name: "user-post",
     props: ['post'],
+    
     data() {
         return {
-        user: {},
-        newLike: {userId: this.$store.state.user.id,
+          user: {},
+          postList: [],
+          newLike: {userId: this.$store.state.user.id,
                     postId: '',
-          }
-
+          },
+          removeLike: {userId: this.$store.state.user.id,
+                      postId: ''},
+          allLikes: []
         }
     },
     created() {
-        postService.getUserById(this.post.userId).then((response) => {
+      if(this.post.userId != 0) {
+       postService.getUser(this.post.userId).then((response) => {
           this.user = response.data;
         })
-    },
-    likePost() {
-      console.log(this.post.images);
-      postService
-        .addLiked(this.post.postId)
-        .then((response) => {
-          if (response.status == 201) {
-            this.$store.commit("TOGGLE_LIKE", this.post);
-          }
+      }
+        postService.listPosts().then((response) => {
+          this.postList = response.data;
         })
-        .catch((error) => {
-          console.log(error.response);
-        });
+
+        postService.getAllLikes().then((response) => {
+          this.allLikes = response.data;
+        })
     },
-    unlikePost() {
-      postService
-        .removeLiked(this.post.postId)
-        .then()
-        .catch((error) => {
-          console.log(error.response);
-        });
-      this.$store.commit("TOGGLE_LIKE", this.post);
+    computed: {
+      postLiked() {
+        if(this.allLikes.some((like)=> like.postId == this.post.postId && like.userId == this.$store.state.user.id)) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+      
     },
-    favoritePost() {
-      postService
-        .addFavorite(this.post.postId)
-        .then()
-        .catch((error) => {
-          console.log(error.response);
-        });
-      this.$store.commit("TOGGLE_FAVORITE", this.post);
-    },
-    unfavoritePost() {
-      postService
-        .removeFavorite(this.post.postId)
-        .then()
-        .catch((error) => {
-          console.log(error.response);
-        });
-      this.$store.commit("TOGGLE_FAVORITE", this.post);
-    },
-};
+    methods: {
+      
+      viewPostDetails(){
+        this.$router.push(`/user`);
+      },
+
+      likePost(postId) {
+        this.newLike = {
+          userId: this.$store.state.user.id,
+          postId: postId
+        }
+        postService
+          .addLiked(this.newLike);
+          this.allLikes.push(this.newLike);
+      },
+
+      unlikePost(postId) {
+        this.removeLike = {
+          userId: this.$store.state.user.id,
+          postId: postId
+        }
+        postService.removeLiked(this.removeLike.userId, this.removeLike.postId);
+        this.allLikes = this.allLikes.filter((like) => {
+          (like.userId !== this.removeLike.userId && like.postId !== this.removeLike.postId)});
+      },
+      favoritePost() {
+        postService
+          .addFavorite(this.post.postId)
+          .then()
+          .catch((error) => {
+            console.log(error.response);
+          });
+
+        this.$store.commit("TOGGLE_FAVORITE", this.post);
+      },
+      unfavoritePost() {
+        postService
+          .removeFavorite(this.post.postId)
+          .then()
+          .catch((error) => {
+            console.log(error.response);
+          });
+        this.$store.commit("TOGGLE_FAVORITE", this.post);
+      },
+    
+  }
+  
+}
 </script>
 <style>
 .lightmode #carousel div{
