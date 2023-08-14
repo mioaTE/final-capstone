@@ -26,6 +26,9 @@ export default new Vuex.Store({
 
   },
   mutations: {
+    GET_USERS(state, users) {
+      state.users = users;
+    },
     SET_ACTIVE_USER(state, userId){
       state.activeUser = userId;
     },
@@ -55,6 +58,16 @@ export default new Vuex.Store({
   getters: {
     product(state) {
       return state.users.find(p => p.id == state.activeProduct);
+    },
+
+    getUsers: (state) => state.users
+  },
+
+  actions: {
+    async fetchUsers({ commit }) {
+      const response = await axios.get('/users');
+      commit('GET_USERS', response.data);
     }
+
   }
 })

@@ -2,11 +2,13 @@ package com.techelevator.controller;
 
 
 import com.techelevator.dao.JdbcPostDao;
+import com.techelevator.dao.LikeDao;
 import com.techelevator.dao.PostDao;
 
 
 import com.techelevator.dao.UserDao;
 import com.techelevator.exception.DaoException;
+import com.techelevator.model.Like;
 import com.techelevator.model.Post;
 import com.techelevator.model.User;
 import org.springframework.http.HttpStatus;
@@ -23,11 +25,13 @@ public class PostController {
     private PostDao postDao;
 
     private UserDao userDao;
+    private LikeDao likeDao;
 
 
-    public PostController (PostDao postDao, UserDao userDao) {
+    public PostController (PostDao postDao, UserDao userDao, LikeDao likeDao) {
         this.postDao = postDao;
         this.userDao = userDao;
+        this.likeDao = likeDao;
     }
     @CrossOrigin
     @RequestMapping(path = "/posts", method = RequestMethod.GET)
@@ -67,6 +71,26 @@ public class PostController {
             }
         } catch (DaoException e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Post creation failed.");
+        }
+    }
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @RequestMapping(path = "/likes", method = RequestMethod.POST)
+    public void addLike(@Valid @RequestBody Like newLike) {
+        try {
+            likeDao.createLike(newLike);
+        } catch (DaoException e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Like creation failed.");
+        }
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @RequestMapping(path = "/liked", method = RequestMethod.DELETE)
+    public void delete(@RequestBody Like newLike) {
+        try {
+            likeDao.deleteLike(newLike);
+        }  catch (DaoException e) {
+        throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Like deletion failed.");
         }
     }
 

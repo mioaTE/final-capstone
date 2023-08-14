@@ -2,6 +2,7 @@ package com.techelevator.model;
 
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 import javax.validation.constraints.NotEmpty;
 
 public class Post {
@@ -42,7 +43,6 @@ public class Post {
         this.userId = userId;
     }
 
-
     public int getLikesCount(){
         return likesCount;
     }
@@ -75,4 +75,37 @@ public class Post {
         this.postDescription = postDescription;
         this.urlImage = urlImage;
     }
+
+    public void setUsername(String username) {
+    }
+
+    public void setDatePosted(LocalDateTime datePosted) {
+    }
+
+    public void setCaption(String caption) {
+    }
+
+    public void setFavorited(boolean b) {
+    }
+
+//    public void setImages(Object listImageUrls) {
+//    }
+//
+//    public void setComments(List<Comment> listComments) {
+//    }
+//
+//    public void setFavorited(boolean favorited) {
+//    }
+//
+//    public void setLiked(boolean liked) {
+//    }
+//
+//    public void setLikeNumber(int likeNumber) {
+//    }
+//
+//    public void setDatePosted(LocalDateTime now) {
+//    }
+//
+//    public Object getImages() {
+//    }
 }

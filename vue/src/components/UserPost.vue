@@ -13,6 +13,7 @@
       <img id="Picture"  v-bind:src="post.urlImage"/>
       </section>
       <section id="InteractionPanel">
+        <button id="likebutton" v-on:click="likePost(post.postId)" >Like</button>
 
       </section>
       </div>
@@ -32,7 +33,10 @@ export default {
     },
     data() {
         return {
-        user: {}
+        user: {},
+        newLike: {userId: this.$store.state.user.id,
+                    postId: '',
+          }
 
         }
     },
@@ -41,18 +45,18 @@ export default {
           this.user = response.data;
         })
     },
-    likePost() {
-      console.log(this.post.images);
+    methods: {
+      viewPostDetails(){
+        this.$router.push(`/user`);
+      },
+    likePost(postId) {
+      this.newLike = {
+        userId: this.$store.state.user.id,
+        postId: postId
+      }
+      console.log(this.newLike);
       postService
-        .addLiked(this.post.postId)
-        .then((response) => {
-          if (response.status == 201) {
-            this.$store.commit("TOGGLE_LIKE", this.post);
-          }
-        })
-        .catch((error) => {
-          console.log(error.response);
-        });
+        .addLiked(this.newLike)
     },
     unlikePost() {
       postService
@@ -82,6 +86,7 @@ export default {
         });
       this.$store.commit("TOGGLE_FAVORITE", this.post);
     },
+    }
 };
 </script>
 

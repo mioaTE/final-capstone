@@ -41,7 +41,7 @@ public class JdbcPostDao implements PostDao{
         String sql = "SELECT post_id, user_id, post_description, post_img, post_likes, created_on FROM post WHERE user_id = ?";
         try{
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
-            if(results.next()){
+            while(results.next()){
                 post = mapRowToPost(results);
                 usersPost.add(post);
             }

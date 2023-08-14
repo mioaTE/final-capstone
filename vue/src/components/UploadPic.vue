@@ -3,11 +3,11 @@
     <h3>Upload Picture</h3>
   <button v-on:click="upload">Upload</button>
   <br />
-  <img v-if="this.newPost.picUrl !== ''" v-bind:src="this.newPost.picUrl" />
+  <img v-if="this.newPost.urlImage !== ''" v-bind:src="this.newPost.urlImage" />
 <form v-on:submit.prevent="submitPost">
   
-  <label for="description">Write a Description</label>
-  <textarea id="description" name="description" type="text" v-model="newPost.description"/>
+  <label for="postDescription">Write a Description</label>
+  <textarea id="postDescription" name="postDescription" type="text" v-model="newPost.postDescription"/>
   <br />
    <button class="button" type="submit">Post</button>
 </form>
@@ -26,9 +26,9 @@ export default {
     return {
       myWidget : {},
       newPost: {
-          userId: this.$store.state.userId,
-          picUrl: '',
-          description: '',
+          userId: this.$store.state.user.id,
+          urlImage: '',
+          postDescription: '',
       }
     }
   },
@@ -39,8 +39,8 @@ export default {
       submitPost() {
           this.newPost = {
               userId: this.newPost.userId,
-              picUrl: this.newPost.picUrl,
-              description: this.newPost.description
+              urlImage: this.newPost.urlImage,
+              postDescription: this.newPost.postDescription
           }
           postService.addPost(this.newPost).then(response => {
               if (response.status === 201) {
@@ -51,20 +51,28 @@ export default {
             this.handleErrorResponse(error, "adding");
           });
           this.newPost = {
-            userId: this.$store.state.userId,
-            picUrl: '', 
-            description: ''}
+            userId: this.$store.state.user.id,
+            urlImage: '', 
+            postDescription: ''}
 
 
       },
-      ResetPost() {
-          this.newPost = {
-            user: this.user,
-            picUrl: '',
-            description: ''
 
-          };  
+      handleErrorResponse(error, verb) {
+      if (error.response) {
+        this.errorMsg =
+          "Error " + verb + " post. Response received was '" +
+          error.response.statusText +
+          "'.";
+      } else if (error.request) {
+        this.errorMsg =
+          "Error " + verb + " post. Server could not be reached.";
+      } else {
+        this.errorMsg =
+          "Error " + verb + " post. Request could not be created.";
       }
+    }
+
   },
   mounted() {
        this.myWidget = window.cloudinary.createUploadWidget(
@@ -78,9 +86,9 @@ export default {
         if (!error && result && result.event === "success") { 
           console.log('Done! Here is the image info: ', result.info); 
           console.log("Image URL: " + result.info.url);
-          this.newPost.picUrl = result.info.url;
-          this.newPost.user = this.$store.state.user;
-          console.log("pic url: " + this.newPost.picUrl);
+          this.newPost.urlImage = result.info.url;
+          this.newPost.userId = this.$store.state.user.id;
+          console.log("pic url: " + this.newPost.urlImage);
         //   this.$store.commit("ADD_POST", this.newPost);
           console.log(this.newPost);
           
