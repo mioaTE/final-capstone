@@ -28,17 +28,7 @@ export default {
             posts: []
         }
     },    
-    computed: {
-        users() {
-            return this.$store.state.users;
-        },
-        currentUser(){
-            return postService.getUser(this.$route.params.id)
-        }
-    },
     created() {
-      const activeUserId = this.$route.params.id;
-      this.$store.commit('SET_ACTIVE_USER', activeUserId);
         postService.getUser(this.$route.params.id).then((response) => {
           this.user = response.data;
           console.log(this.user);

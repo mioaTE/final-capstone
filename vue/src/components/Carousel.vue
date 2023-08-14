@@ -9,7 +9,6 @@
     </div>
   </carousel-3d>
 </template>
-
 <script>
 import { Carousel3d, Slide } from 'vue-carousel-3d';
 import UserPost from '../components/UserPost.vue';
@@ -52,7 +51,6 @@ export default {
   },
 };
 </script>
-
 <style>
 #carousel-3d-slide{
   height: auto;
@@ -71,5 +69,4 @@ export default {
   justify-content: flex-start;
   justify-self: center;
 }
-
 </style>

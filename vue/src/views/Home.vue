@@ -1,14 +1,15 @@
 <template>
   <div id="home" :class="this.$store.state.isDark ? 'darkmode' : 'lightmode'">
     <nav-bar id="navbar"/>
-    <section id="carousel">
+  <section id="carousel">
     <carousel id="3dCarousel" />
+    <user-post />
     </section>
   </div>
   
 </template>
 <script>
-// import DisplayPosts from '../components/DisplayPosts.vue';
+
 import Carousel from '../components/Carousel.vue';
 import NavBar from '../components/NavBar.vue';
 
@@ -19,7 +20,6 @@ export default {
     secure:true,
     httpOnly:true,
   name: "home",
-
   props: ['isDark'],
   components: {
     Carousel,

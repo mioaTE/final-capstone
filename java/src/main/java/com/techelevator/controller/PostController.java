@@ -59,6 +59,17 @@ public class PostController {
     public Post getPostById(@PathVariable int Id) {
         return postDao.getPostByPostId(Id);
     }
+//    @CrossOrigin
+//    @RequestMapping (path = "/like/{userId}/{postId}", method = RequestMethod.GET)
+//    public Like getLikeByUserAndPost(@PathVariable int userId, @PathVariable int postId) {
+//        return likeDao.getLikeByUserAndPost(userId, postId);
+//    }
+
+    @CrossOrigin
+    @RequestMapping (path = "/all-likes", method = RequestMethod.GET)
+    public List<Like> getAllLikes() {
+        return likeDao.getAllLikes();
+    }
 
     @CrossOrigin
     @ResponseStatus(HttpStatus.CREATED)
@@ -83,12 +94,12 @@ public class PostController {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Like creation failed.");
         }
     }
-
+    @CrossOrigin
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @RequestMapping(path = "/liked", method = RequestMethod.DELETE)
-    public void delete(@RequestBody Like newLike) {
+    @RequestMapping(path = "/like/{userId}/{postId}", method = RequestMethod.DELETE)
+    public void deleteLike(@PathVariable int userId, @PathVariable int postId) {
         try {
-            likeDao.deleteLike(newLike);
+            likeDao.deleteLike(userId, postId);
         }  catch (DaoException e) {
         throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Like deletion failed.");
         }
