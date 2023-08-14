@@ -22,8 +22,8 @@ export default new Vuex.Store({
     token: currentToken || '',
     user: currentUser || {},
     isDark: true,
-    users: [],
-    posts: []
+    postList: []
+
   },
   mutations: {
     GET_USERS(state, users) {
@@ -50,6 +50,9 @@ export default new Vuex.Store({
     },
     TOGGLE_DARK_MODE(state) {
       state.isDark = ! state.isDark;
+    },
+    UPDATE_POST_LIST(state, postList) {
+      state.postList = postList;
     }
   },
   getters: {

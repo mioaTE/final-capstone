@@ -1,5 +1,5 @@
 <template>
-  <div id="home" :class="$store.state.isDark ? 'darkmode' : 'lightmode'">
+  <div id="home" :class="this.$store.state.isDark ? 'darkmode' : 'lightmode'">
     <nav-bar id="navbar"/>
     <section id="carousel">
     <carousel id="3dCarousel" />
