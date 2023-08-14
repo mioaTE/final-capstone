@@ -2,10 +2,10 @@
   <div id="Post" :class="$store.state.isDark ? 'darkmode' : 'lightmode'">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600' rel='stylesheet' type='text/css'>
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
-      <div v-for="post in postList" v-bind:key="post.postId">
+      <div v-bind:key="post.postId">
       <section id="PostHeader" >
       <img id="ProfilePicture" v-bind:src="post.urlImage" />
-      <router-link id="Username" v-bind:to="{name: 'user-detail', params: {id: user.id} }">
+      <router-link id="Username" v-bind:to="{name: 'user-detail', params: {id: post.userId} }">
         {{ user.username }}
         </router-link>
       </section>
@@ -13,46 +13,43 @@
       <img id="Picture"  v-bind:src="post.urlImage"/>
       </section>
       <section id="InteractionPanel">
-        <button id="likebutton" v-on:click="likePost(post.postId)" >Like</button>
-
       </section>
       </div>
     </div>
 </template>
-
 <script>
 // import catPicService from '../services/CatPictureServices.js';
 import postService from "../services/PostService.js";
 export default {
     name: "user-post",
-    props: ['user'],
-    
-    data() {
-        return {
-          postList: [],
-          newLike: {userId: this.$store.state.user.id,
-                    postId: '',
-          }
-        }
-    },
-    created() {
-        postService.listPosts().then((response) => {
-          this.postList = response.data;
-          console.log(this.postList);
-        })
-    },
+    props: ['post'],
     methods: {
       viewPostDetails(){
         this.$router.push(`/user`);
-      },
-    likePost(postId) {
-      this.newLike = {
-        userId: this.$store.state.user.id,
-        postId: postId
       }
-      console.log(this.newLike);
+    },
+    data() {
+        return {
+        user: {}
+        }
+    },
+    created() {
+        postService.getUserById(this.post.userId).then((response) => {
+          this.user = response.data;
+        })
+    },
+    likePost() {
+      console.log(this.post.images);
       postService
-        .addLiked(this.newLike)
+        .addLiked(this.post.postId)
+        .then((response) => {
+          if (response.status == 201) {
+            this.$store.commit("TOGGLE_LIKE", this.post);
+          }
+        })
+        .catch((error) => {
+          console.log(error.response);
+        });
     },
     unlikePost() {
       postService
@@ -70,7 +67,6 @@ export default {
         .catch((error) => {
           console.log(error.response);
         });
-
       this.$store.commit("TOGGLE_FAVORITE", this.post);
     },
     unfavoritePost() {
@@ -82,10 +78,8 @@ export default {
         });
       this.$store.commit("TOGGLE_FAVORITE", this.post);
     },
-    }
 };
 </script>
-
 <style>
 .lightmode #carousel div{
     height: 100%;
@@ -136,8 +130,6 @@ width: 100%;
   height: 10%;
    background-image: linear-gradient(to right, rgb(255, 110, 134), rgb(255, 135, 155));
 }
-
-
 .darkmode #carousel div{
     height: 100%;
     width: 100%;
@@ -169,6 +161,5 @@ background: orange;
 .darkmode #InteractionPanel{
   height: 10%;
 background: orange;
-
 }
 </style>
