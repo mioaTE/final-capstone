@@ -14,6 +14,9 @@ export default {
     getPost(postId) {
         return axios.get(`/posts/${postId}`)
     },
+    getUserById(userId){
+        return axios.get(`/users/${userId}`)
+    },
     addPost(thePost) {
         return axios.post('/posts', thePost)
     },

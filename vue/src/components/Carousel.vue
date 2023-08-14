@@ -1,9 +1,9 @@
 <template>
-    <carousel-3d>
-       <div v-for="user in $store.state.users" v-bind:key="user.id">
-    <slide :index="user.id">
-      <div v-bind:id="user.id">
-      <user-post v-bind:user="user"/>
+    <carousel-3d >
+       <div v-for="post in this.$store.state.postList" v-bind:key="post.postId">
+    <slide :index="post.postId">
+      <div v-bind:id="post.postId">
+      <user-post v-if="rendered" v-bind:post="post"/>
       </div>
     </slide>
     </div>
@@ -13,6 +13,7 @@
 <script>
 import { Carousel3d, Slide } from 'vue-carousel-3d';
 import UserPost from '../components/UserPost.vue';
+import PostService from '../services/PostService';
 
 export default {
   components: {
@@ -20,11 +21,32 @@ export default {
     Slide,
     UserPost
   },
+    data() {
+        return {
+        postList: [],
+        rendered: false
+        }
+    },
+   created() {
+        PostService.listPosts().then((response) => {
+          this.postList = response.data;
+          this.postList.unshift({
+            postId: 0,
+            userId: 0,
+            postDescription: "",
+            urlImg: "http://res.cloudinary.com/dmxisezmv/image/upload/v1691883695/ku7zzwqczzgzm5it3wyv.png",
+
+          })
+          this.rendered = true;
+          console.log(this.postList);
+           this.$store.commit("UPDATE_POST_LIST", this.postList);
+        })
+    },
   methods: {
-    getUserById(id) {
-      this.$store.state.users.forEach(user => {
-        if(user.id === id){
-          return user;
+    getPostById(id) {
+      this.postList.forEach(post => {
+        if(post.id === id){
+          return post;
         }
       });
     }
