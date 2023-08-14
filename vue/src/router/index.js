@@ -6,6 +6,7 @@ import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import store from '../store/index'
 import User from '../views/User.vue'
+import CreatePost from '../views/CreatePost'
 
 Vue.use(Router)
 
@@ -28,6 +29,14 @@ const router = new Router({
       component: Home,
       meta: {
         requiresAuth: false
+      }
+    },
+    {
+      path: '/',
+      name: 'createpost',
+      component: CreatePost,
+      meta: {
+        requiresAuth: true
       }
     },
     {

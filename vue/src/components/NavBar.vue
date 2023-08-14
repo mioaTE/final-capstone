@@ -19,7 +19,7 @@
       </section>
 
       <section id="makePost">   
-          <router-link class="btn" id="navbutton" v-show="isNotInLogin()" v-bind:to="{ name: 'createPost' }"><i class="icon-user" ></i>{{$store.state.token != '' ? '  Create Post' : ''}}</router-link>    
+          <router-link class="btn" id="navbutton" v-show="isNotInLogin()" v-bind:to="{ name: 'createpost' }"><i class="icon-user" ></i>{{$store.state.token != '' ? '  Create Post' : ''}}</router-link>    
       </section>   
       
     </div>

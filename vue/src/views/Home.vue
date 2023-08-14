@@ -4,7 +4,6 @@
     <section id="carousel">
     <carousel id="3dCarousel" />
     </section>
-    <upload-pic />
   </div>
   
 </template>
@@ -12,7 +11,6 @@
 // import DisplayPosts from '../components/DisplayPosts.vue';
 import Carousel from '../components/Carousel.vue';
 import NavBar from '../components/NavBar.vue';
-import UploadPic from '../components/UploadPic.vue';
 
 
 
@@ -30,8 +28,6 @@ export default {
   components: {
     Carousel,
     NavBar,
-    UploadPic,
-    // DisplayPosts,
 
   }
 };
