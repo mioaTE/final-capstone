@@ -43,7 +43,6 @@ public class Post {
         this.userId = userId;
     }
 
-
     public int getLikesCount(){
         return likesCount;
     }
@@ -75,6 +74,18 @@ public class Post {
         this.likesCount = likesCount;
         this.postDescription = postDescription;
         this.urlImage = urlImage;
+    }
+
+    public void setUsername(String username) {
+    }
+
+    public void setDatePosted(LocalDateTime datePosted) {
+    }
+
+    public void setCaption(String caption) {
+    }
+
+    public void setFavorited(boolean b) {
     }
 
 //    public void setImages(Object listImageUrls) {
