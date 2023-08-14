@@ -19,11 +19,7 @@ export default {
     secure:true,
     httpOnly:true,
   name: "home",
-  // data() {
-  //   return {
-  //     isDark: true,
-  //   }
-  // },
+
   props: ['isDark'],
   components: {
     Carousel,
