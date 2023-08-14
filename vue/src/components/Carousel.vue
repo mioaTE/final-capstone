@@ -1,9 +1,9 @@
 <template>
-    <carousel-3d >
+    <carousel-3d  v-if="rendered" >
        <div v-for="post in this.$store.state.postList" v-bind:key="post.postId">
     <slide :index="post.postId">
       <div v-bind:id="post.postId">
-      <user-post v-if="rendered" v-bind:post="post"/>
+      <user-post v-bind:post="post"/>
       </div>
     </slide>
     </div>
@@ -23,23 +23,22 @@ export default {
   },
     data() {
         return {
-        postList: [],
         rendered: false
         }
     },
    created() {
         PostService.listPosts().then((response) => {
-          this.postList = response.data;
-          this.postList.unshift({
+
+          response.data.unshift({
             postId: 0,
             userId: 0,
             postDescription: "",
-            urlImg: "http://res.cloudinary.com/dmxisezmv/image/upload/v1691883695/ku7zzwqczzgzm5it3wyv.png",
+            urlImage: "http://res.cloudinary.com/dmxisezmv/image/upload/v1691883695/ku7zzwqczzgzm5it3wyv.png",
 
-          })
-          this.rendered = true;
-          console.log(this.postList);
-           this.$store.commit("UPDATE_POST_LIST", this.postList);
+          });
+          console.log(response.data);
+           this.$store.commit("UPDATE_POST_LIST", response.data);
+           this.rendered = true;
         })
     },
   methods: {
