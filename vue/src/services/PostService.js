@@ -40,10 +40,16 @@ export default {
     addLiked(postId) {
         return axios.post('/likes', postId)
     },
-    removeLiked(postId) {
-        return axios.delete(`/liked/${postId}`)
+    removeLiked(userId, postId) {
+        return axios.delete(`like/${userId}/${postId}`)
     },
     listFollowing() {
         return axios.get(`/following`)
+    },
+    computeLiked(userId, postId) {
+        return axios.get(`like/${userId}/${postId}`)
+    },
+    getAllLikes() {
+        return axios.get('/all-likes')
     }
 }
