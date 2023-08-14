@@ -13,13 +13,10 @@
       <img id="Picture"  v-bind:src="post.urlImage"/>
       </section>
       <section id="InteractionPanel">
-        <button id="likebutton" v-on:click="likePost(post.postId)" >Like</button>
-
       </section>
       </div>
     </div>
 </template>
-
 <script>
 // import catPicService from '../services/CatPictureServices.js';
 import postService from "../services/PostService.js";
@@ -40,18 +37,18 @@ export default {
           this.user = response.data;
         })
     },
-    methods: {
-      viewPostDetails(){
-        this.$router.push(`/user`);
-      },
-    likePost(postId) {
-      this.newLike = {
-        userId: this.$store.state.user.id,
-        postId: postId
-      }
-      console.log(this.newLike);
+    likePost() {
+      console.log(this.post.images);
       postService
-        .addLiked(this.newLike)
+        .addLiked(this.post.postId)
+        .then((response) => {
+          if (response.status == 201) {
+            this.$store.commit("TOGGLE_LIKE", this.post);
+          }
+        })
+        .catch((error) => {
+          console.log(error.response);
+        });
     },
     unlikePost() {
       postService
@@ -69,7 +66,6 @@ export default {
         .catch((error) => {
           console.log(error.response);
         });
-
       this.$store.commit("TOGGLE_FAVORITE", this.post);
     },
     unfavoritePost() {
@@ -81,10 +77,8 @@ export default {
         });
       this.$store.commit("TOGGLE_FAVORITE", this.post);
     },
-    }
 };
 </script>
-
 <style>
 .lightmode #carousel div{
     height: 100%;
@@ -135,8 +129,6 @@ width: 100%;
   height: 10%;
    background-image: linear-gradient(to right, rgb(255, 110, 134), rgb(255, 135, 155));
 }
-
-
 .darkmode #carousel div{
     height: 100%;
     width: 100%;
@@ -168,6 +160,5 @@ background: orange;
 .darkmode #InteractionPanel{
   height: 10%;
 background: orange;
-
 }
 </style>
