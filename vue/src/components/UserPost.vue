@@ -26,11 +26,6 @@ import postService from "../services/PostService.js";
 export default {
     name: "user-post",
     props: ['post'],
-    methods: {
-      viewPostDetails(){
-        this.$router.push(`/user`);
-      }
-    },
     data() {
         return {
         user: {},

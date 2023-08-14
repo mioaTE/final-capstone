@@ -18,15 +18,4 @@ public interface UserDao {
 
     User createUser(RegisterUserDto user);
 
-    int findIdByUsername(String username);
-
-    User getUserById(Long userId);
-
-    List<User> findAll();
-
-    User findByUsername(String username) throws UsernameNotFoundException;
-
-    boolean create(String username, String password, String role);
-
-//    int findIdByUsername(String name);
 }
