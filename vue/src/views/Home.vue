@@ -1,11 +1,10 @@
 <template>
-  <div id="home" :class="$store.state.isDark ? 'darkmode' : 'lightmode'">
+  <div id="home" :class="this.$store.state.isDark ? 'darkmode' : 'lightmode'">
     <nav-bar id="navbar"/>
   <section id="carousel">
     <carousel id="3dCarousel" />
     <user-post />
     </section>
-    <upload-pic />
   </div>
   
 </template>
@@ -13,8 +12,6 @@
 
 import Carousel from '../components/Carousel.vue';
 import NavBar from '../components/NavBar.vue';
-import UploadPic from '../components/UploadPic.vue';
-import UserPost from '../components/UserPost.vue';
 
 
 
@@ -27,8 +24,6 @@ export default {
   components: {
     Carousel,
     NavBar,
-    UploadPic,
-    UserPost
 
   }
 };
@@ -83,4 +78,108 @@ export default {
   .darkmode {
  background-image: linear-gradient(to bottom, rgb(65, 65, 65),rgb(83, 83, 83),rgb(99, 99, 99) );
   }
+
+  #likebutton{
+    height: 90%;
+    width: 20%;
+    margin-top: 1px;
+    margin-left: 2%;
+    padding: 0px;
+  }
+
+  .lightmode button{
+   display: inline-block;
+  width: 5%;
+  height: 25px;
+  justify-content: center;
+  align-items: center;
+  font-family:'Open Sans', sans-serif;
+  background-color: rgb(252, 142, 160);
+  border: none; /* Remove borders */
+  color: white; /* White text */
+  padding: 10px; /* Some padding */
+  margin: 5px;
+  font-size: 16px; /* Set a font size */
+  cursor: pointer; /* Mouse pointer on hover */
+  border: 2px solid black;
+  border-radius: 25px;
+  width: auto;
+  height: auto;
+}
+.lightmode button:hover {
+  top: 3px;
+  background-color:#e83e8c;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+.lightmode .btn{
+  display: inline-block;
+  width: 5%;
+  height: 25px;
+  justify-content: center;
+  align-items: center;
+  font-family:'Open Sans', sans-serif;
+  background-color: rgb(252, 142, 160);
+  border: none; /* Remove borders */
+  color: white; /* White text */
+  padding: 10px; /* Some padding */
+  margin: 5px;
+  font-size: 16px; /* Set a font size */
+  cursor: pointer; /* Mouse pointer on hover */
+  text-decoration: none;
+  border-radius: 25px;
+}
+.lightmode .btn:hover {
+  top: 3px;
+  background-color:#e83e8c;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+.darkmode button{
+   display: inline-block;
+  justify-content: center;
+  align-items: center;
+  font-family:'Open Sans', sans-serif;
+  background-color: rgb(255, 164, 79);
+  border: none; /* Remove borders */
+  color: white; /* White text */
+  padding: 10px; /* Some padding */
+  margin: 5px;
+  font-size: 16px; /* Set a font size */
+  cursor: pointer; /* Mouse pointer on hover */
+  text-decoration: none;
+  border-radius: 25px;
+  border: 2px solid black;
+  width: auto;
+  height: auto;
+}
+.darkmode button:hover {
+  top: 3px;
+  background-color:#ff9419;
+  box-shadow: none;
+}
+
+.darkmode .btn{
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+  font-family:'Open Sans', sans-serif;
+  background-color: rgb(255, 164, 79);
+  border: none; /* Remove borders */
+  color: white; /* White text */
+  padding: 10px; /* Some padding */
+  margin: 5px;
+  font-size: 16px; /* Set a font size */
+  cursor: pointer; /* Mouse pointer on hover */
+  text-decoration: none;
+  border-radius: 25px;
+}
+.darkmode .btn:hover {
+  top: 3px;
+  background-color:#ff9419;
+  box-shadow: none;
+}
 </style>

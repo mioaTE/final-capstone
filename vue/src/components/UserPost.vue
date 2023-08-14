@@ -19,7 +19,6 @@
       </div>
     </div>
 </template>
-
 <script>
 // import catPicService from '../services/CatPictureServices.js';
 import postService from "../services/PostService.js";
@@ -112,7 +111,6 @@ export default {
   
 }
 </script>
-
 <style>
 .lightmode #carousel div{
     height: 100%;
@@ -163,8 +161,6 @@ width: 100%;
   height: 10%;
    background-image: linear-gradient(to right, rgb(255, 110, 134), rgb(255, 135, 155));
 }
-
-
 .darkmode #carousel div{
     height: 100%;
     width: 100%;
@@ -196,6 +192,5 @@ background: orange;
 .darkmode #InteractionPanel{
   height: 10%;
 background: orange;
-
 }
 </style>

@@ -2,6 +2,7 @@ package com.techelevator.dao;
 
 import com.techelevator.model.RegisterUserDto;
 import com.techelevator.model.User;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import java.util.List;
 
@@ -17,5 +18,4 @@ public interface UserDao {
 
     User createUser(RegisterUserDto user);
 
-//    int findIdByUsername(String name);
 }

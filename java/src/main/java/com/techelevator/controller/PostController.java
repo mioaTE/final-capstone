@@ -33,23 +33,28 @@ public class PostController {
         this.userDao = userDao;
         this.likeDao = likeDao;
     }
-
+    @CrossOrigin
     @RequestMapping(path = "/posts", method = RequestMethod.GET)
     public List<Post> getAllPost() {
         return postDao.getPost();
     }
-
+    @CrossOrigin
     @RequestMapping(path = "/users", method = RequestMethod.GET)
     public List<User> getAllUsers() {
         return userDao.getUsers();
     }
+    @CrossOrigin
+    @RequestMapping(path = "/users/{id}", method = RequestMethod.GET)
+    public User getUserById(@PathVariable int id) {
+        return userDao.getUserById(id);
+    }
 
-
+    @CrossOrigin
     @RequestMapping(path = "/posts/user/{Id}", method = RequestMethod.GET)
     public List<Post> getUsersPost(@PathVariable int Id) {
         return postDao.getPostByUserId(Id);
     }
-
+    @CrossOrigin
     @RequestMapping(path = "/posts/{Id}", method = RequestMethod.GET)
     public Post getPostById(@PathVariable int Id) {
         return postDao.getPostByPostId(Id);

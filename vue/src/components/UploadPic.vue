@@ -1,16 +1,29 @@
 <template>
 <div>
-    <h3>Upload Picture</h3>
-  <button v-on:click="upload">Upload</button>
-  <br />
-  <img v-if="this.newPost.urlImage !== ''" v-bind:src="this.newPost.urlImage" />
-<form v-on:submit.prevent="submitPost">
+
+    <section id="header">
+       <h3>Post Something Fun!</h3>
+    </section>   
+
+    <section id="postContent">
+
+      <button v-on:click="upload">Choose a Picture</button>
+
+      <img v-if="this.newPost.urlImage !== ''" v-bind:src="this.newPost.urlImage" />
+
+      <form v-on:submit.prevent="submitPost">
   
-  <label for="postDescription">Write a Description</label>
-  <textarea id="postDescription" name="postDescription" type="text" v-model="newPost.postDescription"/>
-  <br />
-   <button class="button" type="submit">Post</button>
-</form>
+      <label for="postDescription">Write a Description</label>
+
+      <textarea id="postDescription" name="postDescription" type="text" v-model="newPost.postDescription"/>
+
+      <button class="button" type="submit">Post</button>
+    
+      </form>
+
+    </section>
+
+
 </div>
 </template>
 
@@ -44,7 +57,7 @@ export default {
           }
           postService.addPost(this.newPost).then(response => {
               if (response.status === 201) {
-              this.$router.push('/posts');
+              this.$router.push('/');
             }
           })
           .catch(error => {
@@ -56,6 +69,9 @@ export default {
             postDescription: ''}
 
 
+      },
+      sendToHomepage(){
+        this.$router.push('/');
       },
 
       handleErrorResponse(error, verb) {
@@ -103,18 +119,105 @@ export default {
 </script>
 
 <style scoped>
-h3 {
-  margin: 40px 0 0;
+.lightmode button{
+   display: inline-block;
+  width: 5%;
+  height: 25px;
+  justify-content: center;
+  align-items: center;
+  font-family:'Open Sans', sans-serif;
+  background-color: rgb(252, 142, 160);
+  border: none; /* Remove borders */
+  color: white; /* White text */
+  padding: 10px; /* Some padding */
+  margin: 5px;
+  font-size: 16px; /* Set a font size */
+  cursor: pointer; /* Mouse pointer on hover */
+  border: 2px solid black;
+  border-radius: 25px;
+  width: auto;
+  height: auto;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+.lightmode button:hover {
+  top: 3px;
+  background-color:#e83e8c;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
 }
-li {
+
+.lightmode .btn{
   display: inline-block;
-  margin: 0 10px;
+  width: 5%;
+  height: 25px;
+  justify-content: center;
+  align-items: center;
+  font-family:'Open Sans', sans-serif;
+  background-color: rgb(252, 142, 160);
+  border: none; /* Remove borders */
+  color: white; /* White text */
+  padding: 10px; /* Some padding */
+  margin: 5px;
+  font-size: 16px; /* Set a font size */
+  cursor: pointer; /* Mouse pointer on hover */
+  text-decoration: none;
+  border-radius: 25px;
 }
-a {
-  color: #42b983;
+.lightmode .btn:hover {
+  top: 3px;
+  background-color:#e83e8c;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+.darkmode button{
+   display: inline-block;
+  justify-content: center;
+  align-items: center;
+  font-family:'Open Sans', sans-serif;
+  background-color: rgb(255, 164, 79);
+  border: none; /* Remove borders */
+  color: white; /* White text */
+  padding: 10px; /* Some padding */
+  margin: 5px;
+  font-size: 16px; /* Set a font size */
+  cursor: pointer; /* Mouse pointer on hover */
+  text-decoration: none;
+  border-radius: 25px;
+  border: 2px solid black;
+  width: auto;
+  height: auto;
+}
+.darkmode button:hover {
+  top: 3px;
+  background-color:#ff9419;
+  box-shadow: none;
+}
+
+.darkmode .btn{
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+  font-family:'Open Sans', sans-serif;
+  background-color: rgb(255, 164, 79);
+  border: none; /* Remove borders */
+  color: white; /* White text */
+  padding: 10px; /* Some padding */
+  margin: 5px;
+  font-size: 16px; /* Set a font size */
+  cursor: pointer; /* Mouse pointer on hover */
+  text-decoration: none;
+  border-radius: 25px;
+}
+.darkmode .btn:hover {
+  top: 3px;
+  background-color:#ff9419;
+  box-shadow: none;
+}
+#header{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>
