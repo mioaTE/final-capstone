@@ -1,13 +1,20 @@
 <template>
  <div>
-     <h1>This is UserDetail</h1>
-     <h2>User ID: {{ user.id }}</h2>
-     <h2>User name: {{ user.profileName}}</h2>
-     <div v-for="post in posts" v-bind:key="post.postId">
-         <h3>{{ post.postId }}</h3>
+
+    <section id="profileHeader">
+
+     <h1>Welcome to {{user.profileName}}'s Profile</h1>
+
+    </section>
+
+    <section id="userPost">
+        <div v-for="post in posts" v-bind:key="post.postId">
       
-        <img class="image" v-bind:src="post.urlImage" />
-         </div>
+         <img class="image" v-bind:src="post.urlImage" />
+
+        </div>
+    </section>
+
  </div>
 </template>
 
@@ -36,23 +43,36 @@ export default {
 </script>
 
 <style>
+.lightmode {
+    background-image: radial-gradient(rgb(255, 225, 230), rgb(255, 171, 185)) ;
+}
+.darkmode {
+    background-image: linear-gradient(to bottom, rgb(65, 65, 65),rgb(83, 83, 83),rgb(99, 99, 99) );
+}
 #navbar{
     grid-area: navbar;
     height: auto;
     background: rgb(255, 154, 171);
 }
-.profile-header {
+#profileHeader {
     display: flex;
     width: 100%;
     flex-direction: row;
     /* background-color: white; */
     /* background-color: #616161; */
-    background: rgb(255, 154, 171);
     align-items: center;
     font-family: 'Open Sans', sans-serif;
     box-shadow: 0px 2px 10px rgb(184, 184, 184);
-    justify-content: space-between;
+    justify-content: center;
     height: 100px;
+}
+
+.lightmode #profileHeader{
+    background: rgb(255, 154, 171);
+}
+
+.darkmode #profileHeader{
+    background: rgb(110, 110, 110);
 }
 .settings-icon {
     margin-top: 15px;
@@ -63,10 +83,34 @@ export default {
     background: rgb(255, 154, 171);
     background-clip: border-box;
 }
-.lightmode {
-    background-image: radial-gradient(rgb(255, 225, 230), rgb(255, 171, 185)) ;
+#userPost{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 10px;
 }
-.darkmode {
-    background-image: linear-gradient(to bottom, rgb(65, 65, 65),rgb(83, 83, 83),rgb(99, 99, 99) );
+
+#userPost div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+
 }
+
+.lightmode #userPost img{
+    width: 230px;
+    height: 200px;
+    border: 2px solid gold;
+    margin: 5px;
+}
+
+.darkmode #userPost img{
+    width: 230px;
+    height: 200px;
+    border: 2px solid black;
+    margin: 5px;
+}
+
 </style>
