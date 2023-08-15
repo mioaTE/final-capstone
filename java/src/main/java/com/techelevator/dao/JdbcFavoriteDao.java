@@ -2,8 +2,6 @@ package com.techelevator.dao;
 
 import com.techelevator.exception.DaoException;
 import com.techelevator.model.Favorite;
-
-import com.techelevator.model.Like;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -12,6 +10,10 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 69b0aa6bf6c74a9df03e0dacada3ce271d2798a0
 @Component
 public class JdbcFavoriteDao implements FavoriteDao{
 
