@@ -22,7 +22,8 @@ export default {
   props: ['isDark'],
   components: {
     Carousel,
-    NavBar,
+    NavBar
+    
 
   }
 };
@@ -78,13 +79,7 @@ export default {
  background-image: linear-gradient(to bottom, rgb(65, 65, 65),rgb(83, 83, 83),rgb(99, 99, 99) );
   }
 
-  #likebutton{
-    height: 90%;
-    width: 20%;
-    margin-top: 1px;
-    margin-left: 2%;
-    padding: 0px;
-  }
+
 
   .lightmode button{
    display: inline-block;

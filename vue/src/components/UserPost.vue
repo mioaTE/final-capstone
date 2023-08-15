@@ -132,6 +132,26 @@ export default {
 }
 </script>
 <style>
+#favoritebutton{
+    height: 90%;
+    width: 20%;
+    margin-top: 1px;
+    margin-left: 54%;
+    margin-right: 2%;
+    padding: 0px;
+}
+  #likebutton{
+    height: 90%;
+    width: 20%;
+    margin-top: 1px;
+    margin-left: 2%;
+    padding: 0px;
+  }
+#Username{
+text-decoration: none;
+  font-family:'Open Sans', sans-serif;
+  font-size: 3em;
+}
 .lightmode #carousel div{
     height: 100%;
   width: 100%;
@@ -170,6 +190,7 @@ width: 100%;
   padding-left: 5%;
 }
 .lightmode #InteractionPanel{
+  display: flex;
   height: 10%;
    background-image: linear-gradient(to right, rgb(255, 110, 134), rgb(255, 135, 155));
 }

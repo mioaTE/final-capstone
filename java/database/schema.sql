@@ -1,6 +1,6 @@
 BEGIN TRANSACTION;
 
-DROP TABLE IF EXISTS users, post, likes, favorites;
+DROP TABLE IF EXISTS users, post, likes, favorites, comments;
 
 CREATE TABLE users (
 	user_id SERIAL,
@@ -26,6 +26,14 @@ CREATE TABLE post (
 );
 
 CREATE TABLE likes(
+	post_id INT NOT NULL,
+	user_id INT NOT NULL,
+
+	CONSTRAINT FK_post FOREIGN KEY (post_id) REFERENCES post(post_id),
+	CONSTRAINT FK_user FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+CREATE TABLE favorites(
 	post_id INT NOT NULL,
 	user_id INT NOT NULL,
 
@@ -61,7 +69,9 @@ GRANT SELECT, INSERT, UPDATE, DELETE
 ON ALL TABLES IN SCHEMA public
 TO final_capstone_appuser;
 GRANT USAGE, SELECT
-ON ALL SEQUENCES IN SCHEMA public
+ON ALL SEQUENCES IN SCHEMA publicnpm 
 TO final_capstone_appuser;
 
-
+SELECT * FROM users;
+SELECT * FROM comments;
+SELECT * FROM favorites;
