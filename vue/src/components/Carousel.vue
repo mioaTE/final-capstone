@@ -31,8 +31,8 @@ export default {
           response.data.unshift({
             postId: 0,
             userId: 0,
-            postDescription: "",
-            urlImage: "http://res.cloudinary.com/dmxisezmv/image/upload/v1691883695/ku7zzwqczzgzm5it3wyv.png",
+            postDescription: "We hope you enjoy our app!",
+            urlImage: "http://res.cloudinary.com/dmxisezmv/image/upload/v1692106263/gduezwmegin1aa0c2ey0.png",
 
           });
           console.log(response.data);
