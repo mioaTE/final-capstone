@@ -9,7 +9,9 @@
         </router-link>
       </section>
       <section id="UserPicture">
+
       <img id="Picture"  v-bind:src="post.urlImage"/>
+
       </section>
       <section id="InteractionPanel">
         <button id="likebutton" v-on:click="likePost(post)" v-if="!postLiked" >Like</button>

@@ -9,9 +9,9 @@
 
     <section id="userPost">
         <div v-for="post in posts" v-bind:key="post.postId">
-      
+       <router-link id="post" v-bind:to="{name: 'view-post', params: {id: post.userId} }">
          <img class="image" v-bind:src="post.urlImage" />
-
+       </router-link>
         </div>
     </section>
 
