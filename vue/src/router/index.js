@@ -33,7 +33,7 @@ const router = new Router({
       }
     },
     {
-      path: '/viewPost',
+      path: '/viewPost/:id',
       name: 'post',
       component: ViewPost,
       meta: {

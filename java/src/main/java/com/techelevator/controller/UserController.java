@@ -16,7 +16,7 @@ public class UserController {
         this.userDao = userDao;
     }
 
-
+    @CrossOrigin
     @RequestMapping(path = "/user/{id}", method = RequestMethod.GET)
     public User get(@PathVariable("id") int id) {
         User user = userDao.getUserById(id);
