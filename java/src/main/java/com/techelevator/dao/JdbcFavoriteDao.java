@@ -10,7 +10,10 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+<<<<<<< HEAD
+=======
 
+>>>>>>> 69b0aa6bf6c74a9df03e0dacada3ce271d2798a0
 @Component
 public class JdbcFavoriteDao implements FavoriteDao{
 
