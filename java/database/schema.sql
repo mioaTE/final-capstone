@@ -28,7 +28,6 @@ CREATE TABLE post (
 
 	CONSTRAINT PK_post PRIMARY KEY (post_id),
 	CONSTRAINT FK_user FOREIGN KEY (user_id) REFERENCES users(user_id)
-	UPDATE post SET post_likes = (SELECT COUNT(likes.post_id) FROM likes WHERE post.post_id = likes.post_id);
 );
 
 CREATE TABLE likes(
@@ -37,6 +36,17 @@ CREATE TABLE likes(
 
 	CONSTRAINT FK_post FOREIGN KEY (post_id) REFERENCES post(post_id),
 	CONSTRAINT FK_user FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+CREATE TABLE comments(
+    comment_id serial,
+    user_id INT NOT NULL,
+    post_id INT NOT NULL,
+    comment VARCHAR (500) NOT NULL,
+
+    CONSTRAINT PK_comments PRIMARY KEY (comment_id),
+    CONSTRAINT FK_user FOREIGN KEY (user_id) REFERENCES users(user_id),
+    CONSTRAINT FK_post FOREIGN KEY (post_id) REFERENCES post(post_id)
 );
 
 
