@@ -52,6 +52,7 @@ CREATE TABLE comments(
     CONSTRAINT FK_post FOREIGN KEY (post_id) REFERENCES post(post_id)
 );
 
+COMMIT TRANSACTION;
 
 GRANT ALL
 ON ALL TABLES IN SCHEMA public
@@ -66,4 +67,6 @@ GRANT USAGE, SELECT
 ON ALL SEQUENCES IN SCHEMA publicnpm 
 TO final_capstone_appuser;
 
-
+SELECT * FROM users;
+SELECT * FROM comments;
+SELECT * FROM favorites;
