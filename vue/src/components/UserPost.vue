@@ -16,8 +16,9 @@
       <section id="InteractionPanel">
         <button id="likebutton" v-on:click="likePost(post)" v-if="!postLiked" >Like</button> 
         <button id="likebutton" v-on:click="unlikePost(post)" v-if="postLiked" >Unlike</button>
+         <p> {{this.postLikes}} </p>
         <button id="favoritebutton" v-on:click="favoritePost(post)" v-if="!postFavorited" >Favorite</button>
-        <p> {{this.postLikes}} </p>
+       
         <!-- add  unfavoritebutton -->
       </section>
       </div>
@@ -136,7 +137,7 @@ export default {
     height: 90%;
     width: 20%;
     margin-top: 1px;
-    margin-left: 54%;
+    margin-left: 50%;
     margin-right: 2%;
     padding: 0px;
 }
@@ -189,11 +190,26 @@ width: 100%;
   font-size: 15px;
   padding-left: 5%;
 }
+#InteractionPanel p{
+  display: inline-block;
+  margin: 0px;
+}
 .lightmode #InteractionPanel{
   display: flex;
-  height: 10%;
+  height: auto;
+    justify-content: center;
+  align-items: center;
    background-image: linear-gradient(to right, rgb(255, 110, 134), rgb(255, 135, 155));
 }
+
+.darkmode #InteractionPanel{
+    justify-content: flex-start;
+  align-items: center;
+  display: flex;
+  height: auto;
+background: orange;
+}
+
 .darkmode #carousel div{
     height: 100%;
     width: 100%;
@@ -222,10 +238,7 @@ background: orange;
   font-size: 15px;
   padding-left: 5%;
 }
-.darkmode #InteractionPanel{
-  height: 15%;
-background: orange;
-}
+
 
 #Username{
     font-family:'Open Sans', sans-serif;
