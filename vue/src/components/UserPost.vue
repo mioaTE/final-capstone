@@ -4,14 +4,13 @@
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
       <div v-bind:key="post.postId">
       <section id="PostHeader" >
+      <img id="ProfilePicture" v-bind:src="post.urlImage" />
       <router-link id="Username" v-bind:to="{name: 'user-detail', params: {id: post.userId} }">
         {{ user.profileName }}
         </router-link>
       </section>
       <section id="UserPicture">
-
       <img id="Picture"  v-bind:src="post.urlImage"/>
-
       </section>
       <section id="InteractionPanel">
         <button id="likebutton" v-on:click="likePost(post)" v-if="!postLiked" >Like</button>
@@ -69,18 +68,7 @@ export default {
         } else {
           return false;
         }
-      },
-      postFavorited() {
-        if(this.allFavorites.some((favorite)=> favorite.postId == this.post.postId && favorite.userId == this.$store.state.user.id)) {
-          return true;
-        } else {
-          return false;
-        }
-      },
-      postLikes() {
-        return this.post.likesCount;
       }
-      
     },
     methods: {
       
@@ -190,6 +178,14 @@ width: 100%;
   height: 15%;
   background-image: linear-gradient(to right, rgb(255, 110, 134), rgb(255, 135, 155));
 }
+.lightmode #ProfilePicture{
+  display: inline-block;
+  height: 15px;
+  width: 15px;
+  border-radius: 10%;
+  margin-left: 5%;
+  border: 1px solid grey;
+}
 .lightmode #Username{
   display: inline-block;
   font-size: 15px;
@@ -230,12 +226,5 @@ background: orange;
 .darkmode #InteractionPanel{
   height: 10%;
 background: orange;
-}
-
-#Username{
-    font-family:'Open Sans', sans-serif;
-    text-decoration: none;
-    font-size: 20px;
-    font-weight: 15px;
 }
 </style>

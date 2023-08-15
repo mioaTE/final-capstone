@@ -17,6 +17,19 @@
 
       </section>   
 
+      <section id ="comment">
+        <form v-on:submit.prevent="submitComment">
+    
+            <label for="comment">Submit Comment</label>
+
+            <textarea id="comment" name="comment" type="text" v-model="newComment.comment"/>
+
+            <button class="button" type="submit">Comment</button>
+        
+        </form>
+
+      </section>
+
 
     </div>
 
@@ -35,8 +48,12 @@ export default {
 
     data() {
         return {
-        post: {}
-          
+            post: {},
+            newComment: {
+                    userId: this.$store.state.user.id,
+                    postId: this.$route.params.id,
+                    comment: ''
+                }
         }
     },
     created() {
@@ -48,6 +65,24 @@ export default {
     components: {
         NavBar,
         InteractivePost
+    },
+    methods: {
+        submitComment() {
+          this.newComment = {
+              userId: this.$store.state.user.id,
+              postId: this.$route.params.id,
+              comment: this.newComment.comment,
+          }
+          PostService.submitComment(this.newComment).then(response => {
+              if (response.status === 201) {
+              this.$router.push('/');
+            }
+          })
+          this.newComment = {
+            userId: this.$store.state.user.id,
+            postId: this.$route.params.id, 
+            comment: ''}
+      },
     }
 }
 </script>
