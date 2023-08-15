@@ -14,6 +14,8 @@ public interface PostDao {
 
     List<Post> getPost();
 
+    Post updatePostLikes(Post post);
+
 //    List<Post> listPosts();
 //
 //    int getNextPostId();
