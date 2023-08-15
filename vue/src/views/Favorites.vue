@@ -1,5 +1,6 @@
 <template>
   <div id="favorites">
+    <nav-bar />
     <div id="fav-main">
       <section id="userPost">
         <div v-for="post in favorites" v-bind:key="post.postId">
@@ -14,8 +15,12 @@
 
 <script>
 import postService from "../services/PostService.js";
+import NavBar from "../components/NavBar.vue";
 export default {
   name: "favorites",
+  components: {
+    NavBar
+    },
   data() {
     return {
       favorites: [],
