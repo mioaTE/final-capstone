@@ -6,7 +6,7 @@
       <section id="PostHeader" >
       <img id="ProfilePicture" v-bind:src="post.urlImage" />
       <router-link id="Username" v-bind:to="{name: 'user-detail', params: {id: post.userId} }">
-        {{ user.username }}
+        {{ user.profileName }}
         </router-link>
       </section>
       <section id="UserPicture">

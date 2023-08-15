@@ -7,8 +7,13 @@ CREATE TABLE users (
 	username varchar(50) NOT NULL UNIQUE,
 	password_hash varchar(200) NOT NULL,
 	role varchar(50) NOT NULL,
+<<<<<<< HEAD
 	CONSTRAINT PK_user PRIMARY KEY (user_id)
 	email varchar (255)
+=======
+	CONSTRAINT PK_user PRIMARY KEY (user_id),
+	email varchar (255),
+>>>>>>> 81b31b297c76eca8cf1886516b1b4c97bbf9641a
 	profile_name varchar (255)
 );
 
@@ -33,4 +38,21 @@ CREATE TABLE likes(
 	CONSTRAINT FK_user FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 
+
+GRANT ALL
+ON ALL TABLES IN SCHEMA public
+TO final_capstone_owner;
+GRANT ALL
+ON ALL SEQUENCES IN SCHEMA public
+TO final_capstone_owner;
+GRANT SELECT, INSERT, UPDATE, DELETE
+ON ALL TABLES IN SCHEMA public
+TO final_capstone_appuser;
+GRANT USAGE, SELECT
+ON ALL SEQUENCES IN SCHEMA public
+TO final_capstone_appuser;
+
+
 COMMIT TRANSACTION;
+
+
