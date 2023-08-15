@@ -18,8 +18,8 @@ export default {
           
         }
     },
-    mounted() {
-        PostService.getUser(this.postDetails.userId).then((response) => {
+    updated() {
+        PostService.getUserById(this.postDetails.userId).then((response) => {
           this.user = response.data;
         })
     }
