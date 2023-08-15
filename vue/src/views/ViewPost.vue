@@ -12,7 +12,7 @@
 
 
       <section id="usersPost">
-          
+
         <interactive-post v-bind:postDetails="post" />
 
       </section>   
@@ -20,7 +20,7 @@
       <section id ="comment">
         <form v-on:submit.prevent="submitComment">
     
-            <label for="comment">Submit Comment</label>
+            <label id="label" for="comment">Submit Comment</label>
 
             <textarea id="comment" name="comment" type="text" v-model="newComment.comment"/>
 
@@ -29,7 +29,13 @@
         </form>
 
       </section>
+      
+      <section id="userComments">
 
+          <div v-for="comment in this.$store.state.commentList" v-bind:key="comment.commentId">
+              </div>
+
+      </section>    
 
     </div>
 
@@ -87,65 +93,65 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 #postView{
   height: 100vh;
   width: 100vw;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 3fr;
+  grid-template-rows: 1fr 1fr 1fr;
   grid-template-areas:
     "navbar"
     "post"
+    "comment"
+}
+
+#label{
+    color: black;
+}
+textarea{
+
+   border: 1px solid #b5bcc7;
+    height: 50px;
+    width: 250px;
+    background-color: #F7FCFF;
+    margin-top: 1px;
+    margin-left: 4px;
+    margin-right: 1px;
+    padding: 20px;
+    overflow: hidden;
+}
+
+form{
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+}
+
+#comment{
+    display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+grid-area: comment;
+margin: 25px;
+border-radius: 20px;
+}
+
+.lightmode #comment{
+border: 2px solid gold;
+background: rgb(255, 150, 167);
+}
+
+.darkmode #comment{
+border: 2px solid black;
+background: grey;
 }
 #navbar{
     grid-area: navbar;
 }
 #usersPost{
     grid-area: post;
-}
-.lightmode #UserPicture{
-  height: 75%;
-  width: 100%;
-}
-.lightmode #PostHeader{
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  height: 15%;
-  background-image: linear-gradient(to right, rgb(255, 110, 134), rgb(255, 135, 155));
-}
-.lightmode #Username{
-  display: inline-block;
-  font-size: 15px;
-  padding-left: 5%;
-}
-.lightmode #InteractionPanel{
-  height: 10%;
-  background-image: linear-gradient(to right, rgb(255, 110, 134), rgb(255, 135, 155));
-}
-.darkmode #carousel div{
-  height: 100%;
-  width: 100%;
-}
-.darkmode #UserPicture{
-  height: 75%;
-  width: 100%;
-}
-.darkmode #PostHeader{
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  height: 15%;
-  background: orange;
-}
-.darkmode #Username{
-  display: inline-block;
-  font-size: 15px;
-  padding-left: 5%;
-}
-.darkmode #InteractionPanel{
-  height: 10%;
-  background: orange;
 }
 </style>

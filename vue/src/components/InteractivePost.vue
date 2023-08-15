@@ -1,16 +1,13 @@
 <template>
   <div id="PostView">
 
-      <section id="username">
-         {{ user.profileName }}
-      </section>
-
       <section id="postImg">
       <img  v-bind:src="postDetails.urlImage" />
       </section>
 
       <section id="postdescription">
-         {{ postDetails.postDescription }}
+          
+         {{ user.profileName }}: {{ postDetails.postDescription }}
       </section>
 
   </div>
@@ -36,20 +33,37 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 #PostView{
 display: flex;
 justify-content: center;
 align-items: center;
 flex-direction: column;
+margin: 25px;
+
+border-radius: 20px;
 }
 
-#username{
+.lightmode #PostView{
+background: rgb(255, 150, 167);
+border: 2px solid gold;
+}
+
+.darkmode #PostView{
+background: grey;
+border: 2px solid black;
+
+}
+
+
+.darkmode Img{
 margin: 20px;
+border: 2px solid black;
 }
 
-#postImg{
-
+.lightmode Img{
+margin: 20px;
+border: 2px solid gold;
 }
 
 .lightmode #postdescription{
@@ -57,7 +71,7 @@ margin: 20px;
 }
 
 .darkmode #postdescription{
-    
+margin: 20px;
 }
 
 </style>
