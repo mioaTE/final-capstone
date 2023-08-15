@@ -16,8 +16,7 @@
         <button id="likebutton" v-on:click="likePost(post)" v-if="!postLiked" >Like</button>
         <button id="likebutton" v-on:click="unlikePost(post)" v-if="postLiked" >Unlike</button>
         <button id="favoritebutton" v-on:click="favoritePost(post)" v-if="!postFavorited" >Favorite</button>
-        <button id="favoritebutton" v-on:click="unfavoritePost(post)" v-if="!postFavorited" >Unfavorite</button>
-        <!-- add  unfavoritebutton -->
+        <button id="favoritebutton" v-on:click="unFavoritePost(post)" v-if="postFavorited" >UnFavorite</button>
       </section>
       </div>
     </div>
@@ -43,6 +42,8 @@ export default {
           newFavorite: {userId: this.$store.state.user.id,
                     postId: '',
           },
+          removeFavorite: {userId: this.$store.state.user.id,
+                      postId: ''},
           allFavorites: []
         }
     },
@@ -115,7 +116,7 @@ export default {
           postId: post.postId
         }
         postService.addFavorite(this.newFavorite).then(response => {
-            if (response.status === 200) {
+            if (response.status === 201) {
               console.log("favorite updated");
             } else {
               console.log("favorite did not update");
@@ -123,6 +124,22 @@ export default {
         })
           this.allFavorites.push(this.newFavorite);
       },
+
+      unFavoritePost(post) {
+        this.removeFavorite = {
+          userId: this.$store.state.user.id,
+          postId: post.postId
+        }
+        postService.removeFavorite(this.removeFavorite.userId, this.removeFavorite.postId).then(response => {
+            if (response.status === 202) {
+              console.log("Favorite updated");
+            } else {
+              console.log("Favorite did not update");
+            }
+        });
+        this.allFavorites = this.allFavorites.filter((favorite) => {
+          (favorite.userId !== this.removeFavorite.userId && favorite.postId !== this.removeFavorite.postId)});
+      }
     
   }
   

@@ -39,7 +39,7 @@ public class JdbcFavoriteDao implements FavoriteDao{
     @Override
     public int deleteFavorite(int userId, int postId) {
         int numberOfRows = 0;
-        String sql = "DELETE FROM favorite WHERE post_id = ? AND user_id = ?;";
+        String sql = "DELETE FROM favorites WHERE post_id = ? AND user_id = ?;";
 
         try {
             numberOfRows = jdbcTemplate.update(sql, postId, userId);
