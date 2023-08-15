@@ -1,8 +1,18 @@
 <template>
   <div id="PostView">
+
+      <section id="username">
          {{ user.profileName }}
+      </section>
+
+      <section id="postImg">
       <img  v-bind:src="postDetails.urlImage" />
+      </section>
+
+      <section id="postdescription">
          {{ postDetails.postDescription }}
+      </section>
+
   </div>
 </template>
 
@@ -27,48 +37,27 @@ export default {
 </script>
 
 <style>
-.lightmode #UserPicture{
-  height: 75%;
-  width: 100%;
+#PostView{
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
 }
-.lightmode #PostHeader{
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  height: 15%;
-  background-image: linear-gradient(to right, rgb(255, 110, 134), rgb(255, 135, 155));
+
+#username{
+margin: 20px;
 }
-.lightmode #Username{
-  display: inline-block;
-  font-size: 15px;
-  padding-left: 5%;
+
+#postImg{
+
 }
-.lightmode #InteractionPanel{
-  height: 10%;
-  background-image: linear-gradient(to right, rgb(255, 110, 134), rgb(255, 135, 155));
+
+.lightmode #postdescription{
+margin: 20px;
 }
-.darkmode #carousel div{
-  height: 100%;
-  width: 100%;
+
+.darkmode #postdescription{
+    
 }
-.darkmode #UserPicture{
-  height: 75%;
-  width: 100%;
-}
-.darkmode #PostHeader{
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  height: 15%;
-  background: orange;
-}
-.darkmode #Username{
-  display: inline-block;
-  font-size: 15px;
-  padding-left: 5%;
-}
-.darkmode #InteractionPanel{
-  height: 10%;
-  background: orange;
-}
+
 </style>
