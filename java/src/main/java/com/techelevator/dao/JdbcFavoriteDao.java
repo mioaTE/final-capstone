@@ -2,6 +2,7 @@ package com.techelevator.dao;
 
 import com.techelevator.exception.DaoException;
 import com.techelevator.model.Favorite;
+import com.techelevator.model.Post;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -50,15 +51,15 @@ public class JdbcFavoriteDao implements FavoriteDao{
     }
 
     @Override
-    public List<Favorite> getAllFavoritesByUserId(int userId){
+    public List<Post> getAllFavoritesByUserId(int userId){
         List allFavorites = new ArrayList<>();
-        Favorite favorite = null;
-        String sql = "SELECT post_id FROM favorites WHERE post_id = ?;";
+        Post post = null;
+        String sql = "SELECT * FROM post JOIN favorites ON favorites.post_id = post.post_id WHERE favorites.user_id = ?;";
         try{
-            SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
             while(results.next()){
-                favorite = mapRowToFavorite(results);
-                allFavorites.add(favorite);
+                post = mapRowToPost(results);
+                allFavorites.add(post);
             }
         } catch(CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);
@@ -72,5 +73,17 @@ public class JdbcFavoriteDao implements FavoriteDao{
         favorite.setUserId(rs.getInt("user_id"));
 
         return favorite;
+    }
+
+    private Post mapRowToPost(SqlRowSet rs) {
+        Post post = new Post();
+        post.setPostId(rs.getInt("post_id"));
+        post.setUserId(rs.getInt("user_id"));
+        post.setPostDescription(rs.getString("post_description"));
+        post.setUrlImage(rs.getString("post_img"));
+        post.setLikesCount(rs.getInt("post_likes"));
+        post.setPostCreateTime(rs.getTime("created_on"));
+
+        return post;
     }
 }

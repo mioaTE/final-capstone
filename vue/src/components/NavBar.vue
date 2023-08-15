@@ -20,7 +20,7 @@
       </section>
 
       <section id="favorites">
-        <router-link class="btn button" id="navbutton" v-show="isNotInLogin()" v-bind:to="{ name: 'favorites' }"><i class="icon-user" ></i>{{$store.state.token != '' ? '  View Favorites' : '  View Favorites'}}</router-link>
+        <router-link class="btn button" id="navbutton" v-show="isNotInLogin()" v-bind:to="{ name: 'favorites', params: {id: this.$store.state.user.id} }"><i class="icon-user" ></i>{{$store.state.token != '' ? '  View Favorites' : '  View Favorites'}}</router-link>
       </section>
 
       <section id="makePost">   
