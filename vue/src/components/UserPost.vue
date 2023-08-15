@@ -15,6 +15,7 @@
       <section id="InteractionPanel">
         <button id="likebutton" v-on:click="likePost(post)" v-if="!postLiked" >Like</button>
         <button id="likebutton" v-on:click="unlikePost(post)" v-if="postLiked" >Unlike</button>
+        <button id="addtofavoritesbutton" v-on:click="favoritePost(post)" v-if="postLiked" >Favorite</button>
       </section>
       </div>
     </div>
