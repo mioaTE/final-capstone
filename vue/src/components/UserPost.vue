@@ -12,8 +12,8 @@
       <img id="Picture"  v-bind:src="post.urlImage"/>
       </section>
       <section id="InteractionPanel">
-        <button id="likebutton" v-on:click="likePost(post.postId)" v-if="!postLiked" >Like</button>
-        <button id="likebutton" v-on:click="unlikePost(post.postId)" v-if="postLiked" >Unlike</button>
+        <button id="likebutton" v-on:click="likePost(post)" v-if="!postLiked" >Like</button>
+        <button id="likebutton" v-on:click="unlikePost(post)" v-if="postLiked" >Unlike</button>
       </section>
       </div>
     </div>
@@ -67,22 +67,35 @@ export default {
         this.$router.push(`/user`);
       },
 
-      likePost(postId) {
+      likePost(post) {
         this.newLike = {
           userId: this.$store.state.user.id,
-          postId: postId
+          postId: post.postId
         }
-        postService
-          .addLiked(this.newLike);
+        postService.addLiked(this.newLike);
+        postService.updatePostLikes(post).then(response => {
+            if (response.status === 200) {
+              console.log("post updated");
+            } else {
+              console.log("post did not update");
+            }
+        })
           this.allLikes.push(this.newLike);
       },
 
-      unlikePost(postId) {
+      unlikePost(post) {
         this.removeLike = {
           userId: this.$store.state.user.id,
-          postId: postId
+          postId: post.postId
         }
         postService.removeLiked(this.removeLike.userId, this.removeLike.postId);
+        postService.updatePostLikes(post).then(response => {
+            if (response.status === 200) {
+              console.log("post updated");
+            } else {
+              console.log("post did not update");
+            }
+        });
         this.allLikes = this.allLikes.filter((like) => {
           (like.userId !== this.removeLike.userId && like.postId !== this.removeLike.postId)});
       },

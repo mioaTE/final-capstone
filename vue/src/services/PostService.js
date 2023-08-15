@@ -2,6 +2,10 @@ import axios from 'axios';
 
 export default {
 
+    updatePostLikes(post){
+        return axios.put(`/posts/${post.postId}`, post)
+    },
+
     getUser(userId){
         return axios.get(`/user/${userId}`);
     },

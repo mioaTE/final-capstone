@@ -1,10 +1,8 @@
 package com.techelevator.controller;
 
-
 import com.techelevator.dao.JdbcPostDao;
 import com.techelevator.dao.LikeDao;
 import com.techelevator.dao.PostDao;
-
 
 import com.techelevator.dao.UserDao;
 import com.techelevator.exception.DaoException;
@@ -23,10 +21,8 @@ import java.util.List;
 public class PostController {
 
     private PostDao postDao;
-
     private UserDao userDao;
     private LikeDao likeDao;
-
 
     public PostController (PostDao postDao, UserDao userDao, LikeDao likeDao) {
         this.postDao = postDao;
@@ -59,11 +55,17 @@ public class PostController {
     public Post getPostById(@PathVariable int Id) {
         return postDao.getPostByPostId(Id);
     }
-//    @CrossOrigin
-//    @RequestMapping (path = "/like/{userId}/{postId}", method = RequestMethod.GET)
-//    public Like getLikeByUserAndPost(@PathVariable int userId, @PathVariable int postId) {
-//        return likeDao.getLikeByUserAndPost(userId, postId);
-//    }
+
+    @CrossOrigin
+    @RequestMapping(path = "/posts/{Id}", method = RequestMethod.PUT)
+    public Post updatePost(@PathVariable int Id, @RequestBody Post post) {
+        try {
+            Post updatedPost = postDao.updatePostLikes(post);
+            return updatedPost;
+        } catch (DaoException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Todo not found");
+        }
+    }
 
     @CrossOrigin
     @RequestMapping (path = "/all-likes", method = RequestMethod.GET)
@@ -104,5 +106,4 @@ public class PostController {
         throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Like deletion failed.");
         }
     }
-
 }

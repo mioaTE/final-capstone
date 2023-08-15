@@ -7,8 +7,16 @@ CREATE TABLE users (
 	username varchar(50) NOT NULL UNIQUE,
 	password_hash varchar(200) NOT NULL,
 	role varchar(50) NOT NULL,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+	CONSTRAINT PK_user PRIMARY KEY (user_id)
+	email varchar (255)
+=======
+>>>>>>> eb51a80b0b094ad02a05d27e2d6132024f927363
 	CONSTRAINT PK_user PRIMARY KEY (user_id),
 	email varchar (255),
+>>>>>>> 81b31b297c76eca8cf1886516b1b4c97bbf9641a
 	profile_name varchar (255)
 );
 
@@ -23,6 +31,7 @@ CREATE TABLE post (
 
 	CONSTRAINT PK_post PRIMARY KEY (post_id),
 	CONSTRAINT FK_user FOREIGN KEY (user_id) REFERENCES users(user_id)
+	UPDATE post SET post_likes = (SELECT COUNT(likes.post_id) FROM likes WHERE post.post_id = likes.post_id);
 );
 
 CREATE TABLE likes(
