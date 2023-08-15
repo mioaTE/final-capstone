@@ -52,7 +52,12 @@ CREATE TABLE comments(
     CONSTRAINT FK_post FOREIGN KEY (post_id) REFERENCES post(post_id)
 );
 
-COMMIT TRANSACTION;
+CREATE TABLE favorites(
+	post_id INT NOT NULL,
+	user_id INT NOT NULL,
+	CONSTRAINT FK_post FOREIGN KEY (post_id) REFERENCES post(post_id),
+	CONSTRAINT FK_user FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
 
 GRANT ALL
 ON ALL TABLES IN SCHEMA public

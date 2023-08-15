@@ -7,7 +7,8 @@ import Register from '../views/Register.vue'
 import store from '../store/index'
 import User from '../views/User.vue'
 import CreatePost from '../views/CreatePost'
-import ViewPost from '../views/ViewPost'
+import ViewPost from '../views/ViewPost.vue'
+import Favorites from '../views/Favorites.vue'
 
 Vue.use(Router)
 
@@ -79,7 +80,16 @@ const router = new Router({
       meta: {
         requiresAuth: false
       }
+    },
+    {
+      path: "/favorites/:id",
+      name: "favorites",
+      component: Favorites,
+      meta: {
+        requiresAuth: true
+      }
     }
+
   ]
 })
 

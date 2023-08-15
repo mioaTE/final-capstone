@@ -15,7 +15,7 @@ export default {
     },
     
     submitComment(comment) {
-        return axios.post(`/comments`, comment);
+        return axios.post('/comments', comment);
     },
     deleteComment(commentId) {
         return axios.delete(`/comments/${commentId}`);
