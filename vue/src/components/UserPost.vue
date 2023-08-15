@@ -4,18 +4,19 @@
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
       <div v-bind:key="post.postId">
       <section id="PostHeader" >
+      <img id="ProfilePicture" v-bind:src="post.urlImage" />
       <router-link id="Username" v-bind:to="{name: 'user-detail', params: {id: post.userId} }">
         {{ user.profileName }}
         </router-link>
       </section>
       <section id="UserPicture">
-
       <img id="Picture"  v-bind:src="post.urlImage"/>
-
       </section>
       <section id="InteractionPanel">
         <button id="likebutton" v-on:click="likePost(post)" v-if="!postLiked" >Like</button>
         <button id="likebutton" v-on:click="unlikePost(post)" v-if="postLiked" >Unlike</button>
+        <button id="favoritebutton" v-on:click="favoritePost(post)" v-if="!postFavorited" >Favorite</button>
+        <button id="favoritebutton" v-on:click="unFavoritePost(post)" v-if="postFavorited" >UnFavorite</button>
       </section>
       </div>
     </div>
@@ -36,7 +37,14 @@ export default {
           },
           removeLike: {userId: this.$store.state.user.id,
                       postId: ''},
-          allLikes: []
+          allLikes: [],
+
+          newFavorite: {userId: this.$store.state.user.id,
+                    postId: '',
+          },
+          removeFavorite: {userId: this.$store.state.user.id,
+                      postId: ''},
+          allFavorites: []
         }
     },
     created() {
@@ -61,7 +69,6 @@ export default {
           return false;
         }
       }
-      
     },
     methods: {
       
@@ -101,25 +108,38 @@ export default {
         this.allLikes = this.allLikes.filter((like) => {
           (like.userId !== this.removeLike.userId && like.postId !== this.removeLike.postId)});
       },
-      favoritePost() {
-        postService
-          .addFavorite(this.post.postId)
-          .then()
-          .catch((error) => {
-            console.log(error.response);
-          });
+      
 
-        this.$store.commit("TOGGLE_FAVORITE", this.post);
+      favoritePost(post) {
+        this.newFavorite = {
+          userId: this.$store.state.user.id,
+          postId: post.postId
+        }
+        postService.addFavorite(this.newFavorite).then(response => {
+            if (response.status === 201) {
+              console.log("favorite updated");
+            } else {
+              console.log("favorite did not update");
+            }
+        })
+          this.allFavorites.push(this.newFavorite);
       },
-      unfavoritePost() {
-        postService
-          .removeFavorite(this.post.postId)
-          .then()
-          .catch((error) => {
-            console.log(error.response);
-          });
-        this.$store.commit("TOGGLE_FAVORITE", this.post);
-      },
+
+      unFavoritePost(post) {
+        this.removeFavorite = {
+          userId: this.$store.state.user.id,
+          postId: post.postId
+        }
+        postService.removeFavorite(this.removeFavorite.userId, this.removeFavorite.postId).then(response => {
+            if (response.status === 202) {
+              console.log("Favorite updated");
+            } else {
+              console.log("Favorite did not update");
+            }
+        });
+        this.allFavorites = this.allFavorites.filter((favorite) => {
+          (favorite.userId !== this.removeFavorite.userId && favorite.postId !== this.removeFavorite.postId)});
+      }
     
   }
   
@@ -157,6 +177,14 @@ width: 100%;
   align-items: center;
   height: 15%;
   background-image: linear-gradient(to right, rgb(255, 110, 134), rgb(255, 135, 155));
+}
+.lightmode #ProfilePicture{
+  display: inline-block;
+  height: 15px;
+  width: 15px;
+  border-radius: 10%;
+  margin-left: 5%;
+  border: 1px solid grey;
 }
 .lightmode #Username{
   display: inline-block;
@@ -198,12 +226,5 @@ background: orange;
 .darkmode #InteractionPanel{
   height: 10%;
 background: orange;
-}
-
-#Username{
-    font-family:'Open Sans', sans-serif;
-    text-decoration: none;
-    font-size: 20px;
-    font-weight: 15px;
 }
 </style>

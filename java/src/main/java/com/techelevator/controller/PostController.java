@@ -1,11 +1,19 @@
 package com.techelevator.controller;
 
+
 import com.techelevator.dao.JdbcPostDao;
 import com.techelevator.dao.LikeDao;
 import com.techelevator.dao.PostDao;
 
 import com.techelevator.dao.UserDao;
+
+
+import com.techelevator.dao.*;
+
+
+
 import com.techelevator.exception.DaoException;
+import com.techelevator.model.Comment;
 import com.techelevator.model.Like;
 import com.techelevator.model.Post;
 import com.techelevator.model.User;
@@ -24,11 +32,19 @@ public class PostController {
     private UserDao userDao;
     private LikeDao likeDao;
 
-    public PostController (PostDao postDao, UserDao userDao, LikeDao likeDao) {
+    private CommentDao commentDao;
+
+
+
+
+    public PostController (PostDao postDao, UserDao userDao, LikeDao likeDao, CommentDao commentDao) {
         this.postDao = postDao;
         this.userDao = userDao;
         this.likeDao = likeDao;
+        this.commentDao = commentDao;
     }
+
+
     @CrossOrigin
     @RequestMapping(path = "/posts", method = RequestMethod.GET)
     public List<Post> getAllPost() {
@@ -85,6 +101,20 @@ public class PostController {
         } catch (DaoException e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Post creation failed.");
         }
+    }
+
+    @CrossOrigin
+    @RequestMapping(path = "/comments", method = RequestMethod.POST)
+    public void addComment(@Valid @RequestBody Comment newComment) {
+        try {
+            Comment comment = commentDao.submitComment(newComment);
+            if(comment == null) {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Comment creation failed.");
+            }
+        } catch (DaoException e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Comment creation failed.");
+        }
+
     }
 
     @ResponseStatus(HttpStatus.CREATED)

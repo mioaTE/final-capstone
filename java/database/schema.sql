@@ -1,22 +1,14 @@
 BEGIN TRANSACTION;
 
-DROP TABLE IF EXISTS users, post, likes, event CASCADE;
+DROP TABLE IF EXISTS users, post, likes, favorites;
 
 CREATE TABLE users (
 	user_id SERIAL,
 	username varchar(50) NOT NULL UNIQUE,
 	password_hash varchar(200) NOT NULL,
 	role varchar(50) NOT NULL,
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-	CONSTRAINT PK_user PRIMARY KEY (user_id)
-	email varchar (255)
-=======
->>>>>>> eb51a80b0b094ad02a05d27e2d6132024f927363
 	CONSTRAINT PK_user PRIMARY KEY (user_id),
 	email varchar (255),
->>>>>>> 81b31b297c76eca8cf1886516b1b4c97bbf9641a
 	profile_name varchar (255)
 );
 
@@ -31,7 +23,6 @@ CREATE TABLE post (
 
 	CONSTRAINT PK_post PRIMARY KEY (post_id),
 	CONSTRAINT FK_user FOREIGN KEY (user_id) REFERENCES users(user_id)
-	UPDATE post SET post_likes = (SELECT COUNT(likes.post_id) FROM likes WHERE post.post_id = likes.post_id);
 );
 
 CREATE TABLE likes(
@@ -40,6 +31,17 @@ CREATE TABLE likes(
 
 	CONSTRAINT FK_post FOREIGN KEY (post_id) REFERENCES post(post_id),
 	CONSTRAINT FK_user FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+CREATE TABLE comments(
+    comment_id serial,
+    user_id INT NOT NULL,
+    post_id INT NOT NULL,
+    comment VARCHAR (500) NOT NULL,
+
+    CONSTRAINT PK_comments PRIMARY KEY (comment_id),
+    CONSTRAINT FK_user FOREIGN KEY (user_id) REFERENCES users(user_id),
+    CONSTRAINT FK_post FOREIGN KEY (post_id) REFERENCES post(post_id)
 );
 
 
@@ -55,8 +57,5 @@ TO final_capstone_appuser;
 GRANT USAGE, SELECT
 ON ALL SEQUENCES IN SCHEMA public
 TO final_capstone_appuser;
-
-
-COMMIT TRANSACTION;
 
 

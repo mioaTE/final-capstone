@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import PostService from '../services/PostService'
+// import PostService from '../services/PostService'
 
 export default {
     name: "interactPost",
