@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import PostService from '../services/PostService'
+// import PostService from '../services/PostService'
 
 export default {
     name: "interactPost",
@@ -18,7 +18,7 @@ export default {
           
         }
     },
-    mounted() {
+    updated() {
         PostService.getUser(this.postDetails.userId).then((response) => {
           this.user = response.data;
         })
