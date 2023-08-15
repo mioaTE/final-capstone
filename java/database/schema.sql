@@ -7,13 +7,10 @@ CREATE TABLE users (
 	username varchar(50) NOT NULL UNIQUE,
 	password_hash varchar(200) NOT NULL,
 	role varchar(50) NOT NULL,
-<<<<<<< HEAD
 	CONSTRAINT PK_user PRIMARY KEY (user_id)
 	email varchar (255)
-=======
 	CONSTRAINT PK_user PRIMARY KEY (user_id),
 	email varchar (255),
->>>>>>> 81b31b297c76eca8cf1886516b1b4c97bbf9641a
 	profile_name varchar (255)
 );
 
@@ -38,15 +35,17 @@ CREATE TABLE likes(
 	CONSTRAINT FK_user FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 
-CREATE TABLE favorites(
-	post_id INT NOT NULL,
-	user_id INT NOT NULL,
+CREATE TABLE comments(
+    comment_id serial,
+    user_id INT NOT NULL,
+    post_id INT NOT NULL,
+    comment VARCHAR (500) NOT NULL,
 
-	CONSTRAINT FK_post FOREIGN KEY (post_id) REFERENCES post(post_id),
-	CONSTRAINT FK_user FOREIGN KEY (user_id) REFERENCES users(user_id)
+    CONSTRAINT PK_comments PRIMARY KEY (comment_id),
+    CONSTRAINT FK_user FOREIGN KEY (user_id) REFERENCES users(user_id),
+    CONSTRAINT FK_post FOREIGN KEY (post_id) REFERENCES post(post_id)
 );
 
-COMMIT TRANSACTION;
 
 GRANT ALL
 ON ALL TABLES IN SCHEMA public
