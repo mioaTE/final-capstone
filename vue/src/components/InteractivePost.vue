@@ -19,7 +19,7 @@ export default {
         }
     },
     updated() {
-        PostService.getUser(this.postDetails.userId).then((response) => {
+        PostService.getUserById(this.postDetails.userId).then((response) => {
           this.user = response.data;
         })
     }

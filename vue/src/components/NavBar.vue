@@ -19,6 +19,10 @@
       <router-link class="btn" id="navbutton" v-show="isNotInLogin()" v-bind:to="{ name: 'logout' }"><i class="icon-user" ></i>{{$store.state.token != '' ? '  Logout' : '  Login'}}</router-link>
       </section>
 
+      <section id="favorites">
+        <router-link class="btn button" id="navbutton" v-show="isNotInLogin()" v-bind:to="{ name: 'favorites' }"><i class="icon-user" ></i>{{$store.state.token != '' ? '  View Favorites' : '  View Favorites'}}</router-link>
+      </section>
+
       <section id="makePost">   
           <router-link class="btn" id="navbutton" v-show="isNotInLogin()" v-bind:to="{ name: 'createpost' }"><i class="icon-user" ></i>{{$store.state.token != '' ? '  Create Post' : ' Create Post'}}</router-link>    
       </section>   
@@ -52,6 +56,16 @@ export default {
 
 <style scoped>
 
+#navbarsection{
+  margin-left: 18%;
+}
+#favorites{
+display: flex;
+align-items: center;
+justify-content: center;
+margin-right: 2%;
+width: 18%;;
+}
 
 #brandtitle{
   font-family:'Open Sans', sans-serif;
