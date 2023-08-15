@@ -1,29 +1,17 @@
 <template>
 <div>
-
     <section id="header">
        <h3>Post Something Fun!</h3>
     </section>   
-
     <section id="postContent">
-
       <button v-on:click="upload">Choose a Picture</button>
-
       <img v-if="this.newPost.urlImage !== ''" v-bind:src="this.newPost.urlImage" />
-
       <form v-on:submit.prevent="submitPost">
-  
       <label for="postDescription">Write a Description</label>
-
       <textarea id="postDescription" name="postDescription" type="text" v-model="newPost.postDescription"/>
-
       <button class="button" type="submit">Post</button>
-    
       </form>
-
     </section>
-
-
 </div>
 </template>
 
@@ -67,8 +55,6 @@ export default {
             userId: this.$store.state.user.id,
             urlImage: '', 
             postDescription: ''}
-
-
       },
       sendToHomepage(){
         this.$router.push('/');
@@ -88,7 +74,6 @@ export default {
           "Error " + verb + " post. Request could not be created.";
       }
     }
-
   },
   mounted() {
        this.myWidget = window.cloudinary.createUploadWidget(
@@ -107,18 +92,22 @@ export default {
           console.log("pic url: " + this.newPost.urlImage);
         //   this.$store.commit("ADD_POST", this.newPost);
           console.log(this.newPost);
-          
         }
-       
       }
     );
-
   }
-
 }
 </script>
 
 <style scoped>
+form {
+  width: 40%;
+  height: 40%;
+  font-family: 'Open Sans', sans-serif;
+  max-height: 400px;
+  border-style: solid;
+  border-radius: 25px;
+}
 .lightmode button{
    display: inline-block;
   width: 5%;
@@ -145,7 +134,6 @@ export default {
   -moz-box-shadow: none;
   box-shadow: none;
 }
-
 .lightmode .btn{
   display: inline-block;
   width: 5%;
@@ -170,7 +158,6 @@ export default {
   -moz-box-shadow: none;
   box-shadow: none;
 }
-
 .darkmode button{
    display: inline-block;
   justify-content: center;
@@ -194,7 +181,6 @@ export default {
   background-color:#ff9419;
   box-shadow: none;
 }
-
 .darkmode .btn{
   display: inline-block;
   justify-content: center;
