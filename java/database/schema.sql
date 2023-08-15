@@ -7,13 +7,10 @@ CREATE TABLE users (
 	username varchar(50) NOT NULL UNIQUE,
 	password_hash varchar(200) NOT NULL,
 	role varchar(50) NOT NULL,
-<<<<<<< HEAD
 	CONSTRAINT PK_user PRIMARY KEY (user_id)
 	email varchar (255)
-=======
 	CONSTRAINT PK_user PRIMARY KEY (user_id),
 	email varchar (255),
->>>>>>> 81b31b297c76eca8cf1886516b1b4c97bbf9641a
 	profile_name varchar (255)
 );
 
