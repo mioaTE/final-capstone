@@ -63,7 +63,7 @@ GRANT SELECT, INSERT, UPDATE, DELETE
 ON ALL TABLES IN SCHEMA public
 TO final_capstone_appuser;
 GRANT USAGE, SELECT
-ON ALL SEQUENCES IN SCHEMA public
+ON ALL SEQUENCES IN SCHEMA publicnpm 
 TO final_capstone_appuser;
 
 

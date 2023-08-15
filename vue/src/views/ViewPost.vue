@@ -12,7 +12,7 @@
 
 
       <section id="usersPost">
-
+          
         <interactive-post v-bind:postDetails="post" />
 
       </section>   

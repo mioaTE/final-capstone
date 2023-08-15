@@ -3,7 +3,6 @@
     <nav-bar id="navbar"/>
   <section id="carousel">
     <carousel id="3dCarousel" />
-    <user-post />
     </section>
   </div>
   
@@ -23,7 +22,8 @@ export default {
   props: ['isDark'],
   components: {
     Carousel,
-    NavBar,
+    NavBar
+    
 
   }
 };
