@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import PostService from '../services/PostService'
+// import PostService from '../services/PostService'
 
 export default {
     name: "interactPost",
@@ -18,11 +18,11 @@ export default {
           
         }
     },
-    created() {
-        PostService.getUserById(this.postDetails.userId).then((response) => {
-          this.user = response.data;
-        })
-    }
+    // created() {
+    //     PostService.getUserById(this.postDetails.userId).then((response) => {
+    //       this.user = response.data;
+    //     })
+    // }
 }
 </script>
 

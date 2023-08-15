@@ -25,7 +25,17 @@ public class JdbcCommentDao implements CommentDao{
 
     @Override
     public Comment getCommentById(int commentId) {
-        return null;
+        Comment comment = null;
+        String sql = "SELECT comment_id, user_id, post_id, comment FROM comments WHERE comment_id = ?;";
+        try{
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, commentId);
+            if(results.next()){
+                comment = mapRowToComment(results);
+            }
+        } catch(CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        }
+        return comment;
     }
 
     @Override
@@ -82,7 +92,7 @@ public class JdbcCommentDao implements CommentDao{
         theComment.setCommentId(results.getInt("comment_id"));
         theComment.setUserId(results.getInt("user_id"));
         theComment.setPostId(results.getInt("post_id"));
-        theComment.setComment(results.getString("comment_text"));
+        theComment.setComment(results.getString("comment"));
 
         return theComment;
     }
