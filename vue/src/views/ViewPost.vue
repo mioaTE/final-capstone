@@ -12,7 +12,8 @@
 
 
       <section id="usersPost">
-          <img v-bind:src="post.urlImage" />
+
+        <interactive-post v-bind:postDetails="post" />
 
       </section>   
 
@@ -26,14 +27,16 @@
 
 import NavBar from '../components/NavBar.vue';
 import PostService from '../services/PostService';
+import InteractivePost from '../components/InteractivePost.vue';
 
 
 export default {
     name: "view-post",
+
     data() {
         return {
-        user: {},
-          post: {}
+        post: {}
+          
         }
     },
     created() {
@@ -41,12 +44,10 @@ export default {
           this.post = response.data;
 
         })
-        PostService.getUser(this.post.postId).then((response) => {
-            this.user = response.data;
-        })
     },
     components: {
-        NavBar
+        NavBar,
+        InteractivePost
     }
 }
 </script>

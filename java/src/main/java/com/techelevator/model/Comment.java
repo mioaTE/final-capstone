@@ -7,21 +7,14 @@ public class Comment {
     private int commentId;
     private int userId;
     private int postId;
-    private String message;
-    private LocalDateTime dateTime;
-    private Long secondsAgo;
-    private String username;
-
+    private String comment;
     public Comment(){};
 
     public Comment(int commentId, int userId, int postId, String message, LocalDateTime dateTime, Long secondsAgo, String username) {
         this.commentId = commentId;
         this.userId = userId;
         this.postId = postId;
-        this.message = message;
-        this.dateTime = dateTime;
-        this.secondsAgo = secondsAgo;
-        this.username = username;
+        this.comment = message;
     }
 
     public int getCommentId() {
@@ -48,35 +41,12 @@ public class Comment {
         this.postId = postId;
     }
 
-    public String getMessage() {
-        return message;
+    public String getComment() {
+        return comment;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
-    public LocalDateTime getDateTime() {
-        return dateTime;
-    }
-
-    public void setDateTime(LocalDateTime dateTime) {
-        this.dateTime = dateTime;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public Long getSecondsAgo() {
-        return secondsAgo;
-    }
-
-    public void setSecondsAgo(Long secondsAgo) {
-        this.secondsAgo = secondsAgo;
-    }
 }

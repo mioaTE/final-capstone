@@ -74,6 +74,9 @@ export default {
         } else {
           return false;
         }
+      },
+      postLikes() {
+        return this.post.likesCount;
       }
       
     },
