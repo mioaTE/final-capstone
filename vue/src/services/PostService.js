@@ -32,15 +32,6 @@ export default {
     addPost(thePost) {
         return axios.post('/posts', thePost)
     },
-    listFavorites() {
-        return axios.get('/favorites')
-    },
-    addFavorite(postId) {
-        return axios.post(`/favorites/${postId}`)
-    },
-    removeFavorite(postId) {
-        return axios.delete(`/favorites/${postId}`)
-    },
     addLiked(postId) {
         return axios.post('/likes', postId)
     },
@@ -55,5 +46,15 @@ export default {
     },
     getAllLikes() {
         return axios.get('/all-likes')
+    },
+    
+    addFavorite(postId) {
+        return axios.post(`/favorites`, postId)
+    },
+    removeFavorite(userId, postId) {
+        return axios.delete(`/favorite/${userId}/${postId}`)
+    },
+    listFavoritesByUser(userId) {
+        return axios.get(`all-favorites/${userId}`)
     }
 }
