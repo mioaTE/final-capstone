@@ -15,7 +15,9 @@
       <section id="InteractionPanel">
         <button id="likebutton" v-on:click="likePost(post)" v-if="!postLiked" >Like</button>
         <button id="likebutton" v-on:click="unlikePost(post)" v-if="postLiked" >Unlike</button>
-        <button id="addtofavoritesbutton" v-on:click="favoritePost(post)" v-if="postLiked" >Favorite</button>
+        <button id="favoritebutton" v-on:click="favoritePost(post)" v-if="!postFavorited" >Favorite</button>
+        <button id="favoritebutton" v-on:click="unfavoritePost(post)" v-if="!postFavorited" >Unfavorite</button>
+        <!-- add  unfavoritebutton -->
       </section>
       </div>
     </div>
@@ -36,7 +38,12 @@ export default {
           },
           removeLike: {userId: this.$store.state.user.id,
                       postId: ''},
-          allLikes: []
+          allLikes: [],
+
+          newFavorite: {userId: this.$store.state.user.id,
+                    postId: '',
+          },
+          allFavorites: []
         }
     },
     created() {
@@ -61,7 +68,6 @@ export default {
           return false;
         }
       }
-      
     },
     methods: {
       
@@ -101,24 +107,21 @@ export default {
         this.allLikes = this.allLikes.filter((like) => {
           (like.userId !== this.removeLike.userId && like.postId !== this.removeLike.postId)});
       },
-      favoritePost() {
-        postService
-          .addFavorite(this.post.postId)
-          .then()
-          .catch((error) => {
-            console.log(error.response);
-          });
+      
 
-        this.$store.commit("TOGGLE_FAVORITE", this.post);
-      },
-      unfavoritePost() {
-        postService
-          .removeFavorite(this.post.postId)
-          .then()
-          .catch((error) => {
-            console.log(error.response);
-          });
-        this.$store.commit("TOGGLE_FAVORITE", this.post);
+      favoritePost(post) {
+        this.newFavorite = {
+          userId: this.$store.state.user.id,
+          postId: post.postId
+        }
+        postService.addFavorite(this.newFavorite).then(response => {
+            if (response.status === 200) {
+              console.log("favorite updated");
+            } else {
+              console.log("favorite did not update");
+            }
+        })
+          this.allFavorites.push(this.newFavorite);
       },
     
   }
