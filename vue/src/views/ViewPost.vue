@@ -12,7 +12,7 @@
 
 
       <section id="usersPost">
-
+          <img v-bind:src="post.urlImage" />
 
       </section>   
 
@@ -25,10 +25,25 @@
 <script>
 
 import NavBar from '../components/NavBar.vue';
+import PostService from '../services/PostService';
+
 
 export default {
-    name: 'view-post',
+    name: "view-post",
     data() {
+        return {
+        user: {},
+          post: {}
+        }
+    },
+    created() {
+        PostService.getPost(this.$route.params.id).then((response) => {
+          this.post = response.data;
+
+        })
+        PostService.getUser(this.post.postId).then((response) => {
+            this.user = response.data;
+        })
     },
     components: {
         NavBar

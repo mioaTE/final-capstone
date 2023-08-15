@@ -1,6 +1,6 @@
 BEGIN TRANSACTION;
 
-DROP TABLE IF EXISTS users, post, likes, event CASCADE;
+DROP TABLE IF EXISTS users, post, likes, favorites;
 
 CREATE TABLE users (
 	user_id SERIAL,
@@ -59,8 +59,5 @@ TO final_capstone_appuser;
 GRANT USAGE, SELECT
 ON ALL SEQUENCES IN SCHEMA public
 TO final_capstone_appuser;
-
-
-COMMIT TRANSACTION;
 
 
