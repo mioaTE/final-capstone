@@ -1,10 +1,8 @@
 package com.techelevator.controller;
 
-
 import com.techelevator.dao.JdbcPostDao;
 import com.techelevator.dao.LikeDao;
 import com.techelevator.dao.PostDao;
-
 
 import com.techelevator.dao.UserDao;
 import com.techelevator.exception.DaoException;
@@ -23,10 +21,8 @@ import java.util.List;
 public class PostController {
 
     private PostDao postDao;
-
     private UserDao userDao;
     private LikeDao likeDao;
-
 
     public PostController (PostDao postDao, UserDao userDao, LikeDao likeDao) {
         this.postDao = postDao;
@@ -110,5 +106,4 @@ public class PostController {
         throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Like deletion failed.");
         }
     }
-
 }
