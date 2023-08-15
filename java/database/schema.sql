@@ -8,9 +8,12 @@ CREATE TABLE users (
 	password_hash varchar(200) NOT NULL,
 	role varchar(50) NOT NULL,
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 	CONSTRAINT PK_user PRIMARY KEY (user_id)
 	email varchar (255)
 =======
+>>>>>>> eb51a80b0b094ad02a05d27e2d6132024f927363
 	CONSTRAINT PK_user PRIMARY KEY (user_id),
 	email varchar (255),
 >>>>>>> 81b31b297c76eca8cf1886516b1b4c97bbf9641a

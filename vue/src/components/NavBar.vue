@@ -13,13 +13,14 @@
 
       <section id="navbarsection">
         <router-link class="btn" id="navbutton" v-bind:to="{ name: 'home' }" ><i  class="fa fa-home"></i>  Home</router-link>
-      <img v-bind:src="checkLogo" id="TEgram-logo" />
+
+        <h2 id="brandtitle"> TEgram </h2>
 
       <router-link class="btn" id="navbutton" v-show="isNotInLogin()" v-bind:to="{ name: 'logout' }"><i class="icon-user" ></i>{{$store.state.token != '' ? '  Logout' : '  Login'}}</router-link>
       </section>
 
       <section id="makePost">   
-          <router-link class="btn" id="navbutton" v-show="isNotInLogin()" v-bind:to="{ name: 'createpost' }"><i class="icon-user" ></i>{{$store.state.token != '' ? '  Create Post' : ''}}</router-link>    
+          <router-link class="btn" id="navbutton" v-show="isNotInLogin()" v-bind:to="{ name: 'createpost' }"><i class="icon-user" ></i>{{$store.state.token != '' ? '  Create Post' : ' Create Post'}}</router-link>    
       </section>   
       
     </div>
@@ -51,6 +52,14 @@ export default {
 
 <style scoped>
 
+
+#brandtitle{
+  font-family:'Open Sans', sans-serif;
+  font-size: 40px;
+  margin-left: 10px;
+  margin-right: 10px;
+  color: rgb(189, 78, 78);
+}
 .lightmode #navbar {
   display: flex;
     border-bottom: 2px solid rgb(0, 0, 0);
