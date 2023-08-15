@@ -7,6 +7,7 @@ import Register from '../views/Register.vue'
 import store from '../store/index'
 import User from '../views/User.vue'
 import CreatePost from '../views/CreatePost'
+import ViewPost from '../views/ViewPost'
 
 Vue.use(Router)
 
@@ -27,6 +28,14 @@ const router = new Router({
       path: '/',
       name: 'home',
       component: Home,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: '/viewPost',
+      name: 'post',
+      component: ViewPost,
       meta: {
         requiresAuth: false
       }
