@@ -13,7 +13,7 @@
 
 <script>
 import postService from "../services/PostService.js";
-
+import UserPost from "../components/UserPost.vue";
 export default {
   name: "home",
   created() {
@@ -29,6 +29,7 @@ export default {
         console.log(error);
       });
   },
+  component: {UserPost},
 };
 </script>
 
