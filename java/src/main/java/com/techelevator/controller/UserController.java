@@ -5,6 +5,7 @@ import com.techelevator.dao.UserDao;
 import com.techelevator.exception.DaoException;
 import com.techelevator.model.Favorite;
 import com.techelevator.model.Like;
+import com.techelevator.model.Post;
 import com.techelevator.model.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -59,7 +60,7 @@ public class UserController {
 
     @CrossOrigin
     @RequestMapping (path = "/all-favorites/{userId}", method = RequestMethod.GET)
-    public List<Favorite> getAllLikesByUserId(@PathVariable int userId) {
+    public List<Post> getAllFavoritesByUserId(@PathVariable int userId) {
         return favoriteDao.getAllFavoritesByUserId(userId);
     }
 

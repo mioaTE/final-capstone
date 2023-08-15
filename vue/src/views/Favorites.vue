@@ -1,58 +1,44 @@
 <template>
   <div id="favorites">
-    <follow-list />
     <div id="fav-main">
-      <post
-        v-bind:key="post.postId"
-        v-bind:post="post"
-        v-for="post in $store.state.posts"
-      />
+      <section id="userPost">
+        <div v-for="post in favorites" v-bind:key="post.postId">
+       <router-link id="post" v-bind:to="{name: 'post', params: {id: post.postId} }">
+         <img class="image" v-bind:src="post.urlImage" />
+       </router-link>
+        </div>
+    </section>
     </div>
   </div>
 </template>
 
 <script>
 import postService from "../services/PostService.js";
-import UserPost from "../components/UserPost.vue";
 export default {
-  name: "home",
+  name: "favorites",
+  data() {
+    return {
+      favorites: [],
+    }
+  },
   created() {
     postService
-      .listFavorites()
+      .listFavoritesByUser(this.$store.state.user.id)
       .then((response) => {
-        this.$store.commit("SET_POSTS", response.data);
+        this.favorites = response.data;
+        console.log(this.favorites);
       })
+      console.log(this.favorites)
       .catch((error) => {
         if (error.response.status == 404) {
           this.$router.push("/not-found");
         }
         console.log(error);
       });
-  },
-  component: {UserPost},
+  }
 };
 </script>
 
 <style>
-#favorites {
-  display: grid;
-  grid-column: 1fr 1fr 1fr;
-  grid-template-areas: "follow-list main .";
-}
 
-h1 {
-  grid-area: title;
-}
-
-#home follow-list {
-  grid-area: follow-list;
-  position: fixed;
-}
-
-#fav-main {
-  grid-area: main;
-  display: flex;
-  flex-direction: column;
-  grid-gap: 10px;
-}
 </style>

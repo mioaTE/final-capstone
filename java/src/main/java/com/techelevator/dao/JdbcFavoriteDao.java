@@ -2,6 +2,7 @@ package com.techelevator.dao;
 
 import com.techelevator.exception.DaoException;
 import com.techelevator.model.Favorite;
+import com.techelevator.model.Post;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -10,10 +11,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-<<<<<<< HEAD
-=======
 
->>>>>>> 69b0aa6bf6c74a9df03e0dacada3ce271d2798a0
 @Component
 public class JdbcFavoriteDao implements FavoriteDao{
 
@@ -53,12 +51,12 @@ public class JdbcFavoriteDao implements FavoriteDao{
     }
 
     @Override
-    public List<Favorite> getAllFavoritesByUserId(int userId){
+    public List<Post> getAllFavoritesByUserId(int userId){
         List allFavorites = new ArrayList<>();
         Favorite favorite = null;
-        String sql = "SELECT post_id FROM favorites WHERE post_id = ?;";
+        String sql = "SELECT favorites.post_id, post.user_id, post.post_description, post.post_img, post.post_likes, post.created_on FROM post JOIN favorites ON post.user_id = favorites.user_id WHERE favorites.user_id = ?;";
         try{
-            SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
             while(results.next()){
                 favorite = mapRowToFavorite(results);
                 allFavorites.add(favorite);
