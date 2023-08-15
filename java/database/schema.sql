@@ -23,6 +23,7 @@ CREATE TABLE post (
 
 	CONSTRAINT PK_post PRIMARY KEY (post_id),
 	CONSTRAINT FK_user FOREIGN KEY (user_id) REFERENCES users(user_id)
+	UPDATE post SET post_likes = (SELECT COUNT(likes.post_id) FROM likes WHERE post.post_id = likes.post_id);
 );
 
 CREATE TABLE likes(
