@@ -53,13 +53,13 @@ public class JdbcFavoriteDao implements FavoriteDao{
     @Override
     public List<Post> getAllFavoritesByUserId(int userId){
         List allFavorites = new ArrayList<>();
-        Favorite favorite = null;
-        String sql = "SELECT favorites.post_id, post.user_id, post.post_description, post.post_img, post.post_likes, post.created_on FROM post JOIN favorites ON post.user_id = favorites.user_id WHERE favorites.user_id = ?;";
+        Post post = null;
+        String sql = "SELECT * FROM post JOIN favorites ON favorites.post_id = post.post_id WHERE favorites.user_id = ?;";
         try{
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
             while(results.next()){
-                favorite = mapRowToFavorite(results);
-                allFavorites.add(favorite);
+                post = mapRowToPost(results);
+                allFavorites.add(post);
             }
         } catch(CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);
@@ -73,5 +73,17 @@ public class JdbcFavoriteDao implements FavoriteDao{
         favorite.setUserId(rs.getInt("user_id"));
 
         return favorite;
+    }
+
+    private Post mapRowToPost(SqlRowSet rs) {
+        Post post = new Post();
+        post.setPostId(rs.getInt("post_id"));
+        post.setUserId(rs.getInt("user_id"));
+        post.setPostDescription(rs.getString("post_description"));
+        post.setUrlImage(rs.getString("post_img"));
+        post.setLikesCount(rs.getInt("post_likes"));
+        post.setPostCreateTime(rs.getTime("created_on"));
+
+        return post;
     }
 }
