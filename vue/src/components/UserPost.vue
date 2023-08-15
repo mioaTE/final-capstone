@@ -68,6 +68,13 @@ export default {
         } else {
           return false;
         }
+      },
+      postFavorited() {
+        if(this.allFavorites.some((favorite)=> favorite.postId == this.post.postId && favorite.userId == this.$store.state.user.id)) {
+          return true;
+        } else {
+          return false;
+        }
       }
     },
     methods: {
