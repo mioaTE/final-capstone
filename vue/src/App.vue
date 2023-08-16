@@ -21,7 +21,7 @@ body{
   justify-content: space-evenly;
     /* width: 100vw; */
     /* height: auto; */
-  background-color:pink;
+  background-color:#FFB6D5;
   height: 10%;
 }
 
@@ -32,7 +32,7 @@ body{
   justify-content: center;
   align-items: center;
   font-family:'Open Sans', sans-serif;
-  background-color: rgb(252, 142, 160);
+  background-color: #FF99CC;
   border: none; /* Remove borders */
   color: white; /* White text */
   padding: 10px; /* Some padding */
@@ -44,7 +44,7 @@ body{
 }
 .btn:hover {
   top: 3px;
-  background-color:#e83e8c;
+  background-color:#D94496;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;

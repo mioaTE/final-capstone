@@ -27,7 +27,6 @@
     </div>
   </div>
 </template>
-
 <script>
 import postService from "../services/PostService.js";
 import NavBar from "../components/NavBar.vue";
