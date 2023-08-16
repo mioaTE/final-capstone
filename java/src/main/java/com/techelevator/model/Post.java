@@ -11,7 +11,7 @@ public class Post {
 
     private int userId;
 
-    private int likesCount;
+    private int postLikes;
     @NotEmpty
     private String postDescription;
     @NotEmpty
@@ -45,11 +45,11 @@ public class Post {
     }
 
     public int getLikesCount() {
-        return likesCount;
+        return postLikes;
     }
 
-    public void setLikesCount(int likesCount) {
-        this.likesCount = likesCount;
+    public void setLikesCount(int postLikes) {
+        this.postLikes = postLikes;
     }
 
     public String getPostDescription() {
@@ -71,9 +71,9 @@ public class Post {
     public Post() {
     }
 
-    public Post(int postId, int likesCount, String postDescription, String urlImage) {
+    public Post(int postId, int postLikes, String postDescription, String urlImage) {
         this.postId = postId;
-        this.likesCount = likesCount;
+        this.postLikes= postLikes;
         this.postDescription = postDescription;
         this.urlImage = urlImage;
     }
