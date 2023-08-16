@@ -26,7 +26,7 @@ public class JdbcCommentDao implements CommentDao{
     @Override
     public Comment getCommentById(int commentId) {
         Comment comment = null;
-        String sql = "SELECT comment_id, user_id, post_id, comment FROM comments WHERE comment_id = ?;";
+        String sql = "SELECT comment_id, user_id, post_id, comment, username FROM comments WHERE comment_id = ?;";
         try{
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, commentId);
             if(results.next()){
@@ -38,11 +38,12 @@ public class JdbcCommentDao implements CommentDao{
         return comment;
     }
 
+
     @Override
     public List<Comment> listCommentsByPost(int postId) {
         List<Comment> commentList = new ArrayList<>();
         Comment comment = null;
-        String sql = "SELECT comment_id, user_id, post_id, comment FROM comments WHERE post_id = ?";
+        String sql = "SELECT comment_id, user_id, post_id, comment, username FROM comments WHERE post_id = ?";
         try {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, postId);
 
@@ -61,10 +62,10 @@ public class JdbcCommentDao implements CommentDao{
     @Override
     public Comment submitComment(Comment comment) {
         Comment newComment = null;
-        String sql = "INSERT INTO comments (user_id, post_id, comment) " +
-                "VALUES (?,?,?) RETURNING comment_id;";
+        String sql = "INSERT INTO comments (user_id, post_id, comment, username) " +
+                "VALUES (?,?,?,?) RETURNING comment_id;";
         try {
-            int newCommentId = jdbcTemplate.queryForObject(sql, int.class, comment.getUserId(), comment.getPostId(), comment.getComment());
+            int newCommentId = jdbcTemplate.queryForObject(sql, int.class, comment.getUserId(), comment.getPostId(), comment.getComment(), comment.getUsername());
             newComment = getCommentById(newCommentId);
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);
@@ -93,6 +94,7 @@ public class JdbcCommentDao implements CommentDao{
         theComment.setUserId(results.getInt("user_id"));
         theComment.setPostId(results.getInt("post_id"));
         theComment.setComment(results.getString("comment"));
+        theComment.setUsername(results.getString("username"));
 
         return theComment;
     }

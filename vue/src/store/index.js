@@ -19,7 +19,8 @@ export default new Vuex.Store({
     user: currentUser || {},
     isDark: true,
     postList: [],
-    commentList: []
+    commentList: [],
+    postComments: []
 
   },
   mutations: {
@@ -50,6 +51,9 @@ export default new Vuex.Store({
     },
     UPDATE_COMMENT_LIST(state, commentList) {
       state.commentList = commentList;
+    },
+    UPDATE_POST_COMMENTS(state, postComments) {
+      state.postComments = postComments;
     }
   },
   getters: {

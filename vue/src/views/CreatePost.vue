@@ -74,12 +74,13 @@ props: ['isDark'],
     align-content: center;
     align-items: center;
     flex-direction: column;
-    margin-top: 15%
+    margin-top: 15%;
+    width: 100%;
 }
 #postContent textarea{
     height: 100px;
     width: 350px;
-    margin-bottom: 10%;
+    margin: 10%;
 }
 
 .lightmode #postContent textarea{

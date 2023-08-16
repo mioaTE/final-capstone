@@ -17,12 +17,12 @@
 
       </section>   
 
-      <section id ="comment">
+            <section id ="comment">
         <form v-on:submit.prevent="submitComment">
     
             <label id="label" for="comment">Submit Comment</label>
 
-            <textarea id="comment" name="comment" type="text" v-model="newComment.comment"/>
+            <textarea id="commenttext" name="comment" type="text" v-model="newComment.comment"/>
 
             <button class="button" type="submit">Comment</button>
         
@@ -32,11 +32,13 @@
       
       <section id="userComments">
 
-          <div v-for="comment in this.$store.state.commentList" v-bind:key="comment.commentId">
-              </div>
+      <comment-section />
 
-      </section>    
+      </section>
 
+      
+      
+     
     </div>
 
 
@@ -47,6 +49,7 @@
 import NavBar from '../components/NavBar.vue';
 import PostService from '../services/PostService';
 import InteractivePost from '../components/InteractivePost.vue';
+import CommentSection from '../components/CommentSection.vue';
 
 
 export default {
@@ -58,7 +61,8 @@ export default {
             newComment: {
                     userId: this.$store.state.user.id,
                     postId: this.$route.params.id,
-                    comment: ''
+                    comment: '',
+                    username: this.$store.state.user.profileName
                 }
         }
     },
@@ -70,14 +74,16 @@ export default {
     },
     components: {
         NavBar,
-        InteractivePost
+        InteractivePost,
+        CommentSection
     },
-    methods: {
+        methods: {
         submitComment() {
           this.newComment = {
               userId: this.$store.state.user.id,
               postId: this.$route.params.id,
               comment: this.newComment.comment,
+              username: this.$store.state.user.profileName
           }
           PostService.submitComment(this.newComment).then(response => {
               if (response.status === 201) {
@@ -87,23 +93,63 @@ export default {
           this.newComment = {
             userId: this.$store.state.user.id,
             postId: this.$route.params.id, 
-            comment: ''}
+            comment: '',
+            username: this.$store.state.user.profileName}
       },
     }
 }
 </script>
 
 <style scoped>
+#navbarSection{
+    grid-area: navbar;
+}
 #postView{
   height: 100vh;
   width: 100vw;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 3fr;
   grid-template-areas:
-    "navbar"
-    "post"
-    "comment"
+    "navbar navbar"
+    "post postcomment"
+    "commentsection commentsection"
+}
+
+#userComments{
+  grid-area: commentsection;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 25px;
+  margin-top: 0px;
+  border-radius: 25px;
+  height: auto;
+
+}
+.lightmode #commenttext{
+border: 2px solid gold;
+background: rgb(255, 185, 196);
+  border-radius: 20px;
+  margin: 25px;
+}
+
+.darkmode #commenttext{
+  border: 2px solid black;
+background: rgb(173, 173, 173);
+  border-radius: 20px;
+  margin: 25px;
+}
+
+.lightmode #userComments{
+border: 2px solid gold;
+background: rgb(255, 150, 167);
+}
+
+.darkmode #userComments{
+  border: 2px solid black;
+background: grey;
 }
 
 #label{
@@ -130,13 +176,13 @@ flex-direction: column;
 }
 
 #comment{
-    display: flex;
-justify-content: center;
-align-items: center;
-flex-direction: column;
-grid-area: comment;
-margin: 25px;
-border-radius: 20px;
+  grid-area: postcomment;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 20px;
+  margin: 25px;
 }
 
 .lightmode #comment{
@@ -149,7 +195,7 @@ border: 2px solid black;
 background: grey;
 }
 #navbar{
-    grid-area: navbar;
+
 }
 #usersPost{
     grid-area: post;
