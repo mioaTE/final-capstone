@@ -10,17 +10,14 @@
         </router-link>
       </section>
       <section id="UserPicture">
-        <router-link id="Post" v-bind:to="{name: 'post', params: {id: post.postId} }">
-        </router-link>
-
       <img id="Picture"  v-bind:src="post.urlImage"/>
-
       </section>
       <section id="InteractionPanel">
-        <button id="likebutton" v-on:click="likePost(post)" v-if="!postLiked" ><i class="fa fa-heart" style="font-size:15px;color:red"></i> Like: {{currentLikes}}</button> 
-        <button id="likebutton" v-on:click="unlikePost(post)" v-if="postLiked" >Unlike: {{currentLikes}}</button>
-        
-        <button id="favoritebutton" v-on:click="favoritePost(post)" v-if="!postFavorited" >Favorite</button>
+
+        <button id="likebutton" v-on:click="likePost(post)" v-if="!postLiked && post.postId != 0" ><i class="fa fa-heart" style="font-size:15px;color:red"></i> Like</button> 
+        <button id="likebutton" v-on:click="unlikePost(post)" v-if="postLiked && post.postId != 0" >Unlike</button>
+         <p v-if="post.postId !=0"> {{this.postLikes}} </p>
+        <button id="favoritebutton" v-on:click="favoritePost(post)" v-if="!postFavorited && post.postId != 0" >Favorite</button>
         <button id="favoritebutton" v-on:click="unFavoritePost(post)" v-if="postFavorited" >Unfavorite</button>
       </section>
       </div>
@@ -31,7 +28,6 @@ import postService from "../services/PostService.js";
 export default {
     name: "user-post",
     props: ['post'],
-    
     data() {
         return {
           user: {},
@@ -42,7 +38,6 @@ export default {
           removeLike: {userId: this.$store.state.user.id,
                       postId: ''},
           allLikes: [],
-
           newFavorite: {userId: this.$store.state.user.id,
                     postId: '',
           },
@@ -57,15 +52,12 @@ export default {
           this.user = response.data;
         })
       }
-       
        postService.listPosts().then((response) => {
          this.postList = response.data;
        })
-
         postService.getAllLikes().then((response) => {
           this.allLikes = response.data;
         })
-
     },
     computed: {
       postLiked() {
@@ -85,15 +77,13 @@ export default {
         currentLikes() {
           let likeList = this.allLikes.filter((like) => like.postId == this.post.postId)
           return likeList.length;
+          // return this.post.likesCount;
         }
-
     },
     methods: {
-      
       viewPostDetails(){
         this.$router.push(`/user`);
       },
-
       likePost(post) {
         this.newLike = {
           userId: this.$store.state.user.id,
@@ -101,17 +91,11 @@ export default {
         }
         postService.addLiked(this.newLike).then(response => {
               if (response.status === 201) {
-                
-
               postService.updatePostLikes(post);
-              
-              this.allLikes.push(this.newLike);             
+              this.allLikes.push(this.newLike);
               }
             }) ;
-        
-        
       },
-
       unlikePost(post) {
         this.removeLike = {
           userId: this.$store.state.user.id,
@@ -124,13 +108,10 @@ export default {
                 (like.userId !== this.removeLike.userId && like.postId !== this.removeLike.postId)});
           }
             
+    
+          
         });
-        
-        
-        
       },
-      
-
       favoritePost(post) {
         this.newFavorite = {
           userId: this.$store.state.user.id,
@@ -145,7 +126,6 @@ export default {
         })
           this.allFavorites.push(this.newFavorite);
       },
-
       unFavoritePost(post) {
         this.removeFavorite = {
           userId: this.$store.state.user.id,
@@ -161,10 +141,7 @@ export default {
         this.allFavorites = this.allFavorites.filter((favorite) => {
           (favorite.userId !== this.removeFavorite.userId && favorite.postId !== this.removeFavorite.postId)});
       }
-
-    
   }
-  
 }
 </script>
 <style>
@@ -236,7 +213,6 @@ width: 100%;
   align-items: center;
    background-image: linear-gradient(to right, rgb(255, 110, 134), rgb(255, 135, 155));
 }
-
 .darkmode #InteractionPanel{
     justify-content: flex-start;
   align-items: center;
@@ -244,7 +220,6 @@ width: 100%;
   height: auto;
 background: orange;
 }
-
 .darkmode #carousel div{
     height: 100%;
     width: 100%;
@@ -273,8 +248,6 @@ background: orange;
   font-size: 15px;
   padding-left: 5%;
 }
-
-
 #Username{
     font-family:'Open Sans', sans-serif;
     text-decoration: none;
