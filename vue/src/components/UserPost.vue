@@ -155,11 +155,12 @@ export default {
 <style>
 #favoritebutton{
     height: 90%;
-    width: 20%;
+    width: 25%;
     margin-top: 1px;
     margin-left: 50%;
     margin-right: 2%;
     padding: 0px;
+
 }
   #likebutton{
     height: 90%;
@@ -223,10 +224,10 @@ width: 100%;
 }
 
 .darkmode #InteractionPanel{
-    justify-content: flex-start;
-  align-items: center;
   display: flex;
   height: auto;
+    justify-content: center;
+  align-items: center;
 background: orange;
 }
 
