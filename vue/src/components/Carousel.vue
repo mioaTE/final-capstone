@@ -55,7 +55,7 @@ export default {
 #carousel-3d-slide{
   height: auto;
   border: 1px solid black;
-  background-image: linear-gradient(to right, rgb(255, 110, 134), rgb(255, 135, 155));
+  background-image: linear-gradient(to right, #e83e8c rgb(255, 135, 155));
 }
 #\33 dCarousel > div{
     padding: 0px;

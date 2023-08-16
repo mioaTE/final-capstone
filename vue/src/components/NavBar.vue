@@ -67,12 +67,12 @@ margin-right: 2%;
 width: 18%;;
 }
 
-#brandtitle{
+.lightmode #brandtitle{
   font-family:'Open Sans', sans-serif;
   font-size: 40px;
   margin-left: 10px;
   margin-right: 10px;
-  color: rgb(189, 78, 78);
+  color: #d94496;
 }
 .lightmode #navbar {
   display: flex;
@@ -177,7 +177,13 @@ justify-content: center;
 
 
 
-
+.darkmode #brandtitle{
+  font-family:'Open Sans', sans-serif;
+  font-size: 40px;
+  margin-left: 10px;
+  margin-right: 10px;
+  color: #f85b00;
+}
 
 .darkmode #navbar {
   display: flex;
