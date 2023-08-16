@@ -47,16 +47,7 @@ CREATE TABLE comments(
     CONSTRAINT FK_post FOREIGN KEY (post_id) REFERENCES post(post_id)
 );
 
-<<<<<<< HEAD
-=======
-COMMIT TRANSACTION;
->>>>>>> e35bef9699a85ec0ced8b376225c4dcee9acb075
-CREATE TABLE favorites(
-	post_id INT NOT NULL,
-	user_id INT NOT NULL,
-	CONSTRAINT FK_post FOREIGN KEY (post_id) REFERENCES post(post_id),
-	CONSTRAINT FK_user FOREIGN KEY (user_id) REFERENCES users(user_id)
-);
+
 
 GRANT ALL
 ON ALL TABLES IN SCHEMA public
@@ -71,11 +62,7 @@ GRANT USAGE, SELECT
 ON ALL SEQUENCES IN SCHEMA publicnpm 
 TO final_capstone_appuser;
 
-<<<<<<< HEAD
+
 COMMIT TRANSACTION;
-=======
-SELECT * FROM users;
-SELECT * FROM comments;
-SELECT * FROM favorites;
-SELECT * FROM favorites;
->>>>>>> e35bef9699a85ec0ced8b376225c4dcee9acb075
+
+

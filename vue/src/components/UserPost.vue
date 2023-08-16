@@ -15,9 +15,8 @@
 
       </section>
       <section id="InteractionPanel">
-        <button id="likebutton" v-on:click="likePost(post)" v-if="!postLiked" ><i class="fa fa-heart" style="font-size:15px;color:red"></i> Like</button> 
-        <button id="likebutton" v-on:click="unlikePost(post)" v-if="postLiked" >Unlike</button>
-         <p> {{currentLikes}} </p>
+        <button id="likebutton" v-on:click="likePost(post)" v-if="!postLiked" ><i class="fa fa-heart" style="font-size:15px;color:red"></i> Like: {{currentLikes}}</button> 
+        <button id="likebutton" v-on:click="unlikePost(post)" v-if="postLiked" >Unlike: {{currentLikes}}</button>
         <button id="favoritebutton" v-on:click="favoritePost(post)" v-if="!postFavorited" >Favorite</button>
         <button id="favoritebutton" v-on:click="unFavoritePost(post)" v-if="postFavorited" >Unfavorite</button>
       </section>
@@ -83,7 +82,6 @@ export default {
         currentLikes() {
           let likeList = this.allLikes.filter((like) => like.postId == this.post.postId)
           return likeList.length;
-          // return this.post.likesCount;
         }
 
     },
@@ -123,8 +121,6 @@ export default {
                 (like.userId !== this.removeLike.userId && like.postId !== this.removeLike.postId)});
           }
             
-    
-          
         });
         
         
