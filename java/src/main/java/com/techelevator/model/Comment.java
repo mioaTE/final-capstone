@@ -8,13 +8,15 @@ public class Comment {
     private int userId;
     private int postId;
     private String comment;
+    private String username;
     public Comment(){};
 
-    public Comment(int commentId, int userId, int postId, String message, LocalDateTime dateTime, Long secondsAgo, String username) {
+    public Comment(int commentId, int userId, int postId, String message, String username) {
         this.commentId = commentId;
         this.userId = userId;
         this.postId = postId;
         this.comment = message;
+        this.username = username;
     }
 
     public int getCommentId() {
@@ -23,6 +25,14 @@ public class Comment {
 
     public void setCommentId(int commentId) {
         this.commentId = commentId;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public int getUserId() {

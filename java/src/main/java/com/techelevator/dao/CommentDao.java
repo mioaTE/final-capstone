@@ -12,4 +12,5 @@ public interface CommentDao {
     Comment submitComment(Comment comment);
 
     int deleteComment(int commentId);
+
 }
