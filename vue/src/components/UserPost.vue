@@ -15,15 +15,12 @@
 
       </section>
       <section id="InteractionPanel">
+
         <button id="likebutton" v-on:click="likePost(post)" v-if="!postLiked && post.postId != 0" ><i class="fa fa-heart" style="font-size:15px;color:red"></i> Like</button> 
         <button id="likebutton" v-on:click="unlikePost(post)" v-if="postLiked && post.postId != 0" >Unlike</button>
          <p> {{this.postLikes}} </p>
         <button id="favoritebutton" v-on:click="favoritePost(post)" v-if="!postFavorited && post.postId != 0" >Favorite</button>
         <button id="favoritebutton" v-on:click="unFavoritePost(post)" v-if="postFavorited" >Unfavorite</button>
-<<<<<<< HEAD
- 
-=======
->>>>>>> 29abae08adbeff2ffafae2214825c39331c16f31
       </section>
       </div>
     </div>
