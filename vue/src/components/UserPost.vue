@@ -20,6 +20,10 @@
          <p> {{this.postLikes}} </p>
         <button id="favoritebutton" v-on:click="favoritePost(post)" v-if="!postFavorited && post.postId != 0" >Favorite</button>
         <button id="favoritebutton" v-on:click="unFavoritePost(post)" v-if="postFavorited" >Unfavorite</button>
+<<<<<<< HEAD
+ 
+=======
+>>>>>>> 29abae08adbeff2ffafae2214825c39331c16f31
       </section>
       </div>
     </div>
@@ -171,11 +175,12 @@ export default {
 <style>
 #favoritebutton{
     height: 90%;
-    width: 20%;
+    width: 30%;
     margin-top: 1px;
     margin-left: 50%;
     margin-right: 2%;
     padding: 0px;
+
 }
   #likebutton{
     height: 90%;
@@ -239,10 +244,10 @@ width: 100%;
 }
 
 .darkmode #InteractionPanel{
-    justify-content: flex-start;
-  align-items: center;
   display: flex;
   height: auto;
+    justify-content: center;
+  align-items: center;
 background: orange;
 }
 
