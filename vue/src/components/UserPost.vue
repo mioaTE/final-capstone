@@ -11,9 +11,10 @@
                 <h2 v-if="post.postId == 0"> Welcome To TEgram! </h2>
       </section>
       <section id="UserPicture">
-        <router-link id="Post" v-bind:to="{name: 'post', params: {id: post.postId}}">
+        <router-link v-if="post.postId !== 0" id="Post" v-bind:to="{name: 'post', params: {id: post.postId}}">
       <img id="Picture"  v-bind:src="post.urlImage"/>
       </router-link>
+      <img id="Picture" v-if="post.postId == 0" v-bind:src="post.urlImage"/>
       </section>
       <section id="InteractionPanel">
 
@@ -61,6 +62,9 @@ export default {
         postService.getAllLikes().then((response) => {
           this.allLikes = response.data;
         })
+        postService.listFavoritesByUser(this.$store.state.user.id).then((response) => {
+          this.allFavorites = response.data;
+        })
     },
     computed: {
       postLiked() {
@@ -71,7 +75,7 @@ export default {
         }
       },
       postFavorited() {
-        if(this.allFavorites.some((favorite)=> favorite.postId == this.post.postId && favorite.userId == this.$store.state.user.id)) {
+        if(this.allFavorites.some((favorite)=> favorite.postId == this.post.postId)) {
           return true;
         } else {
           return false;
