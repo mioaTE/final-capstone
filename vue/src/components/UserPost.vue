@@ -20,7 +20,7 @@
          <p> {{this.postLikes}} </p>
         <button id="favoritebutton" v-on:click="favoritePost(post)" v-if="!postFavorited" >Favorite</button>
         <button id="favoritebutton" v-on:click="unFavoritePost(post)" v-if="postFavorited" >Unfavorite</button>
-        <p> {{this.postLikes}} </p>
+ 
       </section>
       </div>
     </div>
@@ -155,7 +155,7 @@ export default {
 <style>
 #favoritebutton{
     height: 90%;
-    width: 25%;
+    width: 30%;
     margin-top: 1px;
     margin-left: 50%;
     margin-right: 2%;
