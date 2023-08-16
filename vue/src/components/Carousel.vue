@@ -39,6 +39,8 @@ export default {
            this.$store.commit("UPDATE_POST_LIST", response.data);
            this.rendered = true;
         })
+
+        
     },
   methods: {
     getPostById(id) {
