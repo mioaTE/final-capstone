@@ -10,6 +10,8 @@
         </router-link>
       </section>
       <section id="UserPicture">
+        <router-link id="Post" v-bind:to="{name: 'post', params: {id: post.postId} }">
+        </router-link>
 
       <img id="Picture"  v-bind:src="post.urlImage"/>
 
@@ -17,6 +19,7 @@
       <section id="InteractionPanel">
         <button id="likebutton" v-on:click="likePost(post)" v-if="!postLiked" ><i class="fa fa-heart" style="font-size:15px;color:red"></i> Like: {{currentLikes}}</button> 
         <button id="likebutton" v-on:click="unlikePost(post)" v-if="postLiked" >Unlike: {{currentLikes}}</button>
+        
         <button id="favoritebutton" v-on:click="favoritePost(post)" v-if="!postFavorited" >Favorite</button>
         <button id="favoritebutton" v-on:click="unFavoritePost(post)" v-if="postFavorited" >Unfavorite</button>
       </section>
