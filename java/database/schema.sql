@@ -1,7 +1,5 @@
 BEGIN TRANSACTION;
-
 DROP TABLE IF EXISTS users, post, likes, favorites, comments;
-
 CREATE TABLE users (
 	user_id SERIAL,
 	username varchar(50) NOT NULL UNIQUE,
@@ -11,7 +9,6 @@ CREATE TABLE users (
 	email varchar (255),
 	profile_name varchar (255)
 );
-
 CREATE TABLE post (
 	post_id serial,
 	user_id INT NOT NULL,
@@ -22,42 +19,29 @@ CREATE TABLE post (
 	CONSTRAINT PK_post PRIMARY KEY (post_id),
 	CONSTRAINT FK_user FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
-
 CREATE TABLE likes(
 	post_id INT NOT NULL,
 	user_id INT NOT NULL,
 	CONSTRAINT FK_post FOREIGN KEY (post_id) REFERENCES post(post_id),
 	CONSTRAINT FK_user FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
-
 CREATE TABLE favorites(
 	post_id INT NOT NULL,
 	user_id INT NOT NULL,
 	CONSTRAINT FK_post FOREIGN KEY (post_id) REFERENCES post(post_id),
 	CONSTRAINT FK_user FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
-
 CREATE TABLE comments(
     comment_id serial,
     user_id INT NOT NULL,
     post_id INT NOT NULL,
     comment VARCHAR (500) NOT NULL,
+	username VARCHAR(100) NOT NULL,
     CONSTRAINT PK_comments PRIMARY KEY (comment_id),
     CONSTRAINT FK_user FOREIGN KEY (user_id) REFERENCES users(user_id),
     CONSTRAINT FK_post FOREIGN KEY (post_id) REFERENCES post(post_id)
 );
-
-<<<<<<< HEAD
-=======
 COMMIT TRANSACTION;
->>>>>>> e35bef9699a85ec0ced8b376225c4dcee9acb075
-CREATE TABLE favorites(
-	post_id INT NOT NULL,
-	user_id INT NOT NULL,
-	CONSTRAINT FK_post FOREIGN KEY (post_id) REFERENCES post(post_id),
-	CONSTRAINT FK_user FOREIGN KEY (user_id) REFERENCES users(user_id)
-);
-
 GRANT ALL
 ON ALL TABLES IN SCHEMA public
 TO final_capstone_owner;
@@ -68,14 +52,8 @@ GRANT SELECT, INSERT, UPDATE, DELETE
 ON ALL TABLES IN SCHEMA public
 TO final_capstone_appuser;
 GRANT USAGE, SELECT
-ON ALL SEQUENCES IN SCHEMA publicnpm 
+ON ALL SEQUENCES IN SCHEMA public
 TO final_capstone_appuser;
 
-<<<<<<< HEAD
-COMMIT TRANSACTION;
-=======
-SELECT * FROM users;
-SELECT * FROM comments;
-SELECT * FROM favorites;
-SELECT * FROM favorites;
->>>>>>> e35bef9699a85ec0ced8b376225c4dcee9acb075
+END TRANSACTION;
+
