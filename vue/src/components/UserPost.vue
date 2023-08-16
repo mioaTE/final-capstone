@@ -6,8 +6,9 @@
       <div v-bind:key="post.postId">
       <section id="PostHeader" >
       <router-link id="Username" v-bind:to="{name: 'user-detail', params: {id: post.userId} }">
-        {{ user.profileName }}
+        <h3>{{ user.profileName }}</h3>
         </router-link>
+        <h2 v-if="post.postId == 0"> Welcome To TEgram! </h2>
       </section>
       <section id="UserPicture">
 
@@ -167,16 +168,17 @@ export default {
 <style>
 #favoritebutton{
     height: 90%;
-    width: 20%;
-    margin-top: 1px;
+    width: 30%;
+    margin-top: 5px;
     margin-left: 50%;
     margin-right: 2%;
     padding: 0px;
+
 }
   #likebutton{
     height: 90%;
     width: 20%;
-    margin-top: 1px;
+    margin-top: 5px;
     margin-left: 2%;
     padding: 0px;
   }
@@ -195,6 +197,13 @@ text-decoration: none;
 }
 h3{
   font-family:'Open Sans', sans-serif;
+  color: black;
+}
+h2{
+    font-family:'Open Sans', sans-serif;
+  color: black;
+margin-left: auto;
+margin-right: auto;
 }
 h4{
   height: auto;
@@ -228,17 +237,21 @@ width: 100%;
 }
 .lightmode #InteractionPanel{
   display: flex;
-  height: auto;
+  height: 10%;
     justify-content: center;
   align-items: center;
    background-image: linear-gradient(to right, rgb(255, 110, 134), rgb(255, 135, 155));
 }
 
+#InteractionPanel{
+  height: 100%;
+}
+
 .darkmode #InteractionPanel{
-    justify-content: flex-start;
-  align-items: center;
   display: flex;
-  height: auto;
+  height: 10%;
+    justify-content: center;
+  align-items: center;
 background: orange;
 }
 
