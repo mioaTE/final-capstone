@@ -21,6 +21,8 @@ export default new Vuex.Store({
     postList: [],
     commentList: [],
     activePost: 0,
+    postComments: []
+
 
   },
   mutations: {
@@ -55,6 +57,10 @@ export default new Vuex.Store({
     UPDATE_COMMENT_LIST(state, commentList) {
       state.commentList = commentList;
     },
+    UPDATE_POST_COMMENTS(state, postComments) {
+      state.postComments = postComments;
+    }
+
   },
   getters: {
     product(state) {

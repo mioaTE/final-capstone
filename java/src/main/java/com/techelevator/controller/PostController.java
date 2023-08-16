@@ -35,9 +35,7 @@ public class PostController {
     private CommentDao commentDao;
 
 
-
-
-    public PostController (PostDao postDao, UserDao userDao, LikeDao likeDao, CommentDao commentDao) {
+    public PostController(PostDao postDao, UserDao userDao, LikeDao likeDao, CommentDao commentDao) {
         this.postDao = postDao;
         this.userDao = userDao;
         this.likeDao = likeDao;
@@ -50,11 +48,13 @@ public class PostController {
     public List<Post> getAllPost() {
         return postDao.getPost();
     }
+
     @CrossOrigin
     @RequestMapping(path = "/users", method = RequestMethod.GET)
     public List<User> getAllUsers() {
         return userDao.getUsers();
     }
+
     @CrossOrigin
     @RequestMapping(path = "/users/{id}", method = RequestMethod.GET)
     public User getUserById(@PathVariable int id) {
@@ -66,6 +66,7 @@ public class PostController {
     public List<Post> getUsersPost(@PathVariable int Id) {
         return postDao.getPostByUserId(Id);
     }
+
     @CrossOrigin
     @RequestMapping(path = "/posts/{Id}", method = RequestMethod.GET)
     public Post getPostById(@PathVariable int Id) {
@@ -85,7 +86,7 @@ public class PostController {
     }
 
     @CrossOrigin
-    @RequestMapping (path = "/all-likes", method = RequestMethod.GET)
+    @RequestMapping(path = "/all-likes", method = RequestMethod.GET)
     public List<Like> getAllLikes() {
         return likeDao.getAllLikes();
     }
@@ -103,6 +104,12 @@ public class PostController {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Post creation failed.");
         }
     }
+
+    @CrossOrigin
+    @RequestMapping(path = "/comments/{postId}", method = RequestMethod.GET)
+    public List<Comment> getCommentByPostId(@PathVariable int postId) {
+       return commentDao.listCommentsByPost(postId);
+}
 
     @CrossOrigin
     @RequestMapping(path = "/comments", method = RequestMethod.POST)

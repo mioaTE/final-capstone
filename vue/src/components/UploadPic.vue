@@ -101,7 +101,7 @@ export default {
 
 <style scoped>
 form {
-  width: 40%;
+  width: auto;
   height: 40%;
   font-family: 'Open Sans', sans-serif;
   max-height: 400px;

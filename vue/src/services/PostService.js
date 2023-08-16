@@ -57,7 +57,12 @@ export default {
     listFavoritesByUser(userId) {
         return axios.get(`all-favorites/${userId}`)
     },
+
     getPostById(postId) {
         return axios.get(`posts/${postId}`)
+    },
+
+    getCommentByPostId(postId) {
+        return axios.get(`/comments/${postId}`)
     }
 }

@@ -2,6 +2,7 @@
   <div id="Post" :class="$store.state.isDark ? 'darkmode' : 'lightmode'">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600' rel='stylesheet' type='text/css'>
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       <div v-bind:key="post.postId">
       <section id="PostHeader" >
       <router-link id="Username" v-bind:to="{name: 'user-detail', params: {id: post.userId} }">
@@ -14,13 +15,11 @@
 
       </section>
       <section id="InteractionPanel">
-        <button id="likebutton" v-on:click="likePost(post)" v-if="!postLiked" >Like</button> 
+        <button id="likebutton" v-on:click="likePost(post)" v-if="!postLiked" ><i class="fa fa-heart" style="font-size:15px;color:red"></i> Like</button> 
         <button id="likebutton" v-on:click="unlikePost(post)" v-if="postLiked" >Unlike</button>
          <p> {{currentLikes}} </p>
         <button id="favoritebutton" v-on:click="favoritePost(post)" v-if="!postFavorited" >Favorite</button>
-
-
-        <!-- add  unfavoritebutton -->
+        <button id="favoritebutton" v-on:click="unFavoritePost(post)" v-if="postFavorited" >Unfavorite</button>
       </section>
       </div>
     </div>
@@ -34,7 +33,6 @@ export default {
     data() {
         return {
           user: {},
-          currentPost: {},
           postList: [],
           newLike: {userId: this.$store.state.user.id,
                     postId: '',
@@ -46,13 +44,10 @@ export default {
           newFavorite: {userId: this.$store.state.user.id,
                     postId: '',
           },
-          allFavorites: [],
+          removeFavorite: {userId: this.$store.state.user.id,
+                      postId: ''},
+          allFavorites: []
         }
-    },
-    mounted(){
-      postService.getPostById(this.post.postId).then(response => {
-        this.currentPost = response.data;
-      })
     },
     created() {
       if(this.post.userId != 0) {
@@ -86,7 +81,9 @@ export default {
         }
         },
         currentLikes() {
-          return this.post.likesCount
+          let likeList = this.allLikes.filter((like) => like.postId == this.post.postId)
+          return likeList.length;
+          // return this.post.likesCount;
         }
 
     },
@@ -141,7 +138,7 @@ export default {
           postId: post.postId
         }
         postService.addFavorite(this.newFavorite).then(response => {
-            if (response.status === 200) {
+            if (response.status === 201) {
               console.log("favorite updated");
             } else {
               console.log("favorite did not update");
@@ -149,6 +146,23 @@ export default {
         })
           this.allFavorites.push(this.newFavorite);
       },
+
+      unFavoritePost(post) {
+        this.removeFavorite = {
+          userId: this.$store.state.user.id,
+          postId: post.postId
+        }
+        postService.removeFavorite(this.removeFavorite.userId, this.removeFavorite.postId).then(response => {
+            if (response.status === 202) {
+              console.log("Favorite updated");
+            } else {
+              console.log("Favorite did not update");
+            }
+        });
+        this.allFavorites = this.allFavorites.filter((favorite) => {
+          (favorite.userId !== this.removeFavorite.userId && favorite.postId !== this.removeFavorite.postId)});
+      }
+
     
   }
   
