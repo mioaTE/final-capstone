@@ -15,17 +15,11 @@
 
       </section>
       <section id="InteractionPanel">
-<<<<<<< HEAD
+
         <button id="likebutton" v-on:click="likePost(post)" v-if="!postLiked && post.postId != 0" ><i class="fa fa-heart" style="font-size:15px;color:red"></i> Like</button> 
         <button id="likebutton" v-on:click="unlikePost(post)" v-if="postLiked && post.postId != 0" >Unlike</button>
          <p> {{this.postLikes}} </p>
         <button id="favoritebutton" v-on:click="favoritePost(post)" v-if="!postFavorited && post.postId != 0" >Favorite</button>
-=======
-        <button id="likebutton" v-on:click="likePost(post)" v-if="!postLiked" ><i class="fa fa-heart" style="font-size:15px;color:red"></i> Like</button> 
-        <button id="likebutton" v-on:click="unlikePost(post)" v-if="postLiked" >Unlike</button>
-         <p> {{currentLikes}} </p>
-        <button id="favoritebutton" v-on:click="favoritePost(post)" v-if="!postFavorited" >Favorite</button>
->>>>>>> 45a878eaf030271e34e995e5936fe10972d07327
         <button id="favoritebutton" v-on:click="unFavoritePost(post)" v-if="postFavorited" >Unfavorite</button>
       </section>
       </div>
@@ -178,11 +172,12 @@ export default {
 <style>
 #favoritebutton{
     height: 90%;
-    width: 20%;
+    width: 30%;
     margin-top: 1px;
     margin-left: 50%;
     margin-right: 2%;
     padding: 0px;
+
 }
   #likebutton{
     height: 90%;
@@ -246,10 +241,10 @@ width: 100%;
 }
 
 .darkmode #InteractionPanel{
-    justify-content: flex-start;
-  align-items: center;
   display: flex;
   height: auto;
+    justify-content: center;
+  align-items: center;
 background: orange;
 }
 
