@@ -15,18 +15,20 @@
 
       </section>
       <section id="InteractionPanel">
-        <button id="likebutton" v-on:click="likePost(post)" v-if="!postLiked" ><i class="fa fa-heart" style="font-size:15px;color:red"></i> Like</button> 
-        <button id="likebutton" v-on:click="unlikePost(post)" v-if="postLiked" >Unlike</button>
+        <button id="likebutton" v-on:click="likePost(post)" v-if="!postLiked && post.postId != 0" ><i class="fa fa-heart" style="font-size:15px;color:red"></i> Like</button> 
+        <button id="likebutton" v-on:click="unlikePost(post)" v-if="postLiked && post.postId != 0" >Unlike</button>
          <p> {{this.postLikes}} </p>
-        <button id="favoritebutton" v-on:click="favoritePost(post)" v-if="!postFavorited" >Favorite</button>
+        <button id="favoritebutton" v-on:click="favoritePost(post)" v-if="!postFavorited && post.postId != 0" >Favorite</button>
         <button id="favoritebutton" v-on:click="unFavoritePost(post)" v-if="postFavorited" >Unfavorite</button>
+<<<<<<< HEAD
  
+=======
+>>>>>>> 29abae08adbeff2ffafae2214825c39331c16f31
       </section>
       </div>
     </div>
 </template>
 <script>
-// import catPicService from '../services/CatPictureServices.js';
 import postService from "../services/PostService.js";
 export default {
     name: "user-post",
@@ -35,7 +37,6 @@ export default {
     data() {
         return {
           user: {},
-          postLikes: '',
           postList: [],
           newLike: {userId: this.$store.state.user.id,
                     postId: '',
@@ -52,23 +53,21 @@ export default {
           allFavorites: []
         }
     },
-    updated() {
-      this.postLikes = this.post.likesCount;
-     
-    },
     created() {
       if(this.post.userId != 0) {
        postService.getUser(this.post.userId).then((response) => {
           this.user = response.data;
         })
       }
-        postService.listPosts().then((response) => {
-          this.postList = response.data;
-        })
+       
+       postService.listPosts().then((response) => {
+         this.postList = response.data;
+       })
 
         postService.getAllLikes().then((response) => {
           this.allLikes = response.data;
         })
+
     },
     computed: {
       postLiked() {
@@ -84,9 +83,13 @@ export default {
         } else {
           return false;
         }
-      },
-      
-      
+        },
+        currentLikes() {
+          let likeList = this.allLikes.filter((like) => like.postId == this.post.postId)
+          return likeList.length;
+          // return this.post.likesCount;
+        }
+
     },
     methods: {
       
@@ -99,9 +102,17 @@ export default {
           userId: this.$store.state.user.id,
           postId: post.postId
         }
-        postService.addLiked(this.newLike);
-        postService.updatePostLikes(post);
-        this.allLikes.push(this.newLike);
+        postService.addLiked(this.newLike).then(response => {
+              if (response.status === 201) {
+                
+
+              postService.updatePostLikes(post);
+              
+              this.allLikes.push(this.newLike);             
+              }
+            }) ;
+        
+        
       },
 
       unlikePost(post) {
@@ -109,10 +120,19 @@ export default {
           userId: this.$store.state.user.id,
           postId: post.postId
         }
-        postService.removeLiked(this.removeLike.userId, this.removeLike.postId);
-        postService.updatePostLikes(post);
-        this.allLikes = this.allLikes.filter((like) => {
-          (like.userId !== this.removeLike.userId && like.postId !== this.removeLike.postId)});
+        postService.removeLiked(this.removeLike.userId, this.removeLike.postId).then(response => {
+          if (response.status != 500) {
+             postService.updatePostLikes(post);
+              this.allLikes = this.allLikes.filter((like) => {
+                (like.userId !== this.removeLike.userId && like.postId !== this.removeLike.postId)});
+          }
+            
+    
+          
+        });
+        
+        
+        
       },
       
 

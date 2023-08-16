@@ -17,15 +17,20 @@ export default new Vuex.Store({
     activeUser: 0,
     token: currentToken || '',
     user: currentUser || {},
-    isDark: true,
+    isDark: false,
     postList: [],
     commentList: [],
+    activePost: 0,
     postComments: []
+
 
   },
   mutations: {
     SET_ACTIVE_USER(state, userId){
       state.activeUser = userId;
+    },
+    SET_ACTIVE_POST_LIKES(state, postLikes) {
+      state.activePost = postLikes;
     },
     SET_AUTH_TOKEN(state, token) {
       state.token = token;
@@ -55,10 +60,14 @@ export default new Vuex.Store({
     UPDATE_POST_COMMENTS(state, postComments) {
       state.postComments = postComments;
     }
+
   },
   getters: {
     product(state) {
       return state.users.find(p => p.id == state.activeProduct);
+    },
+    getActivePostLikes(state) {
+      return state.postList.find(p => p.likesCount == state.activePost)
     }
   }
 })

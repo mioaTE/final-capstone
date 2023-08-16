@@ -76,6 +76,7 @@ public class PostController {
     @CrossOrigin
     @RequestMapping(path = "/posts/{Id}", method = RequestMethod.PUT)
     public Post updatePost(@PathVariable int Id, @RequestBody Post post) {
+        post.setPostId(Id);
         try {
             Post updatedPost = postDao.updatePostLikes(post);
             return updatedPost;
