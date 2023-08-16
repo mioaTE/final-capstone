@@ -37,17 +37,14 @@ public class JdbcPostDao implements PostDao{
     @Override
     public Post updatePostLikes(Post post) {
         Post updatedPost = null;
-        String sql = "UPDATE post SET post_likes = (SELECT COUNT(likes.post_id) FROM likes WHERE post.post_id = likes.post_id) WHERE post.post_id = ?;";
+        String sql = "UPDATE post SET post_likes = (SELECT COUNT(post_id) FROM likes WHERE post.post_id = likes.post_id) WHERE post_id = ?;";
 
         try {
             jdbcTemplate.update(sql, post.getPostId());
             updatedPost = getPostByPostId(post.getPostId());
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);
-        } catch (DataIntegrityViolationException e) {
-            throw new DaoException("Data integrity violation", e);
         }
-
         return updatedPost;
     }
 
@@ -87,7 +84,7 @@ public class JdbcPostDao implements PostDao{
     public List<Post> getPost(){
         List<Post> allPost = new ArrayList<>();
         Post post = null;
-        String sql = "SELECT * FROM post";
+        String sql = "SELECT post_id, user_id, post_description, post_img, post_likes, created_on FROM post ORDER BY post_id DESC";
         try{
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
             while(results.next()){

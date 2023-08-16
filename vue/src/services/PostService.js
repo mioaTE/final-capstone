@@ -32,8 +32,8 @@ export default {
     addPost(thePost) {
         return axios.post('/posts', thePost)
     },
-    addLiked(postId) {
-        return axios.post('/likes', postId)
+    addLiked(like) {
+        return axios.post('/likes', like)
     },
     removeLiked(userId, postId) {
         return axios.delete(`like/${userId}/${postId}`)
@@ -56,5 +56,8 @@ export default {
     },
     listFavoritesByUser(userId) {
         return axios.get(`all-favorites/${userId}`)
+    },
+    getPostById(postId) {
+        return axios.get(`posts/${postId}`)
     }
 }
