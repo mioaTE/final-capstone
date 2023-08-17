@@ -182,7 +182,7 @@ justify-content: center;
   font-size: 40px;
   margin-left: 10px;
   margin-right: 10px;
-  color: #f85b00;
+color: rgb(255, 170, 91);
 }
 
 .darkmode #navbar {
