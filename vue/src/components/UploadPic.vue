@@ -1,10 +1,10 @@
 <template>
 <div>
     <section id="header">
-       <h3>Post Something Fun!</h3>
+       <h3 id="chooseheader">Post Something Fun!</h3>
     </section>   
     <section id="postContent">
-      <button v-on:click="upload">Choose a Picture</button>
+      <button v-on:click="upload" >Choose a Picture</button>
       <img v-if="this.newPost.urlImage !== ''" v-bind:src="this.newPost.urlImage" />
       <form v-on:submit.prevent="submitPost">
       <label for="postDescription">Write a Description</label>
@@ -200,6 +200,12 @@ form {
   top: 3px;
   background-color:#ff9419;
   box-shadow: none;
+}
+.darkmode #chooseheader{
+color: rgb(255, 170, 91);
+}
+.lightmode #chooseheader{
+color: black;
 }
 #header{
   display: flex;
