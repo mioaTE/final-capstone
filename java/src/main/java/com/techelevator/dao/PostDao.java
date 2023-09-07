@@ -5,7 +5,7 @@ import com.techelevator.model.Post;
 import java.util.List;
 
 public interface PostDao {
-
+//interface is a Contract
     List<Post> getPostByUserId(int userId);
 
     Post getPostByPostId(int postId);

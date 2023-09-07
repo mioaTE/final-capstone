@@ -48,7 +48,7 @@ export default {
         this.favorites = response.data;
         console.log(this.favorites);
       })
-      console.log(this.favorites)
+      // console.log(this.favorites)
       .catch((error) => {
         if (error.response.status == 404) {
           this.$router.push("/not-found");

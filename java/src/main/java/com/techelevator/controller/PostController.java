@@ -91,9 +91,9 @@ public class PostController {
         return likeDao.getAllLikes();
     }
 
-    @CrossOrigin
-    @ResponseStatus(HttpStatus.CREATED)
-    @RequestMapping(path = "/posts", method = RequestMethod.POST)
+    @CrossOrigin //it allows different programs to talk with API
+    @ResponseStatus(HttpStatus.CREATED) //is telling Java to say 201 when it was successfully created
+    @RequestMapping(path = "/posts", method = RequestMethod.POST)//if the path and method are correct, it allows the request
     public void addPost(@Valid @RequestBody Post newPost) {
         try {
             Post post = postDao.createPost(newPost);

@@ -1,71 +1,125 @@
 <template>
-  <div :class="$store.state.isDark ? 'darkmode' : 'lightmode'" id="register" class="text-center">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600' rel='stylesheet' type='text/css'>
-<link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
-    <nav-bar :class="$store.state.isDark ? 'darkmode' : 'lightmode'" id="navbar"/>
-    <section :class="$store.state.isDark ? 'darkmode' : 'lightmode'" id="registerform">
-    <form :class="$store.state.isDark ? 'darkmode' : 'lightmode'" @submit.prevent="register">
-      <h1>Create Account</h1>
-      <div role="alert" v-if="registrationErrors">
-        {{ registrationErrorMsg }}
-      </div>
-      <div class="form-input-group">
-        <label id="icon" for="name"><i class="icon-envelope "></i></label>
-        <input type="email" id="email" placeholder="Email" v-model="user.email" required autofocus />
+  <div
+    :class="$store.state.isDark ? 'darkmode' : 'lightmode'"
+    id="register"
+    class="text-center"
+  >
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css"
+      rel="stylesheet"
+    />
+    <nav-bar
+      :class="$store.state.isDark ? 'darkmode' : 'lightmode'"
+      id="navbar"
+    />
+    <section
+      :class="$store.state.isDark ? 'darkmode' : 'lightmode'"
+      id="registerform"
+    >
+      <form
+        :class="$store.state.isDark ? 'darkmode' : 'lightmode'"
+        @submit.prevent="register"
+      >
+        <h1>Create Account</h1>
+        <div role="alert" v-if="registrationErrors">
+          {{ registrationErrorMsg }}
+        </div>
+        <div class="form-input-group">
+          <label id="icon" for="name"><i class="icon-envelope"></i></label>
+          <input
+            type="email"
+            id="email"
+            placeholder="Email"
+            v-model="user.email"
+            required
+            autofocus
+          />
         </div>
         <div class="form-input-group">
           <label id="username"><i class="icon-user"></i></label>
-          <input type="text" id="username" placeholder="User name" v-model="user.profileName" required autofocus />
-          </div>
-      <div class="form-input-group">
-        <label id="icon" for="name"><i class="icon-shield"></i></label>
-        <input type="password" id="password" placeholder="Password"  v-model="user.password" required />
-      </div>
-      <div class="form-input-group">
-        <label id="icon" for="name"><i class="icon-shield"></i></label>
-        <input type="password" id="confirmPassword" placeholder="Confirm Password"  v-model="user.confirmPassword" required />
-      </div>
-      
-      <!-- <button type="submit">Create Account</button> -->
-      <p><router-link :to="{ name: 'login' }" class="already-have-account">Already have an account? Log in.</router-link></p>
-      <br>
-      <p>By clicking Register, you agree on our <a href="#">terms and condition</a>.</p>
-      
-      <input class="button" type="submit" value="Register"/>
-    </form>
+          <input
+            type="text"
+            id="username"
+            placeholder="User name"
+            v-model="user.profileName"
+            required
+            autofocus
+          />
+        </div>
+        <div class="form-input-group">
+          <label id="icon" for="name"><i class="icon-shield"></i></label>
+          <input
+            type="password"
+            id="password"
+            placeholder="Password"
+            v-model="user.password"
+            required
+          />
+        </div>
+        <div class="form-input-group">
+          <label id="icon" for="name"><i class="icon-shield"></i></label>
+          <input
+            type="password"
+            id="confirmPassword"
+            placeholder="Confirm Password"
+            v-model="user.confirmPassword"
+            required
+          />
+        </div>
+
+        
+        <p>
+          <router-link :to="{ name: 'login' }" class="already-have-account"
+            >Already have an account? Log in.</router-link
+          >
+        </p>
+        <br />
+        <p>
+          By clicking Register, you agree on our
+          <a href="#">terms and condition</a>.
+        </p>
+
+        <input class="button" type="submit" value="Register" />
+      </form>
     </section>
-    </div>
+  </div>
 </template>
 
 <script>
-import authService from '../services/AuthService';
-import NavBar from '../components/NavBar.vue';
+import authService from "../services/AuthService";
+import NavBar from "../components/NavBar.vue";
 export default {
-  name: 'register',
+  name: "register",
   components: {
-    NavBar
+    NavBar,
   },
   data() {
     return {
       user: {
-        profileName: '',
-        username: '',
-        password: '',
-        confirmPassword: '',
-        email: '',
-        role: 'user',
+        profileName: "",
+        username: "",
+        password: "",
+        confirmPassword: "",
+        email: "",
+        role: "user",
       },
       registrationErrors: false,
-      registrationErrorMsg: 'There were problems registering this user.',
+      registrationErrorMsg: "There were problems registering this user.",
     };
   },
   methods: {
+    //to check password criteria (uppercase and numbers).
     hasUpperCase(str) {
       return str !== str.toLowerCase();
     },
-   hasNumbers(str) {
-    var regex = /\d/g;
-    return regex.test(str);
+    hasNumbers(str) {
+      var regex = /\d/g;
+      return regex.test(str);
     },
 
     register() {
@@ -75,7 +129,7 @@ export default {
       // } change if to else if on line 70 when turning strong passwords on
       if (this.user.password != this.user.confirmPassword) {
         this.registrationErrors = true;
-        this.registrationErrorMsg = 'Password & Confirm Password do not match.';
+        this.registrationErrorMsg = "Password & Confirm Password do not match.";
       } else {
         this.user.username = this.user.email;
         authService
@@ -83,8 +137,8 @@ export default {
           .then((response) => {
             if (response.status == 201) {
               this.$router.push({
-                path: '/login',
-                query: { registration: 'success' },
+                path: "/login",
+                query: { registration: "success" },
               });
             }
           })
@@ -92,14 +146,14 @@ export default {
             const response = error.response;
             this.registrationErrors = true;
             if (response.status === 400) {
-              this.registrationErrorMsg = 'Bad Request: Validation Errors';
+              this.registrationErrorMsg = "Bad Request: Validation Errors";
             }
           });
       }
     },
     clearErrors() {
       this.registrationErrors = false;
-      this.registrationErrorMsg = 'There were problems registering this user.';
+      this.registrationErrorMsg = "There were problems registering this user.";
     },
   },
 };
@@ -114,15 +168,15 @@ export default {
   grid-template-rows: 1fr 3fr;
   grid-template-areas:
     "navbar"
-    "register"
+    "register";
 }
-#registerform{
+#registerform {
   grid-area: register;
-  display:flex;
+  display: flex;
   justify-content: center;
   align-items: center;
 }
-#navbar{
+#navbar {
   grid-area: navbar;
 }
 
@@ -131,19 +185,19 @@ form {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-    width: 40%;
+  width: 40%;
   height: 75%;
-  font-family:'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   border-style: solid;
   border-radius: 25px;
 }
-.lightmode form{
-  background-image: radial-gradient( #ffa2cd,#ff62ab) ;
-    border-color: gold;
+.lightmode form {
+  background-image: radial-gradient(#ffa2cd, #ff62ab);
+  border-color: gold;
 }
-.darkmode form{
-    background: orange;
-    border-color: rgb(44, 44, 44);
+.darkmode form {
+  background: orange;
+  border-color: rgb(44, 44, 44);
 }
 .form-input-group {
   display: flex;
@@ -166,24 +220,24 @@ p {
   display: inline-block;
   text-align: center;
 }
-.darkmode .button:hover{
-    background-color:rgb(255, 207, 135);
+.darkmode .button:hover {
+  background-color: rgb(255, 207, 135);
 }
-.darkmode .button{
-  background-color: rgb(255, 152, 18); 
-  -webkit-box-shadow: 0 3px rgb(95, 95, 95); 
-  -moz-box-shadow: 0 3px rgb(87, 87, 87); 
+.darkmode .button {
+  background-color: rgb(255, 152, 18);
+  -webkit-box-shadow: 0 3px rgb(95, 95, 95);
+  -moz-box-shadow: 0 3px rgb(87, 87, 87);
   box-shadow: 0 3px rgb(90, 90, 90);
 }
 
-.lightmode .button:hover{
-  background-color: rgb(255, 211, 219); 
+.lightmode .button:hover {
+  background-color: rgb(255, 211, 219);
 }
 
-.lightmode .button{
-  background-color: rgb(255, 125, 147); 
-  -webkit-box-shadow: 0 3px pink; 
-  -moz-box-shadow: 0 3px pink; 
+.lightmode .button {
+  background-color: rgb(255, 125, 147);
+  -webkit-box-shadow: 0 3px pink;
+  -moz-box-shadow: 0 3px pink;
   box-shadow: 0 3px pink;
 }
 .button {
@@ -197,18 +251,18 @@ p {
   /* float: right; */
   text-decoration: none;
   /* width: 50px; height: 27px;  */
-  -webkit-border-radius: 5px; 
-  -moz-border-radius: 5px; 
-  border-radius: 5px; 
-  transition: all 0.1s linear 0s; 
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  transition: all 0.1s linear 0s;
   top: 0px;
   position: relative;
   border: none;
 }
 .button:hover {
   top: 3px;
-  -webkit-box-shadow: none; 
-  -moz-box-shadow: none; 
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
   box-shadow: none;
 }
 </style>

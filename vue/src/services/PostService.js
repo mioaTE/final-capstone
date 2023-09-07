@@ -1,5 +1,7 @@
 import axios from 'axios';
-
+//axios is a library can make HTTP request/response easily
+//REST API is Representational state transfer API, and it is an interface that allows transfer of data between computer programs.
+//JSON is javascript object notaion, has key-value pairs. Used widely because it's simple and readable for data-interchange
 export default {
 
     updatePostLikes(post){

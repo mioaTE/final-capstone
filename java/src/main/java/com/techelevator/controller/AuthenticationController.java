@@ -42,7 +42,7 @@ public class AuthenticationController {
         Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = tokenProvider.createToken(authentication, false);
-
+//Json web token
         User user;
         try {
             user = userDao.getUserByEmail(loginDto.getUsername());
@@ -53,6 +53,7 @@ public class AuthenticationController {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add(JWTFilter.AUTHORIZATION_HEADER, "Bearer " + jwt);
         return new ResponseEntity<>(new LoginResponseDto(jwt, user), httpHeaders, HttpStatus.OK);
+        //passing back the token and the headers and status ok
     }
 
 
